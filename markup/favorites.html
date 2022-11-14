@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/swiper.css" rel="stylesheet">
+		<link href="css/x375.css" rel="stylesheet">
+		<link href="css/x768.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="#" type="image/png">
+		<title>Favorites</title>
+	</head>
+
+	<body>
+		<!----------------- HEADER START ------------------>
+		<header>
+			<div class="wrap">
+				<div class="left">
+					<div class="menu">
+						<div class="group">
+							<a href="#" class="burger"><span></span><span></span><span></span></a>
+							<div class="list">
+								<ul>
+									<li><a href="#">Дома и таунхаусы</a></li>
+									<li><a href="#">Квартиры и апартаменты</a></li>
+									<li><a href="#">Земельные участки</a></li>
+									<li><a href="#">Коммерческая недвижимость</a></li>
+								</ul>
+								<ul class="second">
+									<li><a href="#">Каталог</a></li>
+									<li><a href="#">Ипотечный калькулятор</a></li>
+									<li><a href="#">Кадастровая карта</a></li>
+									<li class="mob"><a href="#">Город</a></li>
+								</ul>
+							</div>
+						</div>
+						<a href="#" class="logo">real2u.ru</a>
+					</div>
+					<div class="search">
+						<a href="#" class="mob"><img src="images/icon/search.svg" alt="search"></a>
+						<form action="">
+							<input type="text" placeholder="поиск по номеру или названию объекта " pattern="[А-Яа-я]{1,}">
+							<button type="submit"></button>
+						</form>
+					</div>
+					<div class="city">
+						<a class="selected" href="#">Сочи</a>
+						<div class="modal">
+							<div class="bg"></div>
+							<div class="content">
+								<div class="close"><span></span><span></span></div>
+								<p class="title">Выберите город</p>
+								<a href="#">Краснодар</a>
+								<a href="#">Москва</a>
+								<a href="#">Екатеринбург</a>
+								<a href="#">Сочи</a>
+								<a href="#">Санкт-Петербург</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<a href="#" class="objects"></a>
+					<a href="#" class="folder"></a>
+					<a href="#" class="favorite"></a>
+					<div class="wrapper">
+						<a href="#" class="bell open active"></a>
+						<div class="list">
+							<ul>
+								<li class="new"><a href="#">Новое уведомление с очень длинным текстом Новое уведомление с очень длинным текстом
+								</a></li>
+								<li><a href="#">Уведомление 2</a></li>
+								<li><a href="#">Уведомление 3</a></li>
+								<li><a href="#">Уведомление 4</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="wrapper">
+						<a href="#" class="lk open">
+							<span>Арсений Белоруков</span>
+						</a>
+						<div class="list">
+							<ul>
+								<li><a class="client" href="#">Я с клиентом <span></span></a></li>
+								<li><a href="#">Профиль</a></li>
+								<li><a href="#">Мои объявления</a></li>
+								<li class="mob"><a href="#">Уведомления</a></li>
+								<li><a href="#">Выйти</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!----------------- HEADER END ------------------>
+
+		<!----------------- FAVORITES START ------------------>
+		<div class="pattern wrap">
+			<div class="wrapper">
+				<div class="heading">
+					<h1>Мои избранные <span>6</span></h1>
+					<div class="interface">
+						<a href="#" class="share"><span>поделиться избранным</span>
+							<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9092 6.16756C13.3262 6.16756 12.7883 5.95005 12.3669 5.58681L8.12875 8.84726C8.19971 9.26147 8.19971 9.6859 8.12875 10.1001L12.3669 13.3606C12.7883 12.9973 13.3262 12.7798 13.9092 12.7798C15.2633 12.7798 16.3637 13.95 16.3637 15.3899C16.3637 16.8298 15.2633 18 13.9092 18C12.5551 18 11.4547 16.8298 11.4547 15.3899C11.4547 15.1376 11.4874 14.8962 11.5508 14.6656L7.52534 11.5661C6.92807 12.4079 5.97897 12.9538 4.9092 12.9538C3.10102 12.9538 1.63647 11.3965 1.63647 9.47368C1.63647 7.55091 3.10102 5.99356 4.9092 5.99356C5.97897 5.99356 6.92807 6.5395 7.52534 7.38126L11.5508 4.28177C11.4874 4.05121 11.4547 3.8076 11.4547 3.55746C11.4547 2.11756 12.5551 0.947369 13.9092 0.947369C15.2633 0.947369 16.3637 2.11756 16.3637 3.55746C16.3637 4.99737 15.2633 6.16756 13.9092 6.16756ZM13.9092 16.5209C14.4962 16.5209 14.9728 16.0142 14.9728 15.3899C14.9728 14.7657 14.4962 14.2589 13.9092 14.2589C13.3222 14.2589 12.8456 14.7657 12.8456 15.3899C12.8456 16.0142 13.3222 16.5209 13.9092 16.5209ZM4.9092 7.55961C3.91716 7.55961 3.1092 8.41877 3.1092 9.47368C3.1092 10.5286 3.91716 11.3878 4.9092 11.3878C5.90125 11.3878 6.7092 10.5286 6.7092 9.47368C6.7092 8.41877 5.90125 7.55961 4.9092 7.55961ZM13.9092 2.42642C13.3222 2.42642 12.8456 2.93322 12.8456 3.55746C12.8456 4.18171 13.3222 4.68851 13.9092 4.68851C14.4962 4.68851 14.9728 4.18171 14.9728 3.55746C14.9728 2.93322 14.4962 2.42642 13.9092 2.42642Z" fill="#52758E"></path></svg>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!----------------- ADD OBJECTS START ------------------>
+		<div class="add-objects">
+			<div class="cards-wrapper">
+				<div class="cards">
+					<div class="card">
+						<a href="#">
+							<div class="image">
+								<div class="swiper-container-item">
+									<div class="swiper-wrapper">
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/1.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/2.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/3.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/4.jpg);"></div>
+										<div href="#" class="swiper-slide more"
+											style="background-image: url(./images/card/5.jpg);"><p>Eще 32 фото</p></div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="inf">
+									<p><img src="images/icon/square.svg" alt=""> 12 сот</p>
+									<p><img src="images/icon/bed.svg" alt=""> 3</p>
+									<p><img src="images/icon/squarehouse.svg" alt=""> 270 м²</p>
+								</div>
+								<div class="price">
+									<p>432 000 000 ₽</p>
+									<p class="commission">комиссия 5 %</p>
+								</div>
+								<div class="title">
+									<p>Дом, баня и бассейн с видом на горы в с. Каштаны </p>
+								</div>
+								<div class="location">
+									<img src="images/icon/marker-map.svg" alt="marker">
+									<p>Каштаны</p>
+								</div>
+							</div>
+						</a>
+						<div class="group">
+							<div class="tags">
+								<a href="#">с видом на море</a>
+								<a href="#">хайтек</a>
+								<a href="#">шале</a>
+								<a href="#">с бассейном</a>
+								<a href="#">с баней</a>
+								<a href="#">с гостевым домом</a>
+								<a href="#">с ремонтом</a>
+								<a href="#">с видео</a>
+								<a href="#">с гаражом</a>
+							</div>
+							<div class="interface">
+								<a href="#" class="favorite active"></a>
+								<a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
+								<a href="files/test.pdf" class="pdf" target="_blank"></a>
+								<a href="#" class="folder" data-attr-title="Дом, баня и бассейн с видом на горы в с. Каштаны " data-attr-location="Каштаны" data-attr-img="images/card/1.jpg"></a>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<a href="#">
+							<div class="image">
+								<div class="swiper-container-item">
+									<div class="swiper-wrapper">
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/2.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/1.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/3.jpg);"></div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="inf">
+									<p><img src="images/icon/square.svg" alt=""> 12 сот</p>
+									<p><img src="images/icon/bed.svg" alt=""> 3</p>
+									<p><img src="images/icon/squarehouse.svg" alt=""> 270 м²</p>
+								</div>
+								<div class="price">
+									<p>432 000 000 ₽</p>
+									<p class="commission">комиссия 5 %</p>
+								</div>
+								<div class="title">
+									<p>Дом, баня и бассейн с видом на горы в с. Каштаны </p>
+								</div>
+								<div class="location">
+									<img src="images/icon/marker-map.svg" alt="marker">
+									<p>Каштаны</p>
+								</div>
+							</div>
+						</a>
+						<div class="group">
+							<div class="tags">
+								<a href="#">с видом на море</a>
+								<a href="#">хайтек</a>
+								<a href="#">шале</a>
+								<a href="#">с бассейном</a>
+								<a href="#">с баней</a>
+								<a href="#">с гостевым домом</a>
+								<a href="#">с ремонтом</a>
+								<a href="#">с видео</a>
+								<a href="#">с гаражом</a>
+							</div>
+							<div class="interface">
+								<a href="#" class="favorite active"></a>
+								<a href="#" class="share" data-attr-title="Тестовый заголовок1" data-attr-url="test1.ru"></a>
+								<a href="files/test.pdf" class="pdf" target="_blank"></a>
+								<a href="#" class="folder" data-attr-title="Дом, баня и бассейн с видом на горы в с. Каштаны 1" data-attr-location="Каштаны 1" data-attr-img="images/card/1.jpg"></a>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<a href="#">
+							<div class="image">
+								<div class="swiper-container-item">
+									<div class="swiper-wrapper">
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/3.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/2.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/1.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/4.jpg);"></div>
+										<div href="#" class="swiper-slide more"
+											style="background-image: url(./images/card/5.jpg);"><p>Eще 32 фото</p></div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="inf">
+									<p><img src="images/icon/square.svg" alt=""> 12 сот</p>
+									<p><img src="images/icon/bed.svg" alt=""> 3</p>
+									<p><img src="images/icon/squarehouse.svg" alt=""> 270 м²</p>
+								</div>
+								<div class="price">
+									<p>432 000 000 ₽</p>
+									<p class="commission">комиссия 5 %</p>
+								</div>
+								<div class="title">
+									<p>Дом, баня и бассейн с видом на горы в с. Каштаны </p>
+								</div>
+								<div class="location">
+									<img src="images/icon/marker-map.svg" alt="marker">
+									<p>Каштаны</p>
+								</div>
+							</div>
+						</a>
+						<div class="group">
+							<div class="tags">
+								<a href="#">с видом на море</a>
+								<a href="#">хайтек</a>
+								<a href="#">шале</a>
+								<a href="#">с бассейном</a>
+								<a href="#">с баней</a>
+								<a href="#">с гостевым домом</a>
+								<a href="#">с ремонтом</a>
+								<a href="#">с видео</a>
+								<a href="#">с гаражом</a>
+							</div>
+							<div class="interface">
+								<a href="#" class="favorite active"></a>
+								<a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
+								<a href="files/test.pdf" class="pdf" target="_blank"></a>
+								<a href="#" class="folder" data-attr-title="Дом, баня и бассейн с видом на горы в с. Каштаны " data-attr-location="Каштаны" data-attr-img="images/card/1.jpg"></a>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<a href="#">
+							<div class="image">
+								<div class="swiper-container-item">
+									<div class="swiper-wrapper">
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/4.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/2.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/3.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/1.jpg);"></div>
+										<div href="#" class="swiper-slide more"
+											style="background-image: url(./images/card/5.jpg);"><p>Eще 32 фото</p></div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="inf">
+									<p><img src="images/icon/square.svg" alt=""> 12 сот</p>
+									<p><img src="images/icon/bed.svg" alt=""> 3</p>
+									<p><img src="images/icon/squarehouse.svg" alt=""> 270 м²</p>
+								</div>
+								<div class="price">
+									<p>432 000 000 ₽</p>
+									<p class="commission">комиссия 5 %</p>
+								</div>
+								<div class="title">
+									<p>Дом, баня и бассейн с видом на горы в с. Каштаны </p>
+								</div>
+								<div class="location">
+									<img src="images/icon/marker-map.svg" alt="marker">
+									<p>Каштаны</p>
+								</div>
+							</div>
+						</a>
+						<div class="group">
+							<div class="tags">
+								<a href="#">с видом на море</a>
+								<a href="#">хайтек</a>
+								<a href="#">шале</a>
+								<a href="#">с бассейном</a>
+								<a href="#">с баней</a>
+								<a href="#">с гостевым домом</a>
+								<a href="#">с ремонтом</a>
+								<a href="#">с видео</a>
+								<a href="#">с гаражом</a>
+							</div>
+							<div class="interface">
+								<a href="#" class="favorite active"></a>
+								<a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
+								<a href="files/test.pdf" class="pdf" target="_blank"></a>
+								<a href="#" class="folder" data-attr-title="Дом, баня и бассейн с видом на горы в с. Каштаны " data-attr-location="Каштаны" data-attr-img="images/card/1.jpg"></a>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<a href="#">
+							<div class="image">
+								<div class="swiper-container-item">
+									<div class="swiper-wrapper">
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/5.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/2.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/3.jpg);"></div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="inf">
+									<p><img src="images/icon/square.svg" alt=""> 12 сот</p>
+									<p><img src="images/icon/bed.svg" alt=""> 3</p>
+									<p><img src="images/icon/squarehouse.svg" alt=""> 270 м²</p>
+								</div>
+								<div class="price">
+									<p>432 000 000 ₽</p>
+									<p class="commission">комиссия 5 %</p>
+								</div>
+								<div class="title">
+									<p>Дом, баня и бассейн с видом на горы в с. Каштаны </p>
+								</div>
+								<div class="location">
+									<img src="images/icon/marker-map.svg" alt="marker">
+									<p>Каштаны</p>
+								</div>
+							</div>
+						</a>
+						<div class="group">
+							<div class="tags">
+								<a href="#">с видом на море</a>
+								<a href="#">хайтек</a>
+								<a href="#">шале</a>
+								<a href="#">с бассейном</a>
+								<a href="#">с баней</a>
+								<a href="#">с гостевым домом</a>
+								<a href="#">с ремонтом</a>
+								<a href="#">с видео</a>
+								<a href="#">с гаражом</a>
+							</div>
+							<div class="interface">
+								<a href="#" class="favorite active"></a>
+								<a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
+								<a href="files/test.pdf" class="pdf" target="_blank"></a>
+								<a href="#" class="folder" data-attr-title="Дом, баня и бассейн с видом на горы в с. Каштаны " data-attr-location="Каштаны" data-attr-img="images/card/1.jpg"></a>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<a href="#">
+							<div class="image">
+								<div class="swiper-container-item">
+									<div class="swiper-wrapper">
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/6.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/2.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/3.jpg);"></div>
+										<div href="#" class="swiper-slide"
+											style="background-image: url(./images/card/4.jpg);"></div>
+										<div href="#" class="swiper-slide more"
+											style="background-image: url(./images/card/5.jpg);"><p>Eще 32 фото</p></div>
+									</div>
+									<!-- Add Pagination -->
+									<div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="inf">
+									<p><img src="images/icon/square.svg" alt=""> 12 сот</p>
+									<p><img src="images/icon/bed.svg" alt=""> 3</p>
+									<p><img src="images/icon/squarehouse.svg" alt=""> 270 м²</p>
+								</div>
+								<div class="price">
+									<p>432 000 000 ₽</p>
+									<p class="commission">комиссия 5 %</p>
+								</div>
+								<div class="title">
+									<p>Дом, баня и бассейн с видом на горы в с. Каштаны </p>
+								</div>
+								<div class="location">
+									<img src="images/icon/marker-map.svg" alt="marker">
+									<p>Каштаны</p>
+								</div>
+							</div>
+						</a>
+						<div class="group">
+							<div class="tags">
+								<a href="#">с видом на море</a>
+								<a href="#">хайтек</a>
+								<a href="#">шале</a>
+								<a href="#">с бассейном</a>
+								<a href="#">с баней</a>
+								<a href="#">с гостевым домом</a>
+								<a href="#">с ремонтом</a>
+								<a href="#">с видео</a>
+								<a href="#">с гаражом</a>
+							</div>
+							<div class="interface">
+								<a href="#" class="favorite active"></a>
+								<a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
+								<a href="files/test.pdf" class="pdf" target="_blank"></a>
+								<a href="#" class="folder" data-attr-title="Дом, баня и бассейн с видом на горы в с. Каштаны " data-attr-location="Каштаны" data-attr-img="images/card/1.jpg"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!----------------- ADD OBJECTS END ------------------>
+		</div>
+		<!----------------- FAVORITES END ------------------>
+
+		<!----------------- FOOTER START ------------------>
+		<footer>
+			<div class="wrap">
+				<a href="#">Каталог</a>
+				<a href="#">Ипотечный калькулятор</a>
+				<a href="#">Политика конфиденциальности</a>
+				<p>©  2022 real2u.ru</p>
+				<a href="#">Кадастровая карта</a>
+				<a href="#">Условия использования</a>
+			</div>
+		</footer>
+		<!----------------- FOOTER END ------------------>
+
+		<!----------------- NEW FOLDER MODAL START ------------------>
+		<div class="new-folder modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Создать новую подборку</p>
+				<form action="">
+					<input type="text" placeholder="Название подборки">
+					<button type="submit" disabled>Готово</button>
+				</form>
+			</div>
+		</div>
+		<!----------------- NEW FOLDER MODAL END ------------------>
+
+		<!----------------- COMPILITION MODAL START ------------------>
+		<div class="compilition modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Добавить в подборку</p>
+				<div class="preview">
+				</div>
+				<a href="#" class="newfolder">Создать новую подборку</a>
+				<div class="list">
+					<form action="#">
+						<div class="group">
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>0 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>100 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>10 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>25 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>0 ЖК</span></p>
+							</label>
+						</div>
+						<button type="submit" disabled>Выберите подборку</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!----------------- COMPILITION MODAL END ------------------>
+
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/mask.js"></script>
+		<script src="js/select2.min.js"></script>
+		<script src="js/initialization.js"></script>
+	</body>
+</html>

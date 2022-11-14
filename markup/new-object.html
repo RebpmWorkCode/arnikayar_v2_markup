@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/fancybox.css" rel="stylesheet">
+		<link href="css/swiper.css" rel="stylesheet">		
+		<link href="css/x375.css" rel="stylesheet">
+		<link href="css/x768.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="#" type="image/png">
+		<title>New Object</title>
+	</head>
+
+	<body>
+		<!----------------- HEADER START ------------------>
+		<header>
+			<div class="wrap">
+				<div class="left">
+					<div class="menu">
+						<div class="group">
+							<a href="#" class="burger"><span></span><span></span><span></span></a>
+							<div class="list">
+								<ul>
+									<li><a href="#">Дома и таунхаусы</a></li>
+									<li><a href="#">Квартиры и апартаменты</a></li>
+									<li><a href="#">Земельные участки</a></li>
+									<li><a href="#">Коммерческая недвижимость</a></li>
+								</ul>
+								<ul class="second">
+									<li><a href="#">Каталог</a></li>
+									<li><a href="#">Ипотечный калькулятор</a></li>
+									<li><a href="#">Кадастровая карта</a></li>
+									<li class="mob"><a href="#">Город</a></li>
+								</ul>
+							</div>
+						</div>
+						<a href="#" class="logo">real2u.ru</a>
+					</div>
+					<div class="search">
+						<a href="#" class="mob"><img src="images/icon/search.svg" alt="search"></a>
+						<form action="">
+							<input type="text" placeholder="поиск по номеру или названию объекта " pattern="[А-Яа-я]{1,}">
+							<button type="submit"></button>
+						</form>
+					</div>
+					<div class="city">
+						<a class="selected" href="#">Сочи</a>
+						<div class="modal">
+							<div class="bg"></div>
+							<div class="content">
+								<div class="close"><span></span><span></span></div>
+								<p class="title">Выберите город</p>
+								<a href="#">Краснодар</a>
+								<a href="#">Москва</a>
+								<a href="#">Екатеринбург</a>
+								<a href="#">Сочи</a>
+								<a href="#">Санкт-Петербург</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<a href="#" class="objects"></a>
+					<a href="#" class="folder"></a>
+					<a href="#" class="favorite"></a>
+					<div class="wrapper">
+						<a href="#" class="bell open active"></a>
+						<div class="list">
+							<ul>
+								<li class="new"><a href="#">Новое уведомление с очень длинным текстом Новое уведомление с очень длинным текстом 
+								</a></li>
+								<li><a href="#">Уведомление 2</a></li>
+								<li><a href="#">Уведомление 3</a></li>
+								<li><a href="#">Уведомление 4</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="wrapper">
+						<a href="#" class="lk open">
+							<span>Арсений Белоруков</span>
+						</a>
+						<div class="list">
+							<ul>
+								<li><a class="client" href="#">Я с клиентом <span></span></a></li>
+								<li><a href="#">Профиль</a></li>
+								<li><a href="#">Мои объявления</a></li>
+								<li class="mob"><a href="#">Уведомления</a></li>
+								<li><a href="#">Выйти</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!----------------- HEADER END ------------------>
+
+		<div class="new-obj wrap">
+			<div class="breadcrumbs">
+				<ul>
+					<li><a href="#">Новое объявление</a></li>
+				</ul>
+			</div>
+			<div class="tabs">
+				<div class="wrapper">
+					<p>Вид объекта</p>
+					<ul class="tabs__caption">
+						<li class="active">Дом</li>
+						<li>Таунхаус</li>
+						<li>Земельный участок</li>
+						<li>Квартира или Апартамент</li>
+						<li>Коммерческая недвижимость</li>
+					</ul>
+				</div>
+				<div class="tabs__content active">
+					<form action="#">
+						<div class="step step1 active">
+							<span class="title">Расположение</span>
+							<div class="map">
+								<input id="suggest" type="text" placeholder="Адрес" minlength="3" required>
+								<div id="address" class="map-area"></div>
+							</div>
+							<span class="title">Контакты</span>
+							<div class="group">
+								<p>Телефон</p>
+								<input type="tel" placeholder="+7 999 999 99 99" pattern="\+7(\s+)?[0-9]{3}(\s+)?[0-9]{3}(\s+)?[0-9]{2}(\s+)?[0-9]{2}" required>
+							</div>
+							<div class="group radio">
+								<p>Право собственности</p>
+								<label>
+									<input type="radio" name="ownership" value="Собственник">
+									<span>Собственник</span>
+								</label>
+								<label>
+									<input type="radio" name="ownership" value="Посредник">
+									<span>Посредник</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Ваше имя</p>
+								<input type="text" class="w4-4" placeholder="-" pattern="[а-яёА-ЯЁ]{2,}"  required>
+							</div>
+							<div class="group">
+								<p>Кадастровый номер дома</p>
+								<input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+							</div>
+							<div class="group">
+								<p>Кадастровый номер участка</p>
+								<input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="out btn">Выйти</a>
+								<a href="#" class="next btn" data-step="step2">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step2">
+							<span class="title">О доме</span>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Баня или Сауна">
+										<span>Баня или Сауна</span>
+									</label>
+								</div>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Гостевой дом">
+										<span>Гостевой дом</span>
+									</label>
+									<div class="group">
+										<p>Количество спален</p>
+										<select class="w3-4" name="bedrooms">
+											<option checked></option>								
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4 и более">4 и более</option>
+										</select>
+									</div>
+								</div>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Бассейн">
+										<span>Бассейн</span>
+									</label>
+									<div class="group">
+										<p>Размер бассейна,<br> длина/ширина/глубина</p>
+										<input type="text" class="pool mask2" minlength="1" required>
+										<input type="text" class="pool mask2" minlength="1" required>
+										<input type="text" class="pool mask2" minlength="1" required>
+									</div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="heading">
+									<p>Статус участка</p> 
+									<div class="footnote">
+										<div class="hide">
+											<p>ИЖС — подходит для постоянного проживания, в доме можно прописаться. Цена обычно выше. </p>
+											<p>СНТ — предназначен для садоводства. Строить здания разрешено, но есть ограничения. </p>
+											<p>ДНП — участок для отдыха, на котором обязательно есть дом. Подходит тем, кто не увлечён сельским хозяйством. </p>
+											<p>Фермерское хозяйство, ЛПХ — нужно вести соответствующую деятельность и отчитываться о ней в налоговую.</p>
+										</div>
+									</div>
+								</div>
+								<select name="status" class="w4-4">
+									<option checked></option>								
+									<option value="Индивидуальное жилищное строительство (ИЖС)">Индивидуальное жилищное строительство (ИЖС)</option>
+									<option value="Садовое некоммерческое товарищество (СНТ)">Садовое некоммерческое товарищество (СНТ)</option>
+									<option value="Дачное некоммерческое партнерство (ДНП)">Дачное некоммерческое партнерство (ДНП)</option>
+									<option value="Фермерское хозяйство (ЛПХ)">Фермерское хозяйство (ЛПХ)</option>
+								</select>
+							</div>
+							<div class="group radio">
+								<p>Земельный участок оформлен на праве</p>
+								<label>
+									<input type="radio" name="ownership" value="Собственник">
+									<span>Собственности</span>
+								</label>
+								<label>
+									<input type="radio" name="ownership" value="Посредник">
+									<span>Аренда</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Год постройки</p>
+								<label>
+									<input type="text" class="w1-4" placeholder="-" data-mask="0000" pattern="\d{4}" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Материал стен</p>
+								<select name="materials" class="w4-4">
+									<option checked></option>								
+									<option value="Керамзитоблоки">Керамзитоблоки</option>
+									<option value="Шлакоблоки">Шлакоблоки</option>
+									<option value="Пеноблоки">Пеноблоки</option>
+									<option value="Газоблоки">Газоблоки</option>
+									<option value="Кирпич">Кирпич</option>
+									<option value="Брус">Брус</option>
+									<option value="Клееный брус">Клееный брус</option>
+									<option value="Бревно">Бревно</option>
+									<option value="Металл">Металл</option>
+									<option value="Сэндвич-панели">Сэндвич-панели</option>
+									<option value="Ж/б панели">Ж/б панели</option>
+									<option value="Эксперементальные материалы">Эксперементальные материалы</option>
+								</select>
+							</div>
+							<div class="group">
+								<p>Этажей в доме</p>
+								<select name="floors" class="w3-4">
+									<option checked></option>								
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4 и более">4 и более</option>
+								</select>
+							</div>
+							<div class="group">
+								<p>Высота потолков</p>
+								<label>
+									<input type="text" class="w1-4 mask1" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Количество спален</p>
+								<select name="rooms" class="w3-4">
+									<option checked></option>								
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4 и более">4 и более</option>
+								</select>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Терраса или веранда">
+										<span>Терраса или веранда</span>
+									</label>
+								</div>
+							</div>
+							<div class="group">
+								<p>Площадь дома</p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Площадь всех строений</p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Площадь участка по документам</p>
+								<label>
+									<input type="text" class="w1-4 mask3" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Терраса или веранда">
+										<span>Фактическая площадь участка отличается</span>
+									</label>
+									<div class="group">
+										<p>Фактическая площадь участка</p>
+										<input type="text" class="w1-4 mask3" minlength="1" placeholder="-" required>
+									</div>
+								</div>
+							</div>
+							<div class="group">
+								<p>Количество санузлов</p>
+								<select name="bathroom" class="w3-4">
+									<option checked></option>								
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4 и более">4 и более</option>
+								</select>
+							</div>
+							<div class="group radio">
+								<p>Ремонт</p>
+								<label>
+									<input type="radio" name="construction" value="Требуется">
+									<span>Требуется</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Косметический">
+									<span>Косметический</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Евро">
+									<span>Евро</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Дизайнерский">
+									<span>Дизайнерский</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Коммуникации</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Электричество">
+										<span>Электричество</span>
+									</label>
+								</div>
+							</div>
+							<div class="group checkbox">
+								<p></p>
+								<div class="case narrow">
+									<label>
+										<input type="checkbox" value="Газ центральный">
+										<span>Газ центральный</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Газгольдер">
+										<span>Газгольдер</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Отсутствует">
+										<span>Отсутствует</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Вода центральная">
+										<span>Вода центральная</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Собственная скважина">
+										<span>Собственная скважина</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Канализация центральная">
+										<span>Канализация центральная</span>
+									</label>
+									<label>
+										<input type="checkbox" value="ЛОС или септик">
+										<span>
+											<div class="footnote">
+												<div class="hide">
+													<p>ЛОС - это локальные очистные сооружения, предназначенные для очистки бытовых стоков всюду, где отсутствует центральная канализация. </p>
+												</div>
+											</div>ЛОС или септик
+										</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio">
+								<p>Фундамент</p>
+								<label>
+									<input type="radio" name="base" value="Сваи">
+									<span>Сваи</span>
+								</label>
+								<label>
+									<input type="radio" name="base" value="Железобетонная плита">
+									<span>Железобетонная плита</span>
+								</label>
+								<label>
+									<input type="radio" name="base" value="Ленточный">
+									<span>Ленточный</span>
+								</label>
+							</div>
+							<div class="group checkbox">
+								<p>Фасад и внешняя отделка</p>
+								<div class="case">
+									<label>
+										<input type="checkbox">
+										<span>Натуральный камень</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Искусcтвенный камень</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Декоративная штукатурка</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Вентилируемый фасад</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Алюкобонд</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Обработанное дерево</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Фибро-панели</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Керамогранит</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Клинкерная плитка</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Кирпич</span>
+									</label>
+								</div>
+							</div>
+							<div class="group checkbox">
+								<p>Парковка</p>
+								<div class="case">
+									<label>
+										<input type="checkbox">
+										<span>Гараж</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Навес</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Во дворе</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>За территорией</span>
+									</label>
+								</div>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step1">Назад</a>
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<a href="#" class="next btn" data-step="step3">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step3">
+							<span class="title">Фотографии</span>
+							<div class="infobox">
+								<p>
+									<span>С хорошими фото просмотров у дома в 5 раз больше.</span>
+									Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
+								</p>
+								<img src="images/icon/house.svg" alt="">
+							</div>
+							<div class="mediabox photo">
+								<div class="left">
+									<p>Фотографии <span>Не больше 60</span></p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<label>
+											<input type="file" name="photos" multiple="">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на фото">
+								</div>
+							</div>
+							<div class="mediabox video">
+								<div class="left">
+									<p>Видео</p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<div class="video-prev">
+											<video><source src="">Your browser does not support HTML5 video.</video>
+										</div>
+										<label>
+											<input type="file" name="file[]" accept="video/*">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на видео">
+								</div>
+							</div>
+							<div class="textarea">
+								<span class="title">Описание</span>
+								<textarea name="description" placeholder="Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше."></textarea>
+							</div>
+							<span class="title">Дополнительная информация</span>
+							<div class="group radio">
+								<p>Архитектура</p>
+								<label>
+									<input type="radio" name="archi" value="Хай-тек">
+									<span>Хай-тек</span>
+								</label>
+								<label>
+									<input type="radio" name="archi" value="Шале">
+									<span>Шале</span>
+								</label>
+								<label>
+									<input type="radio" name="archi" value="Классика">
+									<span>Классика</span>
+								</label>
+								<label>
+									<input type="radio" name="archi" value="Иное">
+									<span>Иное</span>
+								</label>
+							</div>
+							<div class="group checkbox">
+								<p></p>
+								<div class="case">
+									<label>
+										<input type="checkbox">
+										<span>Цоколь</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Мансарда</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Эксплуатируемая кровля</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Зоны отдыха</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Мангальная зона или барбекю">
+										<span>Мангальная зона или барбекю</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Беседка">
+										<span>Беседка</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Летняя кухня">
+										<span>Летняя кухня</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio">
+								<p>Ландшафт</p>
+								<label>
+									<input type="radio" name="landscape" value="Отсутствует">
+									<span>Отсутствует</span>
+								</label>
+								<label>
+									<input type="radio" name="landscape" value="Базовый">
+									<span>Базовый</span>
+								</label>
+								<label>
+									<input type="radio" name="landscape" value="Профессиональный">
+									<span>Профессиональный</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Плодовый сад">
+										<span>Плодовый сад</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio line">
+								<p>Автополив</p>
+								<label>
+									<input type="radio" name="landscape" value="Есть">
+									<span>Есть</span>
+								</label>
+								<label>
+									<input type="radio" name="landscape" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Инфраструктура</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Магазин">
+										<span>Магазин</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Аптека">
+										<span>Аптека</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Детский сад">
+										<span>Детский сад</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Школа">
+										<span>Школа</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Охрана объекта</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="КПП/Шлагбаум">
+										<span>КПП/Шлагбаум</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Видеонаблюдение">
+										<span>Видеонаблюдение</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Вневедомственная охрана">
+										<span>Вневедомственная охрана</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio line">
+								<p>Забор</p>
+								<label>
+									<input type="radio" name="fence" value="Есть">
+									<span>Есть</span>
+								</label>
+								<label>
+									<input type="radio" name="fence" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Вид из дома</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Море">
+										<span>Море</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Горы">
+										<span>Горы</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Лес">
+										<span>Лес</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Город">
+										<span>Город</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Река">
+										<span>Река</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio line">
+								<p>Панорамные окна (французские окна<br>или окна в пол)</p>
+								<label>
+									<input type="radio" name="window" value="Да">
+									<span>Да</span>
+								</label>
+								<label>
+									<input type="radio" name="window" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="group radio">
+								<p>Участок</p>
+								<label>
+									<input type="radio" name="area" value="Да">
+									<span>Ровный</span>
+								</label>
+								<label>
+									<input type="radio" name="area" value="Нет">
+									<span>Террасированный</span>
+								</label>
+							</div>
+							<div class="group radio line">
+								<p>Свободная планировка</p>
+								<label>
+									<input type="radio" name="layout" value="Да">
+									<span>Да</span>
+								</label>
+								<label>
+									<input type="radio" name="layout" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="group radio line">
+								<p>Камин</p>
+								<label>
+									<input type="radio" name="fireplace" value="Есть">
+									<span>Есть</span>
+								</label>
+								<label>
+									<input type="radio" name="fireplace" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="group">
+								<p>Как хотели бы назвать ваш объект на сайте</p>
+								<textarea class="w4-4 name" placeholder="не более 80 символов" maxlength="80" minlength="1" required></textarea>
+							</div>
+							<div class="group">
+								<p>Цена</p>
+								<label class="price">
+									<input type="text" data-mask="000 000 000 000 000" minlength="1" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Комиссия риэлтора, которая включена в стоимость</p>
+								<label class="commission">
+									<input type="text" data-mask="00" minlength="1" required>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step2">Назад</a>
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<button type="submit" class="next btn">опубликовать объект на сайте</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="tabs__content">
+					<form action="#">
+						<div class="step step1 active">
+							<span class="title">Расположение</span>
+							<div class="map">
+								<input id="suggest1" type="text" placeholder="Адрес" minlength="3" required>
+								<div id="address1" class="map-area"></div>
+							</div>
+							<span class="title">Контакты</span>
+							<div class="group">
+								<p>Телефон</p>
+								<input type="tel" placeholder="+7 999 999 99 99" pattern="\+7(\s+)?[0-9]{3}(\s+)?[0-9]{3}(\s+)?[0-9]{2}(\s+)?[0-9]{2}" required>
+							</div>
+							<div class="group radio">
+								<p>Право собственности</p>
+								<label>
+									<input type="radio" name="ownership" value="Собственник">
+									<span>Собственник</span>
+								</label>
+								<label>
+									<input type="radio" name="ownership" value="Посредник">
+									<span>Посредник</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Ваше имя</p>
+								<input type="text" class="w4-4" placeholder="-" pattern="[а-яёА-ЯЁ]{2,}"  required>
+							</div>
+							<div class="group">
+								<p>Кадастровый номер таунхауса</p>
+								<input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+							</div>
+							<div class="group">
+								<p>Кадастровый номер участка</p>
+								<input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="out btn">Выйти</a>
+								<a href="#" class="next btn" data-step="step2">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step2">
+							<span class="title">О таунхаусе</span>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Баня или Сауна">
+										<span>Баня или Сауна</span>
+									</label>
+								</div>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Гостевой дом">
+										<span>Гостевой дом</span>
+									</label>
+									<div class="group">
+										<p>Количество спален</p>
+										<select class="w3-4" name="bedrooms">
+											<option checked></option>								
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4 и более">4 и более</option>
+										</select>
+									</div>
+								</div>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Бассейн">
+										<span>Бассейн</span>
+									</label>
+									<div class="group">
+										<p>Размер бассейна,<br> длина/ширина/глубина</p>
+										<input type="text" class="pool mask2" minlength="1" required>
+										<input type="text" class="pool mask2" minlength="1" required>
+										<input type="text" class="pool mask2" minlength="1" required>
+									</div>
+								</div>
+							</div>
+							<div class="group">
+								<div class="heading">
+									<p>Статус участка</p> 
+									<div class="footnote">
+										<div class="hide">
+											<p>ИЖС — подходит для постоянного проживания, в доме можно прописаться. Цена обычно выше. </p>
+											<p>СНТ — предназначен для садоводства. Строить здания разрешено, но есть ограничения. </p>
+											<p>ДНП — участок для отдыха, на котором обязательно есть дом. Подходит тем, кто не увлечён сельским хозяйством. </p>
+											<p>Фермерское хозяйство, ЛПХ — нужно вести соответствующую деятельность и отчитываться о ней в налоговую.</p>
+										</div>
+									</div>
+								</div>
+								<select name="status" class="w4-4">
+									<option checked></option>								
+									<option value="Индивидуальное жилищное строительство (ИЖС)">Индивидуальное жилищное строительство (ИЖС)</option>
+									<option value="Садовое некоммерческое товарищество (СНТ)">Садовое некоммерческое товарищество (СНТ)</option>
+									<option value="Дачное некоммерческое партнерство (ДНП)">Дачное некоммерческое партнерство (ДНП)</option>
+									<option value="Фермерское хозяйство (ЛПХ)">Фермерское хозяйство (ЛПХ)</option>
+								</select>
+							</div>
+							<div class="group radio">
+								<p>Земельный участок оформлен на праве</p>
+								<label>
+									<input type="radio" name="ownership" value="Собственник">
+									<span>Собственности</span>
+								</label>
+								<label>
+									<input type="radio" name="ownership" value="Посредник">
+									<span>Аренда</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Год постройки</p>
+								<label>
+									<input type="text" class="w1-4" placeholder="-" data-mask="0000" pattern="\d{4}" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Материал стен</p>
+								<select name="materials" class="w4-4">
+									<option checked></option>								
+									<option value="Керамзитоблоки">Керамзитоблоки</option>
+									<option value="Шлакоблоки">Шлакоблоки</option>
+									<option value="Пеноблоки">Пеноблоки</option>
+									<option value="Газоблоки">Газоблоки</option>
+									<option value="Кирпич">Кирпич</option>
+									<option value="Брус">Брус</option>
+									<option value="Клееный брус">Клееный брус</option>
+									<option value="Бревно">Бревно</option>
+									<option value="Металл">Металл</option>
+									<option value="Сэндвич-панели">Сэндвич-панели</option>
+									<option value="Ж/б панели">Ж/б панели</option>
+									<option value="Эксперементальные материалы">Эксперементальные материалы</option>
+								</select>
+							</div>
+							<div class="group">
+								<p>Этажей в доме</p>
+								<select name="floors" class="w3-4">
+									<option checked></option>								
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4 и более">4 и более</option>
+								</select>
+							</div>
+							<div class="group">
+								<p>Высота потолков</p>
+								<label>
+									<input type="text" class="w1-4 mask1" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Количество спален</p>
+								<select name="rooms" class="w3-4">
+									<option checked></option>								
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4 и более">4 и более</option>
+								</select>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Терраса или веранда">
+										<span>Терраса или веранда</span>
+									</label>
+								</div>
+							</div>
+							<div class="group">
+								<p>Площадь таунхауса</p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Площадь всех строений</p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Площадь участка по документам</p>
+								<label>
+									<input type="text" class="w1-4 mask3" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Терраса или веранда">
+										<span>Фактическая площадь участка отличается</span>
+									</label>
+									<div class="group">
+										<p>Фактическая площадь участка</p>
+										<input type="text" class="w1-4 mask3" minlength="1" placeholder="-" required>
+									</div>
+								</div>
+							</div>
+							<div class="group">
+								<p>Количество санузлов</p>
+								<select name="bathroom" class="w3-4">
+									<option checked></option>								
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4 и более">4 и более</option>
+								</select>
+							</div>
+							<div class="group radio">
+								<p>Ремонт</p>
+								<label>
+									<input type="radio" name="construction" value="Требуется">
+									<span>Требуется</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Косметический">
+									<span>Косметический</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Евро">
+									<span>Евро</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Дизайнерский">
+									<span>Дизайнерский</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Коммуникации</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Электричество">
+										<span>Электричество</span>
+									</label>
+								</div>
+							</div>
+							<div class="group checkbox">
+								<p></p>
+								<div class="case narrow">
+									<label>
+										<input type="checkbox" value="Газ центральный">
+										<span>Газ центральный</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Газгольдер">
+										<span>Газгольдер</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Отсутствует">
+										<span>Отсутствует</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Вода центральная">
+										<span>Вода центральная</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Собственная скважина">
+										<span>Собственная скважина</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Канализация центральная">
+										<span>Канализация центральная</span>
+									</label>
+									<label>
+										<input type="checkbox" value="ЛОС или септик">
+										<span>
+											<div class="footnote">
+												<div class="hide">
+													<p>ЛОС - это локальные очистные сооружения, предназначенные для очистки бытовых стоков всюду, где отсутствует центральная канализация. </p>
+												</div>
+											</div>ЛОС или септик
+										</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio">
+								<p>Фундамент</p>
+								<label>
+									<input type="radio" name="base" value="Сваи">
+									<span>Сваи</span>
+								</label>
+								<label>
+									<input type="radio" name="base" value="Железобетонная плита">
+									<span>Железобетонная плита</span>
+								</label>
+								<label>
+									<input type="radio" name="base" value="Ленточный">
+									<span>Ленточный</span>
+								</label>
+							</div>
+							<div class="group checkbox">
+								<p>Фасад и внешняя отделка</p>
+								<div class="case">
+									<label>
+										<input type="checkbox">
+										<span>Натуральный камень</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Искусcтвенный камень</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Декоративная штукатурка</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Вентилируемый фасад</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Алюкобонд</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Обработанное дерево</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Фибро-панели</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Керамогранит</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Клинкерная плитка</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Кирпич</span>
+									</label>
+								</div>
+							</div>
+							<div class="group checkbox">
+								<p>Парковка</p>
+								<div class="case">
+									<label>
+										<input type="checkbox">
+										<span>Гараж</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Навес</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Во дворе</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>За территорией</span>
+									</label>
+								</div>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step1">Назад</a>
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<a href="#" class="next btn" data-step="step3">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step3">
+							<span class="title">Фотографии</span>
+							<div class="infobox">
+								<p>
+									<span>С хорошими фото просмотров у дома в 5 раз больше.</span>
+									Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
+								</p>
+								<img src="images/icon/house.svg" alt="">
+							</div>
+							<div class="mediabox photo">
+								<div class="left">
+									<p>Фотографии <span>Не больше 60</span></p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<label>
+											<input type="file" name="photos" multiple="" data-max_length="60">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на фото">
+								</div>
+							</div>
+							<div class="mediabox video">
+								<div class="left">
+									<p>Видео</p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<div class="video-prev">
+											<video><source src="">Your browser does not support HTML5 video.</video>
+										</div>
+										<label>
+											<input type="file" name="file[]" accept="video/*">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на видео">
+								</div>
+							</div>
+							<div class="textarea">
+								<span class="title">Описание</span>
+								<textarea name="description" placeholder="Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше."></textarea>
+							</div>
+							<span class="title">Дополнительная информация</span>
+							<div class="group radio">
+								<p>Архитектура</p>
+								<label>
+									<input type="radio" name="archi" value="Хай-тек">
+									<span>Хай-тек</span>
+								</label>
+								<label>
+									<input type="radio" name="archi" value="Шале">
+									<span>Шале</span>
+								</label>
+								<label>
+									<input type="radio" name="archi" value="Классика">
+									<span>Классика</span>
+								</label>
+								<label>
+									<input type="radio" name="archi" value="Иное">
+									<span>Иное</span>
+								</label>
+							</div>
+							<div class="group checkbox">
+								<p></p>
+								<div class="case">
+									<label>
+										<input type="checkbox">
+										<span>Цоколь</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Мансарда</span>
+									</label>
+									<label>
+										<input type="checkbox">
+										<span>Эксплуатируемая кровля</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Зоны отдыха</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Мангальная зона или барбекю">
+										<span>Мангальная зона или барбекю</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Беседка">
+										<span>Беседка</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Летняя кухня">
+										<span>Летняя кухня</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio">
+								<p>Ландшафт</p>
+								<label>
+									<input type="radio" name="landscape" value="Отсутствует">
+									<span>Отсутствует</span>
+								</label>
+								<label>
+									<input type="radio" name="landscape" value="Базовый">
+									<span>Базовый</span>
+								</label>
+								<label>
+									<input type="radio" name="landscape" value="Профессиональный">
+									<span>Профессиональный</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Плодовый сад">
+										<span>Плодовый сад</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio line">
+								<p>Автополив</p>
+								<label>
+									<input type="radio" name="landscape" value="Есть">
+									<span>Есть</span>
+								</label>
+								<label>
+									<input type="radio" name="landscape" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Инфраструктура</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Магазин">
+										<span>Магазин</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Аптека">
+										<span>Аптека</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Детский сад">
+										<span>Детский сад</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Школа">
+										<span>Школа</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Охрана объекта</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="КПП/Шлагбаум">
+										<span>КПП/Шлагбаум</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Видеонаблюдение">
+										<span>Видеонаблюдение</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Вневедомственная охрана">
+										<span>Вневедомственная охрана</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio line">
+								<p>Забор</p>
+								<label>
+									<input type="radio" name="fence" value="Есть">
+									<span>Есть</span>
+								</label>
+								<label>
+									<input type="radio" name="fence" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Вид из дома</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Море">
+										<span>Море</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Горы">
+										<span>Горы</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Лес">
+										<span>Лес</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Город">
+										<span>Город</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Река">
+										<span>Река</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio line">
+								<p>Панорамные окна (французские окна<br>или окна в пол)</p>
+								<label>
+									<input type="radio" name="window" value="Да">
+									<span>Да</span>
+								</label>
+								<label>
+									<input type="radio" name="window" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="group radio">
+								<p>Участок</p>
+								<label>
+									<input type="radio" name="area" value="Да">
+									<span>Ровный</span>
+								</label>
+								<label>
+									<input type="radio" name="area" value="Нет">
+									<span>Террасированный</span>
+								</label>
+							</div>
+							<div class="group radio line">
+								<p>Свободная планировка</p>
+								<label>
+									<input type="radio" name="layout" value="Да">
+									<span>Да</span>
+								</label>
+								<label>
+									<input type="radio" name="layout" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="group radio line">
+								<p>Камин</p>
+								<label>
+									<input type="radio" name="fireplace" value="Есть">
+									<span>Есть</span>
+								</label>
+								<label>
+									<input type="radio" name="fireplace" value="Нет">
+									<span>Нет</span>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="group">
+								<p>Как хотели бы назвать ваш объект на сайте</p>
+								<textarea class="w4-4 name" placeholder="не более 80 символов" maxlength="80" minlength="1" required></textarea>
+							</div>
+							<div class="group">
+								<p>Цена</p>
+								<label class="price">
+									<input type="text" data-mask="000 000 000 000 000" minlength="1" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Комиссия риэлтора, которая включена в стоимость</p>
+								<label class="commission">
+									<input type="text" data-mask="00" minlength="1" required>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step2">Назад</a>
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<button type="submit" class="next btn">опубликовать объект на сайте</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="tabs__content">
+					<form action="#">
+						<div class="step step1 active">
+							<div class="group">
+								<div class="heading">
+									<p>Статус участка</p> 
+									<div class="footnote">
+										<div class="hide">
+											<p>ИЖС — подходит для постоянного проживания, в доме можно прописаться. Цена обычно выше. </p>
+											<p>СНТ — предназначен для садоводства. Строить здания разрешено, но есть ограничения. </p>
+											<p>ДНП — участок для отдыха, на котором обязательно есть дом. Подходит тем, кто не увлечён сельским хозяйством. </p>
+											<p>Фермерское хозяйство, ЛПХ — нужно вести соответствующую деятельность и отчитываться о ней в налоговую.</p>
+										</div>
+									</div>
+								</div>
+								<select name="status" class="w4-4">
+									<option checked></option>								
+									<option value="Индивидуальное жилищное строительство (ИЖС)">Индивидуальное жилищное строительство (ИЖС)</option>
+									<option value="Садовое некоммерческое товарищество (СНТ)">Садовое некоммерческое товарищество (СНТ)</option>
+									<option value="Дачное некоммерческое партнерство (ДНП)">Дачное некоммерческое партнерство (ДНП)</option>
+									<option value="Фермерское хозяйство (ЛПХ)">Фермерское хозяйство (ЛПХ)</option>
+								</select>
+							</div>
+							<span class="title">Расположение</span>
+							<div class="map">
+								<input id="suggest2" type="text" placeholder="Адрес" minlength="3" required>
+								<div id="address2" class="map-area"></div>
+							</div>
+							<div class="group">
+								<p>Номер квартиры</p>
+								<label>
+									<input type="text" class="w1-4" placeholder="-" minlength="1" required>
+								</label>
+							</div>
+							<span class="title">Контакты</span>
+							<div class="group">
+								<p>Телефон</p>
+								<input type="tel" placeholder="+7 999 999 99 99" pattern="\+7(\s+)?[0-9]{3}(\s+)?[0-9]{3}(\s+)?[0-9]{2}(\s+)?[0-9]{2}" required>
+							</div>
+							<div class="group radio">
+								<p>Право собственности</p>
+								<label>
+									<input type="radio" name="ownership" value="Собственник">
+									<span>Собственник</span>
+								</label>
+								<label>
+									<input type="radio" name="ownership" value="Посредник">
+									<span>Посредник</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Ваше имя</p>
+								<input type="text" class="w4-4" placeholder="-" pattern="[а-яёА-ЯЁ]{2,}"  required>
+							</div>
+							<span class="title">Параметры</span>
+							<div class="group">
+								<p>Кадастровый номер дома</p>
+								<input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+							</div>
+							<div class="group">
+								<p>Площадь</p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="-" required>
+								</label>
+							</div>
+							<div class="textarea">
+								<span class="title">Описание</span>
+								<textarea name="description" placeholder="Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше."></textarea>
+							</div>
+							<span class="title">Фотографии</span>
+							<div class="infobox">
+								<p>
+									<span>С хорошими фото просмотров у дома в 5 раз больше.</span>
+									Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
+								</p>
+								<img src="images/icon/house.svg" alt="">
+							</div>
+							<div class="mediabox photo">
+								<div class="left">
+									<p>Фотографии <span>Не больше 60</span></p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<label>
+											<input type="file" name="photos" multiple="" data-max_length="60">
+											<span></span>
+										</label>
+									</div>
+									<input type="text" placeholder="Ссылка на фото">
+								</div>
+							</div>
+							<div class="mediabox video">
+								<div class="left">
+									<p>Видео</p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<div class="video-prev">
+											<video><source src="">Your browser does not support HTML5 video.</video>
+										</div>
+										<label>
+											<input type="file" name="file[]" accept="video/*">
+											<span></span>
+										</label>
+									</div>
+									<input type="text" placeholder="Ссылка на видео">
+								</div>
+							</div>
+							<div class="seporation"></div>
+							<div class="group">
+								<p>Как хотели бы назвать ваш объект на сайте</p>
+								<textarea class="w4-4 name" placeholder="не более 80 символов" maxlength="80" minlength="1" required></textarea>
+							</div>
+							<div class="group">
+								<p>Цена</p>
+								<label class="price">
+									<input type="text" data-mask="000 000 000 000 000" minlength="1" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Комиссия риэлтора, которая включена в стоимость</p>
+								<label class="commission">
+									<input type="text" data-mask="00" minlength="1" required>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<button type="submit" class="next btn">опубликовать объект на сайте</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="tabs__content">
+					<form action="#">
+						<div class="step step1 active">
+							<span class="title">Расположение</span>
+							<div class="map">
+								<input id="suggest3" type="text" placeholder="Адрес" minlength="3" required>
+								<div id="address3" class="map-area"></div>
+							</div>
+							<div class="group">
+								<p>Номер квартиры</p>
+								<label>
+									<input type="text" class="w1-4" placeholder="-" minlength="1" required>
+								</label>
+							</div>
+							<span class="title">Контакты</span>
+							<div class="group">
+								<p>Телефон</p>
+								<input type="tel" placeholder="+7 999 999 99 99" pattern="\+7(\s+)?[0-9]{3}(\s+)?[0-9]{3}(\s+)?[0-9]{2}(\s+)?[0-9]{2}" required>
+							</div>
+							<div class="group radio">
+								<p>Право собственности</p>
+								<label>
+									<input type="radio" name="ownership" value="Собственник">
+									<span>Собственник</span>
+								</label>
+								<label>
+									<input type="radio" name="ownership" value="Посредник">
+									<span>Посредник</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Ваше имя</p>
+								<input type="text" class="w4-4" placeholder="-" pattern="[а-яёА-ЯЁ]{2,}"  required>
+							</div>
+							<div class="group">
+								<p>Кадастровый номер дома</p>
+								<input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="out btn">выйти</a>
+								<a href="#" class="next btn" data-step="step2">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step2">
+							<span class="title">О квартире</span>
+							<div class="group radio">
+								<p>Тип жилья</p>
+								<label>
+									<input type="radio" name="type" value="Квартира">
+									<span>Квартира</span>
+								</label>
+								<label>
+									<input type="radio" name="type" value="Посредник">
+									<span>Апартаменты</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Количество комнат</p>
+								<select name="rooms" class="w3-4">
+									<option checked></option>								
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4 и более">4 и более</option>
+								</select>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Балкон">
+										<span>Балкон</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Лоджия">
+										<span>Лоджия</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Гардеробная">
+										<span>Гардеробная</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Панорамные окна">
+										<span>Панорамные окна</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio">
+								<p>Тип комнат</p>
+								<label>
+									<input type="radio" name="elevator" value="Изолированные">
+									<span>Изолированные</span>
+								</label>
+								<label>
+									<input type="radio" name="elevator" value="Смежные">
+									<span>Смежные</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Площадь</p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="0,0 м²" required>
+								</label>
+								<div class="right">
+									<span>Общая</span>
+									<div class="footnote">
+										<div class="hide">
+											<p>Все помещения в квартире, кроме балконов, лоджий или террас</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="group">
+								<p></p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="0,0 м²" required>
+								</label>
+								<div class="right">
+									<span>Кухня</span>
+								</div>
+							</div>
+							<div class="group">
+								<p></p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="0,0 м²" required>
+								</label>
+								<div class="right">
+									<span>Жилая</span>
+									<div class="footnote">
+										<div class="hide">
+											<p>Площадь всех жилых комнат. Не учитывайте кухню, санузел, коридор, гардеробную и другие нежилые помещения.</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="group">
+								<p>Высота потолков</p>
+								<label>
+									<input type="text" class="w1-4 mask1" minlength="1" placeholder="0,0 м" required>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Санузел</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Совмещенный">
+										<span>Совмещенный</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Раздельный">
+										<span>Раздельный</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Окна</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Во двор">
+										<span>Во двор</span>
+									</label>
+									<label>
+										<input type="checkbox" value="На улицу">
+										<span>На улицу</span>
+									</label>
+									<label>
+										<input type="checkbox" value="На солнечную сторону">
+										<span>На солнечную сторону</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio">
+								<p>Ремонт</p>
+								<label>
+									<input type="radio" name="repair" value="Требуется">
+									<span>Требуется</span>
+								</label>
+								<label>
+									<input type="radio" name="repair" value="Косметический">
+									<span>Косметический</span>
+								</label>
+								<label>
+									<input type="radio" name="repair" value="Евро">
+									<span>Евро</span>
+								</label>
+								<label>
+									<input type="radio" name="repair" value="Дизайнерский">
+									<span>Дизайнерский</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Теплый пол">
+										<span>Теплый пол</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Мебель</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Кухня">
+										<span>Кухня</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Хранение одежды">
+										<span>Хранение одежды</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Спальные места">
+										<span>Спальные места</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Техника</p>
+								<div class="case column">
+									<label>
+										<input type="checkbox" value="Кондиционер">
+										<span>Кондиционер</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Холодильник">
+										<span>Холодильник</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Стиральная машина">
+										<span>Стиральная машина</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Посудомоечная машина">
+										<span>Посудомоечная машина</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Водонагреватель">
+										<span>Водонагреватель</span>
+									</label>
+								</div>
+							</div>
+
+							<span class="title">О доме</span>
+							<div class="group">
+								<p>Тип дома</p>
+								<select name="typehouse" class="w3-4">
+									<option checked></option>								
+									<option value="Кирпичный">Кирпичный</option>
+									<option value="Панельный">Панельный</option>
+									<option value="Блочный">Блочный</option>
+									<option value="Монолитный">Монолитный</option>
+									<option value="Монолитно-кирпичный">Монолитно-кирпичный</option>
+									<option value="Деревянный">Деревянный</option>
+								</select>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Консьерж">
+										<span>Консьерж</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Мусоропровод">
+										<span>Мусоропровод</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Газ">
+										<span>Газ</span>
+									</label>
+								</div>
+							</div>
+							<div class="group">
+								<p>Год постройки</p>
+								<label>
+									<input type="text" class="w1-4" placeholder="-" data-mask="0000" pattern="\d{4}" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Этажей в доме</p>
+								<label>
+									<input type="text" class="w1-4" placeholder="-" minlength="1" required>
+								</label>
+							</div>
+							<div class="group radio line">
+								<p>Лифт пассажирский</p>
+								<label>
+									<input type="radio" name="elevator" value="Нет">
+									<span>Нет</span>
+								</label>
+								<label>
+									<input type="radio" name="elevator" value="1">
+									<span>1</span>
+								</label>
+								<label>
+									<input type="radio" name="elevator" value="2">
+									<span>2</span>
+								</label>
+								<label>
+									<input type="radio" name="elevator" value="3">
+									<span>3</span>
+								</label>
+								<label>
+									<input type="radio" name="elevator" value="4">
+									<span>4</span>
+								</label>
+							</div>
+							<div class="group radio line">
+								<p>Лифт грузовой</p>
+								<label>
+									<input type="radio" name="cargo-elevator" value="Нет">
+									<span>Нет</span>
+								</label>
+								<label>
+									<input type="radio" name="cargo-elevator" value="1">
+									<span>1</span>
+								</label>
+								<label>
+									<input type="radio" name="cargo-elevator" value="2">
+									<span>2</span>
+								</label>
+								<label>
+									<input type="radio" name="cargo-elevator" value="3">
+									<span>3</span>
+								</label>
+								<label>
+									<input type="radio" name="cargo-elevator" value="4">
+									<span>4</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Двор</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Закрытая территория">
+										<span>Закрытая территория</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Детская площадка">
+										<span>Детская площадка</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Спортивная площадка">
+										<span>Спортивная площадка</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Парковка</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Подземная">
+										<span>Подземная</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Наземная многоуровневая">
+										<span>Наземная многоуровневая</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Открытая во дворе">
+										<span>Открытая во дворе</span>
+									</label>
+									<label>
+										<input type="checkbox" value="За шлагбаумом во дворе">
+										<span>За шлагбаумом во дворе</span>
+									</label>
+								</div>
+							</div>
+							
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step1">Назад</a>
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<a href="#" class="next btn" data-step="step3">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step3">
+							<span class="title">Фотографии</span>
+							<div class="infobox">
+								<p>
+									<span>С хорошими фото просмотров у дома в 5 раз больше.</span>
+									Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
+								</p>
+								<img src="images/icon/house.svg" alt="">
+							</div>
+							<div class="mediabox photo">
+								<div class="left">
+									<p>Фотографии <span>Не больше 60</span></p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<label>
+											<input type="file" name="photos" multiple="" data-max_length="60">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на фото">
+								</div>
+							</div>
+							<div class="mediabox video">
+								<div class="left">
+									<p>Видео</p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<div class="video-prev">
+											<video><source src="">Your browser does not support HTML5 video.</video>
+										</div>
+										<label>
+											<input type="file" name="file[]" accept="video/*">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на видео">
+								</div>
+							</div>
+							<div class="textarea">
+								<span class="title">Описание</span>
+								<textarea name="description" placeholder="Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше."></textarea>
+							</div>
+							<span class="title">Дополнительная информация</span>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Мангальная зона или барбекю">
+										<span>Мангальная зона или барбекю</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Беседка">
+										<span>Беседка</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Бассейн">
+										<span>Бассейн</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Спортзал">
+										<span>Спортзал</span>
+									</label>
+								</div>
+							</div>
+							<div class="additionals">
+								<p>Вид из дома</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Море">
+										<span>Море</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Горы">
+										<span>Горы</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Лес">
+										<span>Лес</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Город">
+										<span>Город</span>
+									</label>
+									<label>
+										<input type="checkbox" value="Река">
+										<span>Река</span>
+									</label>
+								</div>
+							</div>
+							<div class="seporation"></div>
+							<div class="group">
+								<p>Как хотели бы назвать ваш объект на сайте</p>
+								<textarea class="w4-4 name" placeholder="не более 80 символов" maxlength="80" minlength="1" required></textarea>
+							</div>
+							<div class="group">
+								<p>Цена</p>
+								<label class="price">
+									<input type="text" data-mask="000 000 000 000 000" minlength="1" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Комиссия риэлтора, которая включена в стоимость</p>
+								<label class="commission">
+									<input type="text" data-mask="00" minlength="1" required>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step2">Назад</a>
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<button type="submit" class="next btn">опубликовать объект на сайте</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="tabs__content">
+					<form action="#">
+						<div class="step step1 active">
+							<div class="group">
+								<p>Тип помещения</p>
+								<select name="typehouse" class="w4-4">
+									<option checked></option>								
+									<option value="Офисное помещение">Офисное помещение</option>
+									<option value="Помещение свободного назначения">Помещение свободного назначения</option>
+									<option value="Торговое помещение">Торговое помещение</option>
+									<option value="Складское помещение">Складское помещение</option>
+									<option value="Производственное помещение">Производственное помещение</option>
+									<option value="Помещение общественного питания">Помещение общественного питания</option>
+									<option value="Гостиница">Гостиница</option>
+									<option value="Автосервис">Автосервис</option>
+									<option value="Здание">Здание</option>
+								</select>
+							</div>
+							<span class="title">Расположение</span>
+							<div class="map">
+								<input id="suggest4" type="text" placeholder="Адрес" minlength="3" required>
+								<div id="address4" class="map-area"></div>
+							</div>
+							<span class="title">Контакты</span>
+							<div class="group">
+								<p>Телефон</p>
+								<input type="tel" placeholder="+7 999 999 99 99" pattern="\+7(\s+)?[0-9]{3}(\s+)?[0-9]{3}(\s+)?[0-9]{2}(\s+)?[0-9]{2}" required>
+							</div>
+							<div class="group radio">
+								<p>Право собственности</p>
+								<label>
+									<input type="radio" name="ownership" value="Собственник">
+									<span>Собственник</span>
+								</label>
+								<label>
+									<input type="radio" name="ownership" value="Посредник">
+									<span>Посредник</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Ваше имя</p>
+								<input type="text" class="w4-4" placeholder="-" pattern="[а-яёА-ЯЁ]{2,}"  required>
+							</div>
+							<div class="group">
+								<p>Кадастровый номер дома</p>
+								<input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="out btn">Выйти</a>
+								<a href="#" class="next btn" data-step="step2">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step2">
+							<span class="title">О коммерческой недвижимости</span>
+							<div class="group radio">
+								<p>Вход</p>
+								<label>
+									<input type="radio" name="enter" value="С улицы">
+									<span>С улицы</span>
+								</label>
+								<label>
+									<input type="radio" name="enter" value="Со двора">
+									<span>Со двора</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Отдельный">
+										<span>Отдельный</span>
+									</label>
+								</div>
+							</div>
+							<div class="group">
+								<p>Этаж</p>
+								<label>
+									<input type="text" class="w1-4" placeholder="-" minlength="1" required>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Несколько этажей">
+										<span>Несколько этажей</span>
+									</label>
+								</div>
+							</div>
+							<div class="group">
+								<p>Общая площадь</p>
+								<label>
+									<input type="text" class="w1-4 mask2" minlength="1" placeholder="0,0 м²" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Высота потолков</p>
+								<label>
+									<input type="text" class="w1-4 mask1" minlength="1" placeholder="0,0 м" required>
+								</label>
+							</div>
+							<div class="group radio">
+								<p>Отделка</p>
+								<label>
+									<input type="radio" name="construction" value="Без отделки">
+									<span>Без отделки</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Чистовая">
+									<span>Чистовая</span>
+								</label>
+								<label>
+									<input type="radio" name="construction" value="Офисная">
+									<span>Офисная</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Мощность электроэнергии</p>
+								<label>
+									<input type="text" class="w1-4 mask4" minlength="1" placeholder="0 кВт" required>
+								</label>
+							</div>
+							<div class="additionals">
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Можно увеличить">
+										<span>Можно увеличить</span>
+									</label>
+								</div>
+							</div>
+							<div class="group radio">
+								<p>Отопление</p>
+								<label>
+									<input type="radio" name="heating" value="Нет">
+									<span>Нет</span>
+								</label>
+								<label>
+									<input type="radio" name="heating" value="Центральное">
+									<span>Центральное</span>
+								</label>
+								<label>
+									<input type="radio" name="heating" value="Автономное">
+									<span>Автономное</span>
+								</label>
+							</div>
+							<span class="title">О здании</span>
+							<div class="group radio">
+								<p>Готовность</p>
+								<label>
+									<input type="radio" name="ready" value="Проект">
+									<span>Проект</span>
+								</label>
+								<label>
+									<input type="radio" name="ready" value="Строится">
+									<span>Строится</span>
+								</label>
+								<label>
+									<input type="radio" name="ready" value="В эксплуатации">
+									<span>В эксплуатации</span>
+								</label>
+							</div>
+							<div class="group">
+								<p>Тип дома</p>
+								<select name="typehouse" class="w3-4">
+									<option checked></option>								
+									<option value="Бизнес-центр">Бизнес-центр</option>
+									<option value="Торговый центр">Торговый центр</option>
+									<option value="Административное здание">Административное здание</option>
+									<option value="Жилой дом">Жилой дом</option>
+									<option value="Другой">Другой</option>
+								</select>
+							</div>
+							<div class="group radio">
+								<p>Парковка</p>
+								<label>
+									<input type="radio" name="parking" value="Нет">
+									<span>Нет</span>
+								</label>
+								<label>
+									<input type="radio" name="parking" value="На улице">
+									<span>На улице</span>
+								</label>
+								<label>
+									<input type="radio" name="parking" value="В здании">
+									<span>В здании</span>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step1">Назад</a>
+								<a href="#" class="out btn">сохранить и выйти</a>
+								<a href="#" class="next btn" data-step="step3">Продолжить</a>
+							</div>
+						</div>
+						<div class="step step3">
+							<span class="title">Фотографии</span>
+							<div class="infobox">
+								<p>
+									<span>С хорошими фото просмотров у дома в 5 раз больше.</span>
+									Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
+								</p>
+								<img src="images/icon/house.svg" alt="">
+							</div>
+							<div class="mediabox photo">
+								<div class="left">
+									<p>Фотографии <span>Не больше 60</span></p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<label>
+											<input type="file" name="photos" multiple="" data-max_length="60">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на фото">
+								</div>
+							</div>
+							<div class="mediabox video">
+								<div class="left">
+									<p>Видео</p>
+								</div>
+								<div class="right">
+									<div class="previews">
+										<div class="video-prev">
+											<video><source src="">Your browser does not support HTML5 video.</video>
+										</div>
+										<label>
+											<input type="file" name="file[]" accept="video/*">
+											<span></span>
+										</label>
+									</div>
+									<input type="url" placeholder="Ссылка на видео">
+								</div>
+							</div>
+							<div class="textarea">
+								<span class="title">Описание</span>
+								<textarea name="description" placeholder="Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше."></textarea>
+							</div>
+							<div class="group">
+								<p>Как хотели бы назвать ваш объект на сайте</p>
+								<textarea class="w4-4 name" placeholder="не более 80 символов" maxlength="80" minlength="1" required></textarea>
+							</div>
+							<span class="title">Условия сделки</span>
+							<div class="group radio">
+								<p>Тип сделки</p>
+								<label>
+									<input type="radio" name="typedeal" value="Продажа">
+									<span>Продажа</span>
+								</label>
+								<label>
+									<input type="radio" name="typedeal" value="Переуступка права аренды">
+									<span>Переуступка права аренды</span>
+								</label>
+							</div>
+							<div class="additionals">
+								<p>Арендаторы</p>
+								<div class="case">
+									<label>
+										<input type="checkbox" value="Помещение сдано">
+										<span>Помещение сдано</span>
+									</label>
+								</div>
+							</div>							
+							<div class="group">
+								<p>Цена</p>
+								<label class="price">
+									<input type="text" data-mask="000 000 000 000 000" minlength="1" required>
+								</label>
+							</div>
+							<div class="group">
+								<p>Комиссия риэлтора, которая включена в стоимость</p>
+								<label class="commission">
+									<input type="text" data-mask="00" minlength="1" required>
+								</label>
+							</div>
+							<div class="seporation"></div>
+							<div class="steps">
+								<a href="#" class="prev btn" data-step="step2">Назад</a>
+								<a href="#" class="out btn">Сохранить и выйти</a>
+								<button type="submit" class="next btn">опубликовать объект на сайте</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<!----------------- FOOTER START ------------------>
+		<footer>
+			<div class="wrap">
+				<a href="#">Каталог</a>
+				<a href="#">Ипотечный калькулятор</a>
+				<a href="#">Политика конфиденциальности</a>
+				<p>©  2022 real2u.ru</p>
+				<a href="#">Кадастровая карта</a>
+				<a href="#">Условия использования</a>
+			</div>
+		</footer>
+		<!----------------- FOOTER END ------------------>
+
+		<!----------------- SHARE MODAL START ------------------>
+		<div class="share-modal modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Поделиться</p>
+				<div class="links"></div>
+			</div>
+		</div>
+		<!----------------- SHARE MODAL END ------------------>
+
+		<!----------------- COMPILITION MODAL START ------------------>
+		<div class="compilition modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Добавить в подборку</p>
+				<div class="preview">
+				</div>
+				<a href="#" class="newfolder">Создать новую подборку</a> 
+				<div class="list">
+					<form action="#">
+						<div class="group">
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>0 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>100 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>10 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>25 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>0 ЖК</span></p>
+							</label>
+						</div>
+						<button type="submit" disabled>Выберите подборку</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!----------------- COMPILITION MODAL END ------------------>
+
+		<!----------------- NEW FOLDER MODAL START ------------------>
+		<div class="new-folder modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Создать новую подборку</p>
+				<form action="">
+					<input type="text" placeholder="Название подборки">
+					<button type="submit" disabled>Готово</button>
+				</form>
+			</div>
+		</div>
+		<!----------------- NEW FOLDER MODAL END ------------------>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/fancybox.umd.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/mask.js"></script>
+		<script src="js/select2.min.js"></script>
+		<script src="https://api-maps.yandex.ru/2.1/?apikey=d25a6e93-0a2c-4e34-9c74-01258ae35f0b&lang=ru_RU" type="text/javascript"></script>
+		<script src="js/initialization.js"></script>
+	</body>
+</html>

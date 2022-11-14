@@ -1,0 +1,24 @@
+<div id="collection-block"></div>
+<div class="share-modal modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Поделиться</p>
+        <div class="links"></div>
+    </div>
+</div>
+{% set recaptcha = _view.loadHelper('Recaptcha.Recaptcha') %}
+{% set recaptchaScript = recaptcha.initScripts()|first %}
+<script src="{{ recaptchaScript }}"></script>
+{{ html.script('https://code.jquery.com/jquery-latest.min.js') }}
+{{ html.script('/libraries/lazyload/lazyload.min.js') }}
+{{ html.script('/uploads/assets/js/script.js') }}
+{{ html.script('/uploads/assets/js/fancybox.umd.js') }}
+{{ html.script('/uploads/assets/js/swiper.min.js') }}
+{{ html.script('/uploads/assets/js/mask.js') }}
+{{ html.script('/uploads/assets/js/select2.min.js') }}
+{{ html.script('/uploads/assets/js/initialization.js') }}
+{{ html.script('/uploads/assets/js/main.js') }}
+{{ _view.fetch('scriptCustom') }}
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{{ title_for_layout }} - ПО ДОМАМ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {{ siteInfo.favicon() }}
+    {{ meta.meta() }}
+    {{ _view.fetch('meta')}}
+    {{ html.css('/uploads/assets/css/style.css') }}
+    {{ html.css('/uploads/assets/css/fancybox.css') }}
+    {{ html.css('/uploads/assets/css/swiper.css') }}
+    {{ html.css('/uploads/assets/css/x375.css') }}
+    {{ html.css('/uploads/assets/css/x768.css') }}
+    {{ html.css('/uploads/assets/css/style-fix.css') }}
+    {{ _view.fetch('css')}}
+</head>
+<body>

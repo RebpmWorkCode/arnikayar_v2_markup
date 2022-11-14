@@ -1,0 +1,222 @@
+{% set adView = _view.loadHelper('Agency.AdView') %}
+{% set agencyIndexSite = _view.loadHelper('Agency.AgencyIndexSite') %}
+{% set imageResized = _view.loadHelper('ImageCompress.ImageResized') %}
+{% set adSeo = _view.loadHelper('Agency.AdSeo') %}
+{% set rusTime = _view.loadHelper('Fastadmin.RusTime') %}
+{% set complexCategory = _view.loadHelper('ComplexCategories.ComplexCategory') %}
+{% set favorite = _view.loadHelper('Favorites.Favorite') %}
+{% set complexCategorySearch = _view.loadHelper('ComplexCategories.ComplexCategorySearch') %}
+{% set session = _view.loadHelper('Session') %}
+{{ adView.setDefaults({default_picture: config.Site.no_photo_image}) }}
+{{ _view.assign('title', adSeo.titleList()) }}
+{{ _view.Html.script('/uploads/assets/js/favorites.js?v=4', {'block': 'scriptCustom'}) }}
+{{ _view.Html.script('/uploads/assets/js/ajaxLoad.js?v=567436', {'block': 'scriptCustom'}) }}
+{% if not attribute(_view.request, 'query') is empty %}
+    {% set countObj = '(' ~ paginator.params.count ~ ')' %}
+    {% set orangeColor = 'orangeColor' %}
+{% endif %}
+
+<div class="pattern wrap">
+    <div class="wrapper">
+        <div class="heading">
+            <h1>Мои избранные <span>{{ countObj }}</span></h1>
+            <div class="interface">
+                <a href="#" class="share"><span>поделиться избранным</span>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.9092 6.16756C13.3262 6.16756 12.7883 5.95005 12.3669 5.58681L8.12875 8.84726C8.19971 9.26147 8.19971 9.6859 8.12875 10.1001L12.3669 13.3606C12.7883 12.9973 13.3262 12.7798 13.9092 12.7798C15.2633 12.7798 16.3637 13.95 16.3637 15.3899C16.3637 16.8298 15.2633 18 13.9092 18C12.5551 18 11.4547 16.8298 11.4547 15.3899C11.4547 15.1376 11.4874 14.8962 11.5508 14.6656L7.52534 11.5661C6.92807 12.4079 5.97897 12.9538 4.9092 12.9538C3.10102 12.9538 1.63647 11.3965 1.63647 9.47368C1.63647 7.55091 3.10102 5.99356 4.9092 5.99356C5.97897 5.99356 6.92807 6.5395 7.52534 7.38126L11.5508 4.28177C11.4874 4.05121 11.4547 3.8076 11.4547 3.55746C11.4547 2.11756 12.5551 0.947369 13.9092 0.947369C15.2633 0.947369 16.3637 2.11756 16.3637 3.55746C16.3637 4.99737 15.2633 6.16756 13.9092 6.16756ZM13.9092 16.5209C14.4962 16.5209 14.9728 16.0142 14.9728 15.3899C14.9728 14.7657 14.4962 14.2589 13.9092 14.2589C13.3222 14.2589 12.8456 14.7657 12.8456 15.3899C12.8456 16.0142 13.3222 16.5209 13.9092 16.5209ZM4.9092 7.55961C3.91716 7.55961 3.1092 8.41877 3.1092 9.47368C3.1092 10.5286 3.91716 11.3878 4.9092 11.3878C5.90125 11.3878 6.7092 10.5286 6.7092 9.47368C6.7092 8.41877 5.90125 7.55961 4.9092 7.55961ZM13.9092 2.42642C13.3222 2.42642 12.8456 2.93322 12.8456 3.55746C12.8456 4.18171 13.3222 4.68851 13.9092 4.68851C14.4962 4.68851 14.9728 4.18171 14.9728 3.55746C14.9728 2.93322 14.4962 2.42642 13.9092 2.42642Z"
+                            fill="#52758E"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="add-objects">
+        <div class="cards-wrapper">
+            <div class="cards">
+                {% for item in list %}
+                    {% set offerItem = adView.getInfo(item) %}
+                    {% set gallery = adView.getGallery(item) %}
+                    {% set paramsValues = item.CategoryParamValues ?? [] %}
+                    {% set arhitectyr = complexCategory.getViewAliasesOptions('arhitectyr', paramsValues) %}
+                    {% set renovation = complexCategory.getViewAliasesOptions('renovation', paramsValues) %}
+                    {% set view_house = complexCategory.getViewAliasesOptions('view_house', paramsValues) %}
+                    {% set swimming_pool = complexCategory.getViewAliasesOptions('swimming_pool', paramsValues) %}
+                    {% set bath_house = complexCategory.getViewAliasesOptions('bath_house', paramsValues) %}
+                    {% set guest_house = complexCategory.getViewAliasesOptions('guest_house', paramsValues) %}
+                    {% set place_car = complexCategory.getViewAliasesOptions('place_car', paramsValues) %}
+                    <div class="card">
+                        <a href="{{ offerItem.url }}" target="_self">
+                            <div class="image">
+                                <div class="swiper-container-item">
+                                    <div class="swiper-wrapper">
+                                        {% set galleryList = gallery.items ?: [gallery.first] %}
+                                        {% set galleryList = galleryList|slice(0, 6) %}
+                                        {% set galleryResizeList = imageResized.resizePicture(galleryList, {'width': '379', 'height': '266', 'mode': 'crop', 'paddings': false, 'folder': 'twig_crop_realty_list', 'cache_path_size': true}) %}
+                                        {% for i, galleryItem in galleryResizeList %}
+                                            <div href="#" class="swiper-slide" style="background-image: url({{ galleryItem.src }});"></div>
+                                        {% endfor %}
+                                    </div>
+                                    <!-- Add Pagination -->
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <div class="inf">
+                                    {% set siteArea = complexCategory.getViewAliasesOptions('site_area', paramsValues) %}
+                                    {% if siteArea %}
+                                        <p><img src="/uploads/assets/images/icon/square.svg" alt=""> {{ siteArea }} сот</p>
+                                    {% endif %}
+                                    {% set spalen = complexCategory.getViewAliasesOptions('spalen', paramsValues) %}
+                                    {% if spalen %}
+                                        <p><img src="/uploads/assets/images/icon/bed.svg" alt=""> {{ spalen }}</p>
+                                    {% endif %}
+                                    {% set house_area = complexCategory.getViewAliasesOptions('house_area', paramsValues) %}
+                                    {% if house_area %}
+                                        <p><img src="/uploads/assets/images/icon/squarehouse.svg" alt=""> 270 м²</p>
+                                    {% endif %}
+                                </div>
+                                <div class="price">
+                                    <p>{{ item.Advertisement.price }} ₽</p>
+                                    {% set part = complexCategory.getViewAliasesOptions('part', paramsValues) %}
+                                    {% if session.read('Auth.User.id') and part %}
+                                        <p class="commission">комиссия {{ part }} %</p>
+                                    {% endif %}
+                                </div>
+                                <div class="title">
+                                    {% set zagolovok = complexCategory.getViewAliasesOptions('zagolovok', paramsValues) %}
+                                    {% if zagolovok %}
+                                        <p>{{ zagolovok }}</p>
+                                    {% else %}
+                                        <p>{{ item.Advertisement.title }}</p>
+                                    {% endif %}
+                                </div>
+                                <div class="location">
+                                    <img src="/uploads/assets/images/icon/marker-map.svg" alt="marker">
+                                    {% if item.Location.Locality.title %}
+                                        <object>
+                                            <a href="/?locality_id={{ item.Location.Locality.id }}">
+                                                <p>{{ item.Location.Locality.title }}</p>
+                                            </a>
+                                        </object>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                        <div class="group">
+                            <div class="tags">
+                                {% if item.Youtube|length > 0 %}
+                                    <a href="?with_video=1">с видео</a>
+                                {% endif %}
+                                {% if arhitectyr and (item.CategoryParamValues.arhitectyr.value == 1 or item.CategoryParamValues.arhitectyr.value == 2) %}
+                                    <a href="?arhitectyr={{ item.CategoryParamValues.arhitectyr.value }}">{{ arhitectyr }}</a>
+                                {% endif %}
+                                {% if item.CategoryParamValues.view_house.value[0] == 1  %}
+                                    <a href="?view_house=1">с видом на море</a>
+                                {% endif %}
+                                {% if renovation and item.CategoryParamValues.renovation.value == 1 %}
+                                    <a href="?renovation={{ item.CategoryParamValues.renovation.value }}">с ремонтом</a>
+                                {% endif %}
+                                {% if swimming_pool and item.CategoryParamValues.swimming_pool.value == 1 %}
+                                    <a href="?swimming_pool={{ item.CategoryParamValues.swimming_pool.value }}">с бассейном</a>
+                                {% endif %}
+                                {% if bath_house and item.CategoryParamValues.bath_house.value == 1 %}
+                                    <a href="?bath_house={{ item.CategoryParamValues.bath_house.value }}">с баней</a>
+                                {% endif %}
+                                {% if item.CategoryParamValues.place_car.value[0] == 1  %}
+                                    <a href="?place_car=1">с гаражом</a>
+                                {% endif %}
+                                {% if guest_house and item.CategoryParamValues.guest_house.value != 1 %}
+                                    <a href="?guest_house={{ item.CategoryParamValues.guest_house.value }}">с гостевым домом</a>
+                                {% endif %}
+                            </div>
+                            <div class="interface">
+                                {% set isFavorite = favorite.has('Advertisement', item.Advertisement.id) %}
+                                <a href="#" class="favorite {{ isFavorite ? 'active' : ''}}" data-favorite="{{ isFavorite ? 'remove' : 'add'}}"
+                                   data-favorite-invert="{{ isFavorite ? 'add' : 'remove'}}" data-favorite-id="{{ item.Advertisement.id }}"></a>
+                                <a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
+                                <a href="/agency/realty/print_view/{{ item.Advertisement.id }}.pdf?template=cPresent1&layout=default&orientation=portrait" class="pdf" target="_blank"></a>
+                                {% if session.read('Auth.User.id') %}
+                                    <a href="#" class="folder collection"></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="new-folder modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Создать новую подборку</p>
+        <form action="">
+            <input type="text" placeholder="Название подборки">
+            <button type="submit" disabled>Готово</button>
+        </form>
+    </div>
+</div>
+
+<div class="compilition modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Добавить в подборку</p>
+        <div class="preview">
+        </div>
+        <a href="#" class="newfolder">Создать новую подборку</a>
+        <div class="list">
+            <form action="#">
+                <div class="group">
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>0 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>100 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>10 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>25 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>0 ЖК</span></p>
+                    </label>
+                </div>
+                <button type="submit" disabled>Выберите подборку</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.paginator_url = '{{ adList.paginateAjaxUrl() }}';
+    window.paginator_limit = {{ paginator.params().pageCount }};
+    window.paginator_request_limit = {{ paginator.params().limit }};
+    window.paginator_request_page = {{ paginator.params().page }};
+</script>
