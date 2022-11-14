@@ -1,0 +1,87 @@
+{% set session = _view.loadHelper('Session') %}
+{% set isAuth = session.read('Auth.User.id') %}
+<header>
+    <div class="wrap">
+        <div class="left">
+            <div class="menu">
+                <div class="group">
+                    <a href="#" class="burger"><span></span><span></span><span></span></a>
+                    <div class="list">
+                        <ul>
+                            <li><a href="/?category_id=4">Дома и таунхаусы</a></li>
+                            <li><a href="/?category_id=7">Квартиры и апартаменты</a></li>
+                            <li><a href="/?category_id=37">Земельные участки</a></li>
+                            <li><a href="/?category_id=2">Коммерческая недвижимость</a></li>
+                        </ul>
+                        <ul class="second">
+                            <li><a href="/">Каталог</a></li>
+                            <li><a href="/agency/services/mortgage_calculator">Ипотечный калькулятор</a></li>
+                            <li><a href="https://pkk.rosreestr.ru/">Кадастровая карта</a></li>
+                            <li class="mob"><a href="#">Город</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="/" class="logo">real2u.ru</a>
+            </div>
+            <div class="search">
+                <a href="#" class="mob"><img src="/uploads/assets/images/icon/search.svg" alt="search"></a>
+                <form action="">
+                    <input type="text" placeholder="поиск по номеру или названию объекта " pattern="[А-Яа-я]{1,}">
+                    <button type="submit"></button>
+                </form>
+            </div>
+            <div class="city">
+                <a class="selected" href="#">Сочи</a>
+                <div class="modal">
+                    <div class="bg"></div>
+                    <div class="content">
+                        <div class="close"><span></span><span></span></div>
+                        <p class="title">Выберите город</p>
+                        <a href="#">Краснодар</a>
+                        <a href="#">Москва</a>
+                        <a href="#">Екатеринбург</a>
+                        <a href="#">Сочи</a>
+                        <a href="#">Санкт-Петербург</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            {% if isAuth %}
+                <a href="#" class="objects"></a>
+                <a href="#" class="folder"></a>
+                <a href="/favorites" class="favorite"></a>
+                <div class="wrapper">
+                    <a href="#" class="bell open active"></a>
+                    <div class="list">
+                        <ul>
+                            <li class="new">
+                                <a href="#">Новое уведомление с очень длинным текстом Новое уведомление с очень длинным текстом</a>
+                            </li>
+                            <li><a href="#">Уведомление 2</a></li>
+                            <li><a href="#">Уведомление 3</a></li>
+                            <li><a href="#">Уведомление 4</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="wrapper">
+                    <a href="#" class="lk open">
+                        <span>{{ session.read('Auth.User.name') }}</span>
+                    </a>
+                    <div class="list">
+                        <ul>
+                            <li><a class="client" href="#">Я с клиентом <span></span></a></li>
+                            <li><a href="/{{ session.read('Auth.User.username') }}">Профиль</a></li>
+                            <li><a href="#">Мои объявления</a></li>
+                            <li class="mob"><a href="#">Уведомления</a></li>
+                            <li><a href="/logout">Выйти</a></li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
+                <a href="/favorites" class="favorite"></a>
+                <a href="/login" class="lk"><span></span></a>
+            {% endif %}
+        </div>
+    </div>
+</header>
