@@ -165,7 +165,14 @@
                                     <a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
                                     <a href="/agency/realty/print_view/{{ item.Advertisement.id }}.pdf?template=cPresent1&layout=default&orientation=portrait" class="pdf" target="_blank"></a>
                                     {% if session.read('Auth.User.id') %}
-                                        <a href="#" class="folder collection"></a>
+                                        {% set agencyCompilation = agencyIndexSite.getAgencyCompilation() %}
+                                        {% set hasInCompilation = false %}
+                                        {% set titleButtonCompilation = 'Добавить в подборку' %}
+                                        {% if item.Advertisement.id in attribute(agencyCompilation, 'selection') %}
+                                            {% set hasInCompilation = true %}
+                                            {% set titleButtonCompilation = 'Убрать из подборки' %}
+                                        {% endif %}
+                                        <a href="#" title="{{ titleButtonCompilation }}" data-id="{{ item.Advertisement.id }}" data-agency-compilation-id="{{ attribute(agencyCompilation, 'id') }}" class="folder {{ hasInCompilation ? 'active' : ''}} collection"></a>
                                     {% endif %}
                                 </div>
                             </div>
@@ -313,72 +320,6 @@
                     <a href="#" class="mob out">выйти</a>
                 </div>
             {{ form.end() }}
-        </div>
-    </div>
-</div>
-
-<div class="new-folder modal">
-    <div class="bg"></div>
-    <div class="content">
-        <div class="close"><span></span><span></span></div>
-        <p class="title">Создать новую подборку</p>
-        <form action="">
-            <input type="text" placeholder="Название подборки">
-            <button type="submit" disabled>Готово</button>
-        </form>
-    </div>
-</div>
-
-<div class="compilition modal">
-    <div class="bg"></div>
-    <div class="content">
-        <div class="close"><span></span><span></span></div>
-        <p class="title">Добавить в подборку</p>
-        <div class="preview">
-        </div>
-        <a href="#" class="newfolder">Создать новую подборку</a>
-        <div class="list">
-            <form action="#">
-                <div class="group">
-                    <label>
-                        <input type="checkbox">
-                        <p>ЖК для Ивана <span>1 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>Название подборки <span>0 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>ЖК для Ивана <span>1 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>Название подборки <span>100 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>ЖК для Ивана <span>1 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>ЖК для Ивана <span>10 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>Название подборки <span>25 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>Название подборки <span>1 ЖК</span></p>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <p>Название подборки <span>0 ЖК</span></p>
-                    </label>
-                </div>
-                <button type="submit" disabled>Выберите подборку</button>
-            </form>
         </div>
     </div>
 </div>

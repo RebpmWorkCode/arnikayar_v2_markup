@@ -1,0 +1,46 @@
+<div class="compilition modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Добавить в подборку</p>
+        <div class="preview">
+            {% set imageResized = _view.loadHelper('ImageCompress.ImageResized') %}
+            {% set gallery = adView.getGallery(object) %}
+            {% set galleryFirstItem = imageResized.resizeItemPicture(gallery.first, {'width': '66', 'height': '66', 'mode': 'crop', 'paddings': false, 'folder': 'twig_crop_agency_compilation_small'}) %}
+            <div class="img" style="background: url({{ galleryFirstItem.src }}) center center / cover no-repeat;"></div>
+            <div class="inf">
+                <p class="heading">{{ object.Advertisement.title ?: object.Advertisement.location_full }}</p>
+                <p class="location"><img src="/uploads/assets/images/icon/marker-map.svg" alt="marker">{{ object.Location.Locality.title }}</p>
+            </div>
+        </div>
+        <a href="#" class="newfolder">Создать новую подборку</a>
+        {% if agencyCompilations %}
+            <div class="list">
+                {{ form.create(false, {'url': '/agency/agency_compilations/append'}) }}
+                {{ form.hidden('id', {'value': id}) }}
+                <div class="group">
+                    {% for agencyCompilationId,agencyCompilationTitle in agencyCompilations %}
+                        <label>
+                            <input type="radio" name="data[agency_compilation_id]" value="{{ agencyCompilationId }}">
+                            <p>{{ agencyCompilationTitle }}</p>
+                        </label>
+                    {% endfor %}
+                </div>
+                <button type="submit" disabled>Выберите подборку</button>
+                {{ form.end() }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="new-folder modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Создать новую подборку</p>
+        {{ form.create(false, {'id': 'create-collection-form', 'url': '/agency/agency_compilations/add'}) }}
+        {{ form.input('title', {'placeholder': 'Название подборки', 'required': true, 'div': false, 'label': false}) }}
+        <button type="submit" disabled>Готово</button>
+        {{ form.end() }}
+    </div>
+</div>

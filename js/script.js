@@ -120,18 +120,25 @@ $(".city .modal .close").on("click", cityModal );
 // });
 
 // --------- ADD FOLDER -----------
+let collectionBlock = $('#collection-block');
 function folder(e){
     e.preventDefault();
-    var img = $(this).data('attr-img');
-    var location = $(this).data('attr-location');
-    var title = $(this).data('attr-title');
-    $('.compilition').addClass('open');
-    $('.compilition .content .preview').html(
-        '<div class="img" style="background: url(./'+img+') center center / cover no-repeat;"></div><div class="inf"><p class="heading">'+title+'</p><p class="location"><img src="images/icon/marker-map.svg" alt="marker">'+location+'</p></div>'
-    );
+    let agencyCompilationId = $(this).data('agency-compilation-id');
+    let id = $(this).data('id');
+
+    if (!agencyCompilationId) {
+        fetch(`/agency/agency_compilations/add/${id}`, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(res => res.text()).then((res) => {
+            collectionBlock.html(res);
+            $('.compilition').addClass('open');
+        })
+    } else {
+        fetch(`/agency/agency_compilations/delete/${agencyCompilationId}/${id}`, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(res => {
+            window.location.reload();
+        })
+    }
 }
-$(".cards .card .group .interface .folder").on("click", folder );
-$(".detail .heading .interface .folder").on("click", folder );
+$("body").on("click", ".cards .card .group .interface .folder", folder );
+$("body").on("click", ".detail .heading .interface .folder", folder );
 
 function closeModal() {
     $('.compilition').removeClass('open');
@@ -139,12 +146,12 @@ function closeModal() {
     $('.compilition .content button').attr('disabled','disabled');
     $('.compilition .content button').html('Выберите подборку');
 }
-$(".compilition .bg").on("click", closeModal );
-$(".compilition .close").on("click", closeModal );
+$(collectionBlock).on("click", ".compilition .bg", closeModal );
+$(collectionBlock).on("click", ".compilition .close", closeModal );
 
-$('.compilition .content .list .group label').on('click', 'input', function (e){
+$(collectionBlock).on('click', '.compilition .content .list .group label input', function (e){
     var str = '';
-    $('.compilition .content .list .group label input[type="checkbox"]').each(function(){
+    $('.compilition .content .list .group label input[type="radio"]').each(function(){
         if ($(this).is(":checked")) {
           str = 1;
         }
@@ -157,6 +164,104 @@ $('.compilition .content .list .group label').on('click', 'input', function (e){
         $('.compilition .content button').html('Готово');
     }
 });
+
+// --------- NEW FOLDER -----------
+$('body').on('click', '.newfolder', function (e){
+    e.preventDefault();
+    $('.compilition').removeClass('open');
+    $('.new-folder').addClass('open');
+});
+$(collectionBlock).on('keyup', '.new-folder form input', function (e){
+    var str = '';
+    $('.new-folder form input[type="text"]').each(function(){
+        if ($(this).val() != "") {
+            str = 1;
+        }
+    });
+    if(str == ''){
+        $('.new-folder form button').attr('disabled','disabled');
+    } else {
+        $('.new-folder form button').removeAttr('disabled');
+    }
+});
+$(collectionBlock).on('submit', '.new-folder form', function (e){
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    fetch(e.currentTarget.getAttribute('action'), {
+        method: 'POST',
+        body: data,
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    }).then((res) => {
+        if (res.status === 200) {
+            window.location.reload()
+        } else {
+            console.log(res);
+        }
+    })
+});
+function closeNewFolder() {
+    $('.new-folder').removeClass('open');
+    $('.new-folder form')[0].reset();
+    $('.new-folder form button').attr('disabled','disabled');
+}
+$(collectionBlock).on("click", ".new-folder .bg", closeNewFolder );
+$(collectionBlock).on("click", ".new-folder .close", closeNewFolder );
+
+// --------- DEL FOLDER -----------
+$('.folders .block .interface').on('click', '.del', function (e){
+    e.preventDefault();
+    $('.del-folder').addClass('open');
+    var idfolder = $(this).data('id-folder');
+    console.log(idfolder);
+    var block = $(this).parents('.block').html();
+    $('.del-folder input').val(idfolder);
+    $('.del-folder .preview .block').html(block);
+});
+
+function closeDelFolder() {
+    $('.del-folder').removeClass('open');
+    $('.del-folder form')[0].reset();
+}
+$(".del-folder .bg").on("click", closeDelFolder );
+$(".del-folder .close").on("click", closeDelFolder );
+$(".del-folder .cancel").on("click", closeDelFolder );
+
+// let deleteCollections = $('#delete-collections');
+// $('.selection').on('click', '.selection__delete', (e) => {
+//     e.preventDefault();
+//     let wrapper = $(e.currentTarget).closest('.selection__stroke');
+//     let collectionName = wrapper.find('[data-collection-name]').text();
+//     let collectionCount = wrapper.find('[data-collection-count]').text();
+//     let collectionId = wrapper.data('id');
+//     deleteCollections.find('[data-collection-name]').text(collectionName)
+//     deleteCollections.find('[data-id]').attr('data-id', collectionId);
+//     deleteCollections.find('[data-collection-count]').text(collectionCount);
+//     deleteCollections.show();
+// })
+// $('#delete-collections').on('click', '[data-close]', (e) => {
+//     e.preventDefault();
+//     deleteCollections.hide();
+// })
+// $('#delete-collections').on('click', '[data-delete]', (e) => {
+//     e.preventDefault();
+//     fetch(`/agency/agency_compilations/drop/${e.currentTarget.dataset.id}.json`, {
+//         method: 'POST',
+//         body: JSON.stringify({
+//             agency_compilation_id: e.currentTarget.dataset.id,
+//         }),
+//         headers: {
+//             Accept: 'application/json, text/javascript, */*; q=0.01',
+//             'Content-Type': 'application/json; charset=UTF-8',
+//             'X-Requested-With': 'XMLHttpRequest'
+//         }
+//     }).then(res => res.json()).then((res) => {
+//         if (res.result) {
+//             window.location.reload();
+//         } else {
+//             alert(res.error);
+//         }
+//     })
+// });
 
 // --------- ADD NOTES -----------
 $('.detail .heading .interface').on('click', '.note', function (e){
@@ -189,53 +294,6 @@ jQuery(function($){
 		}
 	});
 });
-
-
-// --------- NEW FOLDER -----------
-$('body').on('click', '.newfolder', function (e){
-    e.preventDefault();
-    $('.new-folder').addClass('open');
-});
-$('.new-folder form').on('keyup', 'input', function (e){
-    var str = '';
-    $('.new-folder form input[type="text"]').each(function(){
-        if ($(this).val() != "") {
-          str = 1;
-        }
-    });
-    if(str == ''){
-        $('.new-folder form button').attr('disabled','disabled');
-    } else {
-        $('.new-folder form button').removeAttr('disabled');
-    }
-});
-function closeNewFolder() {
-    $('.new-folder').removeClass('open');
-    $('.new-folder form')[0].reset();
-    $('.new-folder form button').attr('disabled','disabled');
-}
-$(".new-folder .bg").on("click", closeNewFolder );
-$(".new-folder .close").on("click", closeNewFolder );
-
-// --------- DEL FOLDER -----------
-$('.folders .block .interface').on('click', '.del', function (e){
-    e.preventDefault();
-    $('.del-folder').addClass('open');
-    var idfolder = $(this).data('id-folder');
-    console.log(idfolder);
-    var block = $(this).parents('.block').html();
-    $('.del-folder input').val(idfolder);
-    $('.del-folder .preview .block').html(block);
-});
-
-function closeDelFolder() {
-    $('.del-folder').removeClass('open');
-    $('.del-folder form')[0].reset();
-}
-$(".del-folder .bg").on("click", closeDelFolder );
-$(".del-folder .close").on("click", closeDelFolder );
-$(".del-folder .cancel").on("click", closeDelFolder );
-
 
 // -----------------------------******** SLIDERS GROUP ********-----------------------------
 
