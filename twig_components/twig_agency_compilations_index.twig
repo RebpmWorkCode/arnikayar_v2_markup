@@ -1,28 +1,56 @@
-<div class="compilition modal">
+<div class="pattern wrap">
+    <div class="wrapper">
+        <div class="heading">
+            <h1>Мои подборки <span>{{ list|length }}</span></h1>
+        </div>
+        <a href="#" class="newfolder">Создать новую подборку</a>
+    </div>
+    <div class="folders">
+        {% for item in list %}
+            <div class="block">
+                <a href="/agency/realty/index/?agency_compilation={{ item.AgencyCompilation.id }}">
+                    <div class="imgs">
+                        <div class="item" style="background-image: url(/uploads/assets/images/icon/collections/noimg.jpg);"></div>
+                    </div>
+                    <div class="inf">
+                        <p class="title">{{ item.AgencyCompilation.title }}</p>
+                        <p class="count hidden">5 объектов</p>
+                    </div>
+                </a>
+                <div class="interface">
+                    <a href="#" class="edit" data-id-folder="{{ item.AgencyCompilation.id }}"></a>
+                    <a href="#" class="share" data-attr-title="{{ item.AgencyCompilation.title ? item.AgencyCompilation.title : 'Подборка объектов' }}" data-attr-url="/agency/realty/index/?agency_compilation={{ item.AgencyCompilation.id }}"></a>
+                    <a href="#" class="del" data-id-folder="{{ item.AgencyCompilation.id }}"></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="new-folder modal">
     <div class="bg"></div>
     <div class="content">
         <div class="close"><span></span><span></span></div>
-        <p class="title">Добавить в подборку</p>
+        <p class="title">Создать новую подборку</p>
+        {{ form.create(false, {'id': 'create-collection-form', 'url': '/agency/agency_compilations/add'}) }}
+        {{ form.input('title', {'placeholder': 'Название подборки', 'required': true, 'div': false, 'label': false}) }}
+        <button type="submit" disabled>Готово</button>
+        {{ form.end() }}
+    </div>
+</div>
+
+<div class="del-folder modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Вы действительно хотите удалить подборку?</p>
         <div class="preview">
+            <div class="block"></div>
         </div>
-        <a href="#" class="newfolder">Создать новую подборку</a>
-        <div class="list">
-            {{ agencyCompilations }}
-            {% if agencyCompilations %}
-                {{ form.create(false, {'url': '/agency/agency_compilations/append'}) }}
-                {{ form.hidden('id', {'value': id}) }}
-                <div class="group">
-                    <input type="radio" name="data[agency_compilation_id]" id="agency_compilation_id{{ agencyCompilationId }}" value="{{ agencyCompilationId }}" class="add-to-collection-block-content-item__checkbox">
-                    {% for agencyCompilationId,agencyCompilationTitle in agencyCompilations %}
-                        <label>
-                            <input type="checkbox">
-                            <p>{{ agencyCompilationTitle }}</p>
-                        </label>
-                    {% endfor %}
-                </div>
-                <button type="submit" disabled>Выберите подборку</button>
-                {{ form.end() }}
-            {% endif %}
-        </div>
+        {{ form.create(false, {'url': '/agency/agency_compilations/drop/0.json'}) }}
+            <input type="hidden" name="data[agency_compilation_id]">
+            <button type="submit">Да</button>
+            <a href="#" class="cancel">Нет</a>
+        {{ form.end() }}
     </div>
 </div>

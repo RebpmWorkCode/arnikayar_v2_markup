@@ -162,7 +162,7 @@
                                     {% set isFavorite = favorite.has('Advertisement', item.Advertisement.id) %}
                                     <a href="#" class="favorite {{ isFavorite ? 'active' : ''}}" data-favorite="{{ isFavorite ? 'remove' : 'add'}}"
                                        data-favorite-invert="{{ isFavorite ? 'add' : 'remove'}}" data-favorite-id="{{ item.Advertisement.id }}"></a>
-                                    <a href="#" class="share" data-attr-title="Тестовый заголовок" data-attr-url="test2.ru"></a>
+                                    <a href="#" class="share" data-attr-title="{{ item.Advertisement.title ? item.Advertisement.title : item.Location.SubLocality.title }}" data-attr-url="/agency/realty/view/{{ item.Advertisement.id }}"></a>
                                     <a href="/agency/realty/print_view/{{ item.Advertisement.id }}.pdf?template=cPresent1&layout=default&orientation=portrait" class="pdf" target="_blank"></a>
                                     {% if session.read('Auth.User.id') %}
                                         {% set agencyCompilation = agencyIndexSite.getAgencyCompilation() %}

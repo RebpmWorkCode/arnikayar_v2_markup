@@ -140,6 +140,19 @@ function folder(e){
 $("body").on("click", ".cards .card .group .interface .folder", folder );
 $("body").on("click", ".detail .heading .interface .folder", folder );
 
+
+function editFolder(e) {
+    e.preventDefault();
+    let folderId = $(this).data('id-folder');
+    if (!folderId) {
+        fetch(`/agency/agency_compilations/edit/${folderId}`, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(res => res.text()).then((res) => {
+            collectionBlock.html(res);
+            $('.compilition').addClass('open');
+        })
+    }
+}
+$("body").on("click", ".folders .block .interface .share", editFolder)
+
 function closeModal() {
     $('.compilition').removeClass('open');
     $('.compilition .content .list form')[0].reset();
@@ -171,7 +184,7 @@ $('body').on('click', '.newfolder', function (e){
     $('.compilition').removeClass('open');
     $('.new-folder').addClass('open');
 });
-$(collectionBlock).on('keyup', '.new-folder form input', function (e){
+$("body").on('keyup', '.new-folder form input', function (e){
     var str = '';
     $('.new-folder form input[type="text"]').each(function(){
         if ($(this).val() != "") {
@@ -184,7 +197,7 @@ $(collectionBlock).on('keyup', '.new-folder form input', function (e){
         $('.new-folder form button').removeAttr('disabled');
     }
 });
-$(collectionBlock).on('submit', '.new-folder form', function (e){
+$("body").on('submit', '.new-folder form', function (e){
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     fetch(e.currentTarget.getAttribute('action'), {
@@ -226,42 +239,21 @@ $(".del-folder .bg").on("click", closeDelFolder );
 $(".del-folder .close").on("click", closeDelFolder );
 $(".del-folder .cancel").on("click", closeDelFolder );
 
-// let deleteCollections = $('#delete-collections');
-// $('.selection').on('click', '.selection__delete', (e) => {
-//     e.preventDefault();
-//     let wrapper = $(e.currentTarget).closest('.selection__stroke');
-//     let collectionName = wrapper.find('[data-collection-name]').text();
-//     let collectionCount = wrapper.find('[data-collection-count]').text();
-//     let collectionId = wrapper.data('id');
-//     deleteCollections.find('[data-collection-name]').text(collectionName)
-//     deleteCollections.find('[data-id]').attr('data-id', collectionId);
-//     deleteCollections.find('[data-collection-count]').text(collectionCount);
-//     deleteCollections.show();
-// })
-// $('#delete-collections').on('click', '[data-close]', (e) => {
-//     e.preventDefault();
-//     deleteCollections.hide();
-// })
-// $('#delete-collections').on('click', '[data-delete]', (e) => {
-//     e.preventDefault();
-//     fetch(`/agency/agency_compilations/drop/${e.currentTarget.dataset.id}.json`, {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             agency_compilation_id: e.currentTarget.dataset.id,
-//         }),
-//         headers: {
-//             Accept: 'application/json, text/javascript, */*; q=0.01',
-//             'Content-Type': 'application/json; charset=UTF-8',
-//             'X-Requested-With': 'XMLHttpRequest'
-//         }
-//     }).then(res => res.json()).then((res) => {
-//         if (res.result) {
-//             window.location.reload();
-//         } else {
-//             alert(res.error);
-//         }
-//     })
-// });
+$('body').on('submit', '.del-folder form', (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    fetch(e.currentTarget.getAttribute('action'), {
+        method: 'POST',
+        body: data,
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    }).then((res) => {
+        if (res.status === 200) {
+            window.location.reload()
+        } else {
+            console.log(res);
+        }
+    })
+});
 
 // --------- ADD NOTES -----------
 $('.detail .heading .interface').on('click', '.note', function (e){
