@@ -106,8 +106,138 @@ const GalleryIndex = {
     }
 }
 
+const RealtyAdd = {
+    currentCategoryId: undefined,
+    paramsFilter: undefined,
+    run: () => {
+        $('.new-obj form input[type="tel"]').mask('+7 000 000 00 00');
+        if ($('div').is('.new-obj')) {
+            $('select').styler({
+                selectPlaceholder: 'Выберите вариант'
+            });
+        }
+
+        if(RealtyAdd.existElemement('.params-filter')) {
+            RealtyAdd.paramsFilter = $('.params-filter');
+            RealtyAdd.runParamsFilter();
+        }
+        if(RealtyAdd.existElemement('[name="data[Advertisement][category_id]"]')) {
+            RealtyAdd.currentCategoryId = RealtyAdd._getCategoryValue();
+            RealtyAdd._getCategoryField().on("change", (e) => {
+                RealtyAdd.currentCategoryId = RealtyAdd._getCategoryValue();
+                $(e.target).closest('label').addClass('active').siblings().removeClass('active');
+            });
+        }
+        if(RealtyAdd.existElemement('#address')) {
+            RealtyAdd.runAddress();
+        }
+    },
+    runAddress: () => {
+        ymaps.ready(function () {
+            let suggestView = new ymaps.SuggestView('suggest'),
+                myMap = new ymaps.Map('address', {
+                    center: [43.578131, 39.730819],
+                    zoom: 14,
+                    controls: []
+                }),
+                mySearchControl = new ymaps.control.SearchControl({
+                    options: {
+                        noPlacemark: true,
+                        position: {top: -50}
+                    }
+                }),
+                mySearchResults = new ymaps.GeoObjectCollection(null, {
+                    hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]'),
+                    iconLayout: 'default#imageWithContent',
+                    iconImageHref: 'uploads/assets/images/icon/marker.svg',
+                    iconImageSize: [46, 46],
+                    iconImageOffset: [-23, -46],
+                });
+            myMap.controls.add(mySearchControl);
+            myMap.geoObjects.add(mySearchResults);
+
+            mySearchControl.events.add('resultselect', function (e) {
+                var index = e.get('index');
+                mySearchControl.getResult(index).then(function (res) {
+                    mySearchResults.add(res);
+                });
+            }).add('submit', function () {
+                mySearchResults.removeAll();
+            });
+
+            suggestView.events.add('select', function () {
+                Search()
+            });
+
+            function Search() {
+                var request = $('#suggest').val();
+                mySearchControl.search(request);
+            }
+        });
+    },
+    runParamsFilter: () => {
+        if (RealtyAdd.paramsFilter.length > 0) {
+            RealtyAdd.hideParamsFilter();
+            let categoryValue = RealtyAdd._getCategoryValue();
+            // let rentValue = RealtyAdd._getRentValue();
+            if (categoryValue) {
+                RealtyAdd.showParamsFilter(categoryValue/* , rentValue */);
+            }
+            RealtyAdd._getCategoryField().on('change', RealtyAdd.toggleParamsFilter)
+            // RealtyAdd._getRentField().on('change', RealtyAdd.toggleParamsFilter)
+
+            RealtyAdd.toggleParamsFilter();
+        }
+    },
+    hideParamsFilter: () => {
+        RealtyAdd.paramsFilter.addClass('hidden');
+
+    },
+    showParamsFilter: (categoryId, rentValue) => {
+        let classRent = '';
+        switch (rentValue) {
+            case 'rent':
+                classRent = `._r1-${categoryId}`;
+                break;
+            case 'sale':
+                classRent = `._r0-${categoryId}`;
+                break;
+            default:
+                break;
+        }
+        $(`.params-filter.category-${categoryId}${classRent}`).removeClass('hidden');
+    },
+    toggleParamsFilter: (e) => {
+        RealtyAdd.hideParamsFilter();
+        RealtyAdd.showParamsFilter(RealtyAdd._getCategoryValue()/* , RealtyAdd._getRentValue() */)
+    },
+    _getCategoryField: () => {
+        return $('[name="data[Advertisement][category_id]"]');
+    },
+    _getCategoryValue: () => {
+        return Number($('[name="data[Advertisement][category_id]"]:checked').val());
+    },
+    // _getRentField: () => {
+    //     return $('[name="data[Advertisement][rent]"]');
+    // },
+    // _getRentValue: () => {
+    //     if (RealtyIndexForm.isCheckedField) {
+    //         return $('[name="data[Advertisement][rent]"]:checked').val();
+    //     }
+    //     return $('[name="data[Advertisement][rent]"]').val();
+    // },
+    existElemement: (selector) => {
+        return $(selector).length > 0;
+    }
+}
+
 $(() => {
     GalleryIndex.run();
+
+    if(RealtyAdd.existElemement('.new-obj')){
+        RealtyAdd.run();
+    }
+
     $('.select-sorting').on('change', (e) => {
         console.log(e);
         let url = new URL(location.href), value = e.target.value, values = value.split('_');

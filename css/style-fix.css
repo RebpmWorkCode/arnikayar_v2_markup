@@ -39,3 +39,7 @@
 .map-objects-counter {
     display: none !important;
 }
+
+.hidden {
+    display: none !important;
+}
