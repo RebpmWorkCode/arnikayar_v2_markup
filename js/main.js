@@ -112,8 +112,12 @@ const RealtyAdd = {
     run: () => {
         $('.new-obj form input[type="tel"]').mask('+7 000 000 00 00');
         if ($('div').is('.new-obj')) {
-            $('select').styler({
+            $('select.styler').styler({
                 selectPlaceholder: 'Выберите вариант'
+            });
+            $('select.select2').select2({
+                placeholder: 'Выберите вариант',
+                allowClear: true,
             });
         }
 
@@ -128,52 +132,16 @@ const RealtyAdd = {
                 $(e.target).closest('label').addClass('active').siblings().removeClass('active');
             });
         }
-        if(RealtyAdd.existElemement('#address')) {
+        if(RealtyAdd.existElemement('.JS-street')) {
             RealtyAdd.runAddress();
         }
     },
     runAddress: () => {
-        ymaps.ready(function () {
-            let suggestView = new ymaps.SuggestView('suggest'),
-                myMap = new ymaps.Map('address', {
-                    center: [43.578131, 39.730819],
-                    zoom: 14,
-                    controls: []
-                }),
-                mySearchControl = new ymaps.control.SearchControl({
-                    options: {
-                        noPlacemark: true,
-                        position: {top: -50}
-                    }
-                }),
-                mySearchResults = new ymaps.GeoObjectCollection(null, {
-                    hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]'),
-                    iconLayout: 'default#imageWithContent',
-                    iconImageHref: 'uploads/assets/images/icon/marker.svg',
-                    iconImageSize: [46, 46],
-                    iconImageOffset: [-23, -46],
-                });
-            myMap.controls.add(mySearchControl);
-            myMap.geoObjects.add(mySearchResults);
-
-            mySearchControl.events.add('resultselect', function (e) {
-                var index = e.get('index');
-                mySearchControl.getResult(index).then(function (res) {
-                    mySearchResults.add(res);
-                });
-            }).add('submit', function () {
-                mySearchResults.removeAll();
-            });
-
-            suggestView.events.add('select', function () {
-                Search()
-            });
-
-            function Search() {
-                var request = $('#suggest').val();
-                mySearchControl.search(request);
-            }
-        });
+        $('.JS-street').on('change.select2', (e) => {
+            setTimeout(() => {
+                Is2bMapObject._map_up();
+            }, 2000);
+        })
     },
     runParamsFilter: () => {
         if (RealtyAdd.paramsFilter.length > 0) {
