@@ -2,8 +2,10 @@
 {{ html.script(['https://api-maps.yandex.ru/2.1/?lang=ru_RU', 'YandexMaps.locale/rus.js', 'YandexMaps.choose-object.js', 'Locations.Location/edit'], {'block': 'scriptCustom'}) }}
 {% set complexCategorySearch = _view.loadHelper('ComplexCategories.ComplexCategorySearch') %}
 {% set location = _view.loadHelper('Locations.Location') %}
+{% set flash = _view.loadHelper('Flash') %}
 <div class="new-obj wrap">
     <div class="breadcrumbs"><ul><li><a href="/agency/realty/add">Новое объявление</a></li></ul></div>
+    {{ flash.render() }}
     {{ form.create('Advertisement', {'enctype': 'multipart/form-data', 'url': {'plugin': 'agency', 'controller': 'realty', 'action': 'add'}}) }}
         {{ form.hidden('from_site', {'value': true}) }}
         {{ form.hidden('Contractor.0.id') }}
@@ -101,7 +103,6 @@
                     'type': 'text',
                     'class': 'w4-4',
                     'placeholder': '-',
-                    'pattern': '[а-яёА-ЯЁ]{2,}',
                     'required': true,
                     'label': false,
                     'div': false,
@@ -115,7 +116,6 @@
                     'placeholder': '00:00:0000000:0000',
                     'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
                     'minlength': 18,
-                    'required': true,
                     'label': false,
                     'div': false,
                 }) }}
@@ -128,7 +128,6 @@
                     'placeholder': '00:00:0000000:0000',
                     'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
                     'minlength': 18,
-                    'required': true,
                     'label': false,
                     'div': false,
                 }) }}
@@ -155,7 +154,7 @@
                     <span>С хорошими фото просмотров у дома в 5 раз больше.</span>
                     Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
                 </p>
-                <img src="images/icon/house.svg" alt="">
+                <img src="/uploads/assets/images/icon/house.svg" alt="">
             </div>
             <div class="mediabox photo">
                 <div class="left">
@@ -163,12 +162,11 @@
                 </div>
                 <div class="right">
                     <div class="previews">
-                        <label>
-                            <input type="file" name="photos" multiple="">
+                        <div class="previews" id="AdvertisementPicture_list"></div>
+                        <label class="JS-add-photo">
                             <span></span>
                         </label>
                     </div>
-                    <input type="url" placeholder="Ссылка на фото">
                 </div>
             </div>
             <div class="mediabox video">
@@ -176,249 +174,53 @@
                     <p>Видео</p>
                 </div>
                 <div class="right">
-                    <div class="previews">
-                        <div class="video-prev">
-                            <video>
-                                <source src="">Your browser does not support HTML5 video.
-                            </video>
-                        </div>
-                        <label>
-                            <input type="file" name="file[]" accept="video/*">
-                            <span></span>
-                        </label>
-                    </div>
-                    <input type="url" placeholder="Ссылка на видео">
+                    <input name="data[Youtube][0][id]"  type="hidden" value="">
+                    <input name="data[Youtube][0][model]" type="hidden" value="Advertisement">
+                    <input name="data[Youtube][0][foreign_id]" type="hidden" value="">
+                    <input type="url" name="data[Youtube][0][url]" style="margin-top: 0;" placeholder="Ссылка на видео">
                 </div>
             </div>
             <div class="textarea">
                 <span class="title">Описание</span>
-                <textarea name="description" placeholder="Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше."></textarea>
-            </div>
-            <span class="title">Дополнительная информация</span>
-            <div class="group radio">
-                <p>Архитектура</p>
-                <label>
-                    <input type="radio" name="archi" value="Хай-тек">
-                    <span>Хай-тек</span>
-                </label>
-                <label>
-                    <input type="radio" name="archi" value="Шале">
-                    <span>Шале</span>
-                </label>
-                <label>
-                    <input type="radio" name="archi" value="Классика">
-                    <span>Классика</span>
-                </label>
-                <label>
-                    <input type="radio" name="archi" value="Иное">
-                    <span>Иное</span>
-                </label>
-            </div>
-            <div class="group checkbox">
-                <p></p>
-                <div class="case">
-                    <label>
-                        <input type="checkbox">
-                        <span>Цоколь</span>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <span>Мансарда</span>
-                    </label>
-                    <label>
-                        <input type="checkbox">
-                        <span>Эксплуатируемая кровля</span>
-                    </label>
-                </div>
-            </div>
-            <div class="additionals">
-                <p>Зоны отдыха</p>
-                <div class="case">
-                    <label>
-                        <input type="checkbox" value="Мангальная зона или барбекю">
-                        <span>Мангальная зона или барбекю</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Беседка">
-                        <span>Беседка</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Летняя кухня">
-                        <span>Летняя кухня</span>
-                    </label>
-                </div>
-            </div>
-            <div class="group radio">
-                <p>Ландшафт</p>
-                <label>
-                    <input type="radio" name="landscape" value="Отсутствует">
-                    <span>Отсутствует</span>
-                </label>
-                <label>
-                    <input type="radio" name="landscape" value="Базовый">
-                    <span>Базовый</span>
-                </label>
-                <label>
-                    <input type="radio" name="landscape" value="Профессиональный">
-                    <span>Профессиональный</span>
-                </label>
-            </div>
-            <div class="additionals">
-                <div class="case">
-                    <label>
-                        <input type="checkbox" value="Плодовый сад">
-                        <span>Плодовый сад</span>
-                    </label>
-                </div>
-            </div>
-            <div class="group radio line">
-                <p>Автополив</p>
-                <label>
-                    <input type="radio" name="landscape" value="Есть">
-                    <span>Есть</span>
-                </label>
-                <label>
-                    <input type="radio" name="landscape" value="Нет">
-                    <span>Нет</span>
-                </label>
-            </div>
-            <div class="additionals">
-                <p>Инфраструктура</p>
-                <div class="case">
-                    <label>
-                        <input type="checkbox" value="Магазин">
-                        <span>Магазин</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Аптека">
-                        <span>Аптека</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Детский сад">
-                        <span>Детский сад</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Школа">
-                        <span>Школа</span>
-                    </label>
-                </div>
-            </div>
-            <div class="additionals">
-                <p>Охрана объекта</p>
-                <div class="case">
-                    <label>
-                        <input type="checkbox" value="КПП/Шлагбаум">
-                        <span>КПП/Шлагбаум</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Видеонаблюдение">
-                        <span>Видеонаблюдение</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Вневедомственная охрана">
-                        <span>Вневедомственная охрана</span>
-                    </label>
-                </div>
-            </div>
-            <div class="group radio line">
-                <p>Забор</p>
-                <label>
-                    <input type="radio" name="fence" value="Есть">
-                    <span>Есть</span>
-                </label>
-                <label>
-                    <input type="radio" name="fence" value="Нет">
-                    <span>Нет</span>
-                </label>
-            </div>
-            <div class="additionals">
-                <p>Вид из дома</p>
-                <div class="case">
-                    <label>
-                        <input type="checkbox" value="Море">
-                        <span>Море</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Горы">
-                        <span>Горы</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Лес">
-                        <span>Лес</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Город">
-                        <span>Город</span>
-                    </label>
-                    <label>
-                        <input type="checkbox" value="Река">
-                        <span>Река</span>
-                    </label>
-                </div>
-            </div>
-            <div class="group radio line">
-                <p>Панорамные окна (французские окна<br>или окна в пол)</p>
-                <label>
-                    <input type="radio" name="window" value="Да">
-                    <span>Да</span>
-                </label>
-                <label>
-                    <input type="radio" name="window" value="Нет">
-                    <span>Нет</span>
-                </label>
-            </div>
-            <div class="group radio">
-                <p>Участок</p>
-                <label>
-                    <input type="radio" name="area" value="Да">
-                    <span>Ровный</span>
-                </label>
-                <label>
-                    <input type="radio" name="area" value="Нет">
-                    <span>Террасированный</span>
-                </label>
-            </div>
-            <div class="group radio line">
-                <p>Свободная планировка</p>
-                <label>
-                    <input type="radio" name="layout" value="Да">
-                    <span>Да</span>
-                </label>
-                <label>
-                    <input type="radio" name="layout" value="Нет">
-                    <span>Нет</span>
-                </label>
-            </div>
-            <div class="group radio line">
-                <p>Камин</p>
-                <label>
-                    <input type="radio" name="fireplace" value="Есть">
-                    <span>Есть</span>
-                </label>
-                <label>
-                    <input type="radio" name="fireplace" value="Нет">
-                    <span>Нет</span>
-                </label>
+                {{ form.input('Advertisement.text', {
+                    'type': 'textarea',
+                    'placeholder': 'Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше.',
+                    'label': false,
+                    'div': false,
+                }) }}
             </div>
             <div class="seporation"></div>
             <div class="group">
                 <p>Как хотели бы назвать ваш объект на сайте</p>
-                <textarea class="w4-4 name" placeholder="не более 80 символов" maxlength="80" minlength="1" required></textarea>
+                {{ form.input('Advertisement.title', {
+                    'type': 'textarea',
+                    'placeholder': 'не более 80 символов',
+                    'maxlength': 80,
+                    'label': false,
+                    'div': false,
+                    'class': 'w4-4 name',
+                    'rows': 2,
+                    'required': true,
+                }) }}
             </div>
             <div class="group">
                 <p>Цена</p>
                 <label class="price">
-                    <input type="text" data-mask="000 000 000 000 000" minlength="1" required>
-                </label>
-            </div>
-            <div class="group">
-                <p>Комиссия риэлтора, которая включена в стоимость</p>
-                <label class="commission">
-                    <input type="text" data-mask="00" minlength="1" required>
+                    {{ form.input('Advertisement.price', {
+                        'type': 'text',
+                        'label': false,
+                        'div': false,
+                        'class': 'price-mask',
+                        'required': true,
+                    }) }}
                 </label>
             </div>
             <div class="seporation"></div>
             <div class="steps">
+                {{ form.hidden('confirmation', {'value': 1}) }}
+                {% if recaptcha.hasKey() %}
+                    {{ recaptcha.display_form({'id': 'realty_form', 'div': 'recaptcha-block'}) }}
+                {% endif %}
                 <a href="#" class="prev btn" data-step="step2">Назад</a>
                 <a href="#" class="out btn">Сохранить и выйти</a>
                 <button type="submit" class="next btn">опубликовать объект на сайте</button>
@@ -426,3 +228,40 @@
         </div>
     {{ form.end() }}
 </div>
+
+{{ _view.start('templateDownload') }}<script id="template-download" type="text/x-tmpl">{% verbatim %}
+{% for (var i=0, file; file=o.files[i]; i++) { var fileIndex = o.options.getNumberOfFiles();%}
+<div class="item template-download">
+    <div data-number="{%=fileIndex%}" data-file="{%=file.name%}" style="background-image: url('/{%=file.thumbnailUrl%}')" class="img">
+        {% if (file.deleteUrl) { %}
+            <div class="delete-link delete delete-model" title="Удалить" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields="{"withCredentials":true}"{% } %}></div>
+        {% } else { %}
+            <div class="cancel-link cancel" title="Отмена"></div>
+        {% } %}
+    </div>
+    {% if (file.error) { %}
+        <span><span class="label label-danger">Error</span> {%=file.error%}</span>
+    {% } %}
+    <input type="hidden" name="data[AdvertisementPicture][{%=fileIndex%}][main]" value="0" id="AdvertisementPicture{%=fileIndex%}Main">
+    <input type="hidden" name="data[AdvertisementPicture][{%=fileIndex%}][id]" value="" id="AdvertisementPicture{%=fileIndex%}Id">
+    <input type="hidden" name="data[AdvertisementPicture][{%=fileIndex%}][make_copy]" value="{%=file.make_copy%}"  id="AdvertisementPicture{%=fileIndex%}MakeCopy">
+    <input type="hidden" name="data[AdvertisementPicture][{%=fileIndex%}][advertisement_id]" value="" id="AdvertisementPicture{%=fileIndex%}AdvertisementId">
+    <input type="hidden" name="data[AdvertisementPicture][{%=fileIndex%}][picture]" value="files/{%=file.name%}"  id="AdvertisementPicture{%=fileIndex%}Picture">
+    <input type="hidden" name="data[AdvertisementPicture][{%=fileIndex%}][picture_small]" value="files/thumbnail/{%=file.name%}" id="AdvertisementPicture{%=fileIndex%}PictureSmall">
+</div>
+{% } %}
+{% endverbatim %}</script>{{ _view.end() }}
+{{ _view.set('block', {'Block': {'body': '{% verbatim %}' ~ _view.fetch('templateDownload') ~ '{% endverbatim %}'}}) }}
+{{ _view.start('scriptCustom') }}
+<div class="upload-form" style="display: none">
+    {{ uploadForm.load({
+        'url': '/file_upload/handler',
+        'modelName': 'Advertisement',
+        'pictureModelName': 'AdvertisementPicture',
+        'foreignKey': 'advertisement_id',
+        'container': '#AdvertisementPicture_list',
+        'addBtn': false,
+        'tmplDownload': 'Twig.twig_block',
+    }) }}
+</div>
+{{ _view.end() }}

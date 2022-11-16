@@ -66,3 +66,13 @@
     box-sizing: border-box;
     transition: .3s;
 }
+
+.new-obj .mediabox .right .previews .item .delete-link:after,
+.new-obj .mediabox .right .previews .item .delete-link:before
+{
+    background-color: var(--gen-white);
+}
+
+.new-obj #flashMessage.success + form {
+    display: none;
+}

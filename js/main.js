@@ -119,6 +119,11 @@ const RealtyAdd = {
                 placeholder: 'Выберите вариант',
                 allowClear: true,
             });
+
+            $('.JS-add-photo').on('click', function (event) {
+                $('.fileinput-button input').click();
+                event.preventDefault();
+            });
         }
 
         if(RealtyAdd.existElemement('.params-filter')) {

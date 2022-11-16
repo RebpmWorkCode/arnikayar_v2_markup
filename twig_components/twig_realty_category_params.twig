@@ -1,6 +1,10 @@
 <div id="categoryParams">
+{% set categoryParams = categoryParams|filter(categoryParamItem => categoryParamItem.CategoryParamType.alias != 'lot_type') %}
+{% set categoryParams = categoryParams|filter(categoryParamItem => categoryParamItem.CategoryParamType.alias != 'commercial_type') %}
+{% set categoryParams = categoryParams|filter(categoryParamItem => categoryParamItem.CategoryParamType.alias != 'cadastral_number') %}
+{% set categoryParams = categoryParams|filter(categoryParamItem => categoryParamItem.CategoryParamType.alias != 'lot_cadastral_number') %}
+
 {% for categoryParamItem in categoryParams %}
-    {# {{ categoryParamItem|json_encode }} #}
     {% if categoryParamItem.CategoryParamType.type == 0 %}
         <div class="group">
             <p>{{ complexCategory.getLabel(categoryParamItem) }}</p>
@@ -11,6 +15,7 @@
                     'placeholder': '-',
                     'div': false,
                     'label': false,
+                    'required': complexCategory.hasRequiredField(categoryParamItem),
                 }) }}
             </label>
         </div>
@@ -25,6 +30,7 @@
                     'placeholder': '-',
                     'div': false,
                     'label': false,
+                    'required': complexCategory.hasRequiredField(categoryParamItem),
                 }) }}
             </label>
         </div>
@@ -39,6 +45,7 @@
                     'label': false,
                     'options': complexCategory.getOptions(categoryParamItem),
                     'empty': true,
+                    'required': complexCategory.hasRequiredField(categoryParamItem),
                 }) }}
         </div>
     {% endif %}
