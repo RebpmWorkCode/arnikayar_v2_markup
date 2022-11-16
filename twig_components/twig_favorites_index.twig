@@ -46,7 +46,7 @@
                     {% set guest_house = complexCategory.getViewAliasesOptions('guest_house', paramsValues) %}
                     {% set place_car = complexCategory.getViewAliasesOptions('place_car', paramsValues) %}
                     <div class="card">
-                        <a href="{{ offerItem.url }}" target="_self">
+                        <a href="{{ offerItem.url }}" target="_self" data-id="{{ item.Advertisement.id }}">
                             <div class="image">
                                 <div class="swiper-container-item">
                                     <div class="swiper-wrapper">
