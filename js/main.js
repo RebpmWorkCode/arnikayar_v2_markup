@@ -127,16 +127,34 @@ const RealtyAdd = {
         }
         if(RealtyAdd.existElemement('[name="data[Advertisement][category_id]"]')) {
             RealtyAdd.currentCategoryId = RealtyAdd._getCategoryValue();
+            RealtyAdd.runLoadedParams(RealtyAdd.currentCategoryId);
             RealtyAdd._getCategoryField().on("change", (e) => {
                 RealtyAdd.currentCategoryId = RealtyAdd._getCategoryValue();
                 $(e.target).closest('label').addClass('active').siblings().removeClass('active');
-                RealtyAdd.runToogleRequired();
+                RealtyAdd.runLoadedParams(RealtyAdd.currentCategoryId);
             });
         }
         if(RealtyAdd.existElemement('.JS-street')) {
             RealtyAdd.runAddress();
         }
-        RealtyAdd.runToogleRequired();
+        // RealtyAdd.runToogleRequired();
+    },
+    runLoadedParams: (categoryId) => {
+        $.ajax({
+            url : `/agency/realty/category_params/${categoryId}`,
+            statusCode: {
+                404: function () {
+                    alert("page /agency/realty/category_params/ not found");
+                },
+                403: function () {
+                    alert("Запрещен доступ к странице /agency/realty/category_params/");
+                }
+            },
+            success : function(data){
+                $('#categoryParams').replaceWith(data);
+                $('#categoryParams').find('select').select2({language: 'ru',placeholder: 'Выберите вариант',allowClear: true,});
+            }
+        });
     },
     runToogleRequired: () => {
         RealtyAdd.toogleRequired(document.querySelectorAll('#AdvertisementAddForm input[type="text"]'));

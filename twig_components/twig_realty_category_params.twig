@@ -1,0 +1,46 @@
+<div id="categoryParams">
+{% for categoryParamItem in categoryParams %}
+    {# {{ categoryParamItem|json_encode }} #}
+    {% if categoryParamItem.CategoryParamType.type == 0 %}
+        <div class="group">
+            <p>{{ complexCategory.getLabel(categoryParamItem) }}</p>
+            <label>
+                {{ form.input('CategoryParamValue.'~ categoryParamItem.CategoryParamType.alias, {
+                    'type': 'text',
+                    'class': 'w1-4',
+                    'placeholder': '-',
+                    'div': false,
+                    'label': false,
+                }) }}
+            </label>
+        </div>
+    {% endif %}
+    {% if categoryParamItem.CategoryParamType.type == 1 %}
+        <div class="group">
+            <p>{{ complexCategory.getLabel(categoryParamItem) }}</p>
+            <label>
+                {{ form.input('CategoryParamValue.'~ categoryParamItem.CategoryParamType.alias, {
+                    'type': 'text',
+                    'class': 'w1-4',
+                    'placeholder': '-',
+                    'div': false,
+                    'label': false,
+                }) }}
+            </label>
+        </div>
+    {% endif %}
+    {% if categoryParamItem.CategoryParamType.type == 2 %}
+        <div class="group">
+            <p>{{ complexCategory.getLabel(categoryParamItem) }}</p>
+                {{ form.input('CategoryParamValue.'~ categoryParamItem.CategoryParamType.alias, {
+                    'type': 'select',
+                    'class': 'w3-4',
+                    'div': false,
+                    'label': false,
+                    'options': complexCategory.getOptions(categoryParamItem),
+                    'empty': true,
+                }) }}
+        </div>
+    {% endif %}
+{% endfor %}
+</div>
