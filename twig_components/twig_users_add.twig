@@ -8,19 +8,19 @@
             'type': 'text',
             'required': true,
             'label': false,
-            'placeholder': 'Фамилия',
+            'placeholder': 'Фамилия *',
         }) }}
         {{ form.input('name', {
             'div': false,
             'type': 'text',
             'required': true,
             'label': false,
-            'placeholder': 'Имя',
+            'placeholder': 'Имя *',
         }) }}
         {{ form.input('description', {
             'div': false,
             'type': 'text',
-            'required': true,
+            'required': false,
             'label': false,
             'placeholder': 'Название агентства',
         }) }}
@@ -29,21 +29,21 @@
             'type': 'tel',
             'required': true,
             'label': false,
-            'placeholder': 'Номер телефона',
+            'placeholder': 'Номер телефона *',
         }) }}
         {{ form.input('email', {
             'div': false,
             'type': 'email',
             'required': true,
             'label': false,
-            'placeholder': 'E-mail',
+            'placeholder': 'E-mail *',
         }) }}
         {{ form.input('password', {
             'div': false,
             'type': 'password',
             'required': true,
             'label': false,
-            'placeholder': 'Придумайте пароль',
+            'placeholder': 'Придумайте пароль *',
         }) }}
         {% if recaptcha.hasKey() %}
             {{ recaptcha.display_form({'id': 'register_form', 'div': 'recaptcha-block'}) }}
