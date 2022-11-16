@@ -43,3 +43,26 @@
 .hidden {
     display: none !important;
 }
+
+.del-folder .group-btn {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 45px;
+}
+
+.del-folder .group-btn button, .del-folder .group-btn .cancel {
+    border: 0;
+    border-radius: 44px;
+    background-color: var(--my-blue);
+    color: var(--gen-white);
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 13px;
+    width: 156px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: .3s;
+}

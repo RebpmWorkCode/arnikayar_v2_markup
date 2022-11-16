@@ -140,19 +140,6 @@ function folder(e){
 $("body").on("click", ".cards .card .group .interface .folder", folder );
 $("body").on("click", ".detail .heading .interface .folder", folder );
 
-
-function editFolder(e) {
-    e.preventDefault();
-    let folderId = $(this).data('id-folder');
-    if (!folderId) {
-        fetch(`/agency/agency_compilations/edit/${folderId}`, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(res => res.text()).then((res) => {
-            collectionBlock.html(res);
-            $('.compilition').addClass('open');
-        })
-    }
-}
-$("body").on("click", ".folders .block .interface .share", editFolder)
-
 function closeModal() {
     $('.compilition').removeClass('open');
     $('.compilition .content .list form')[0].reset();
@@ -239,13 +226,19 @@ $(".del-folder .bg").on("click", closeDelFolder );
 $(".del-folder .close").on("click", closeDelFolder );
 $(".del-folder .cancel").on("click", closeDelFolder );
 
-$('body').on('submit', '.del-folder form', (e) => {
+$('body').on('click', '.del-folder [data-delete]', (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    fetch(e.currentTarget.getAttribute('action'), {
+    let folderId = $('a.del').data('id-folder');
+    fetch(`/agency/agency_compilations/drop/${folderId}.json`, {
         method: 'POST',
-        body: data,
-        headers: {'X-Requested-With': 'XMLHttpRequest'}
+        body: JSON.stringify({
+            agency_compilation_id: folderId,
+        }),
+        headers: {
+            Accept: 'application/json, text/javascript, */*; q=0.01',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
     }).then((res) => {
         if (res.status === 200) {
             window.location.reload()

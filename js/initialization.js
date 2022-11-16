@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     $("body").on("click", ".cards .card .group .interface .share", share)
         .on("click", ".detail .heading .interface .share", share)
-        .on("click", ".folders .block .interface .share", share)
-        .on("click", ".ads .tabs__content .object .inf .interface .share", share)
+        .on("click", ".ads .tabs__content .object .inf .interface .share", share);
+    $(".folders .block .interface .share").on("click", share);
 
     function shareModal() {
         $('.share-modal').removeClass('open');
