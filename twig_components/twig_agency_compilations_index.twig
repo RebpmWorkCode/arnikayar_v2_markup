@@ -47,10 +47,14 @@
         <div class="preview">
             <div class="block"></div>
         </div>
-        {{ form.create(false, {'url': '/agency/agency_compilations/drop/0.json'}) }}
-            <input type="hidden" name="data[agency_compilation_id]">
-            <button type="submit">Да</button>
+        <div class="group-btn">
+            <button type="submit" data-delete>Да</button>
             <a href="#" class="cancel">Нет</a>
-        {{ form.end() }}
+        </div>
+{#        {{ form.create(false, {'url': '/agency/agency_compilations/drop/0.json'}) }}#}
+{#            <input type="hidden" name="data[agency_compilation_id]">#}
+{#            <button type="submit">Да</button>#}
+{#            <a href="#" class="cancel">Нет</a>#}
+{#        {{ form.end() }}#}
     </div>
 </div>
