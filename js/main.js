@@ -130,11 +130,34 @@ const RealtyAdd = {
             RealtyAdd._getCategoryField().on("change", (e) => {
                 RealtyAdd.currentCategoryId = RealtyAdd._getCategoryValue();
                 $(e.target).closest('label').addClass('active').siblings().removeClass('active');
+                RealtyAdd.runToogleRequired();
             });
         }
         if(RealtyAdd.existElemement('.JS-street')) {
             RealtyAdd.runAddress();
         }
+        RealtyAdd.runToogleRequired();
+    },
+    runToogleRequired: () => {
+        RealtyAdd.toogleRequired(document.querySelectorAll('#AdvertisementAddForm input[type="text"]'));
+    },
+    toogleRequired: (elements) => {
+        elements.forEach(input => {
+            if (RealtyAdd.isHidden(input)) {
+                if(input.required){
+                    input.dataset.prevRequired =  input.required;
+                    input.required = false;
+                }
+            } else {
+                if(input.dataset.prevRequired){
+                    input.required = input.dataset.prevRequired;
+                    delete input.dataset.prevRequired;
+                }
+            }
+        })
+    },
+    isHidden: (el) => {
+        return (el.offsetParent === null)
     },
     runAddress: () => {
         $('.JS-street').on('change.select2', (e) => {

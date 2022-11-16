@@ -55,6 +55,20 @@
                 {{ location.setConfigFormEdit('Location.realty_location_site_form') }}
                 <div class="hidden">{{ _view.element('Locations.Location/form', {'notUseLocationJS': true, 'showSearchLocation': false}) }}</div>
             </div>
+            <div class="group {{ complexCategorySearch.getClassesFilter(null, {'data-rent': [7], 'data-sell': [7], 'categories': [7]})|join(' ')|replace({'input ': ''}) }}">
+                <p>Номер квартиры</p>
+                <label>
+                    {{ form.input('Advertisement.apartment', {
+                        'type': 'text',
+                        'class': 'w1-4',
+                        'placeholder': '-',
+                        'minlength': '1',
+                        'required': true,
+                        'label': false,
+                        'div': false,
+                    }) }}
+                </label>
+            </div>
             <span class="title">Контакты</span>
             <div class="group">
                 <p>Телефон</p>
@@ -69,14 +83,17 @@
             </div>
             <div class="group radio">
                 <p>Право собственности</p>
-                <label>
-                    <input type="radio" name="ownership" value="Собственник">
-                    <span>Собственник</span>
-                </label>
-                <label>
-                    <input type="radio" name="ownership" value="Посредник">
-                    <span>Посредник</span>
-                </label>
+                {{ form.input('CategoryParamValue.avito_property_right', {
+                    'type': 'radio',
+                    'label': false,
+                    'legend': false,
+                    'hiddenField': false,
+                    'div': false,
+                    'options': avitoPropertyRights|map(title => '<span>' ~ title ~ '</span>'),
+                    'before': '<label>',
+                    'between': ['</label><label>','</label><label>'],
+                    'after': '</label>',
+                }) }}
             </div>
             <div class="group">
                 <p>Ваше имя</p>
@@ -91,12 +108,30 @@
                 }) }}
             </div>
             <div class="group">
-                <p>Кадастровый номер дома</p>
-                <input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+                <p>Кадастровый номер</p>
+                {{ form.input('CategoryParamValue.cadastral_number', {
+                    'type': 'text',
+                    'class': 'cadastre w3-4',
+                    'placeholder': '00:00:0000000:0000',
+                    'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
+                    'minlength': 18,
+                    'required': true,
+                    'label': false,
+                    'div': false,
+                }) }}
             </div>
-            <div class="group">
+            <div class="group {{ complexCategorySearch.getClassesFilter(null, {'data-rent': [4], 'data-sell': [4], 'categories': [4]})|join(' ')|replace({'input ': ''}) }}">
                 <p>Кадастровый номер участка</p>
-                <input type="text" class="cadastre w3-4" placeholder="00:00:0000000:0000" pattern="\d{2}:\d{2}:\d{7}:\d{4}" minlength="18" required>
+                {{ form.input('CategoryParamValue.lot_cadastral_number', {
+                    'type': 'text',
+                    'class': 'cadastre w3-4',
+                    'placeholder': '00:00:0000000:0000',
+                    'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
+                    'minlength': 18,
+                    'required': true,
+                    'label': false,
+                    'div': false,
+                }) }}
             </div>
             <div class="seporation"></div>
             <div class="steps">

@@ -140,19 +140,6 @@ function folder(e){
 $("body").on("click", ".cards .card .group .interface .folder", folder );
 $("body").on("click", ".detail .heading .interface .folder", folder );
 
-
-function editFolder(e) {
-    e.preventDefault();
-    let folderId = $(this).data('id-folder');
-    if (!folderId) {
-        fetch(`/agency/agency_compilations/edit/${folderId}`, {headers: {'X-Requested-With': 'XMLHttpRequest'}}).then(res => res.text()).then((res) => {
-            collectionBlock.html(res);
-            $('.compilition').addClass('open');
-        })
-    }
-}
-$("body").on("click", ".folders .block .interface .share", editFolder)
-
 function closeModal() {
     $('.compilition').removeClass('open');
     $('.compilition .content .list form')[0].reset();
@@ -239,13 +226,19 @@ $(".del-folder .bg").on("click", closeDelFolder );
 $(".del-folder .close").on("click", closeDelFolder );
 $(".del-folder .cancel").on("click", closeDelFolder );
 
-$('body').on('submit', '.del-folder form', (e) => {
+$('body').on('click', '.del-folder [data-delete]', (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    fetch(e.currentTarget.getAttribute('action'), {
+    let folderId = $('a.del').data('id-folder');
+    fetch(`/agency/agency_compilations/drop/${folderId}.json`, {
         method: 'POST',
-        body: data,
-        headers: {'X-Requested-With': 'XMLHttpRequest'}
+        body: JSON.stringify({
+            agency_compilation_id: folderId,
+        }),
+        headers: {
+            Accept: 'application/json, text/javascript, */*; q=0.01',
+            'Content-Type': 'application/json; charset=UTF-8',
+            'X-Requested-With': 'XMLHttpRequest'
+        }
     }).then((res) => {
         if (res.status === 200) {
             window.location.reload()
@@ -365,64 +358,59 @@ window.onscroll = function () {
 
 
 // -----------------------------******** NEW OBJECT ********-----------------------------
-$('.new-obj .tabs .wrapper ul').on("click","li", function(){
-    $('.new-obj .step').removeClass('active');
-    $('.new-obj .step1').addClass('active');
-    setTimeout(function() {
-        $('select').trigger('refresh');
-    }, 1);
-});
+// $('.new-obj .tabs .wrapper ul').on("click","li", function(){
+//     $('.new-obj .step').removeClass('active');
+//     $('.new-obj .step1').addClass('active');
+//     setTimeout(function() {
+//         $('select').trigger('refresh');
+//     }, 1);
+// });
 
 // --------- NEXT BUTTON -----------
 $('.new-obj').on("click",".next", function(e){
     e.preventDefault();
     // ----------- VALIDATION --------------
-    var errors = 0;
-    $('.new-obj').find('.error').remove();
-    $('.new-obj form input').removeClass('err');
-    $('.new-obj form .jq-selectbox__select').removeClass('err');
+    // var errors = 0;
+    // $('.new-obj').find('.error').remove();
+    // $('.new-obj form input').removeClass('err');
+    // $('.new-obj form .jq-selectbox__select').removeClass('err');
 
-    var inputs = $(this).parents('.step').find('input');
-    var selects = $(this).parents('.step').find('select');
-    $.each(inputs, function( key, value ) {
-        if($(value).parents().hasClass("case")){
-        } else{
-            if($(value).val() == ''){
-                $(value).parents('.group').append('<div class="error"><span>Укажите значение параметра</span></div>');
-                $(value).addClass('err');
-                errors++;
-            }
-        }
-    });
-    $(this).parents('.step').find('.radio').each(function() {
-        if ($(this).find("input:radio:checked").length==0) {
-            $(this).append('<div class="error"><span>Выберите один из вариантов</span></div>');
-            errors++;
-        }
-    });
-    $.each(selects, function( key, value ) {
-        if($(value).parents().hasClass("case")){
-        } else{
-            if($(value).val() == ''){
-                $(value).parents('.group').append('<div class="error"><span>Укажите значение параметра</span></div>');
-                $(value).siblings('.jq-selectbox__select').addClass('err');
-                errors++;
-            }
-        }
-    });
-    console.log( 'Ошибки: ' +errors );
-    if(errors == 0){
+    // var inputs = $(this).parents('.step').find('input');
+    // var selects = $(this).parents('.step').find('select');
+    // $.each(inputs, function( key, value ) {
+    //     if($(value).parents().hasClass("case")){
+    //     } else{
+    //         if($(value).val() == ''){
+    //             $(value).parents('.group').append('<div class="error"><span>Укажите значение параметра</span></div>');
+    //             $(value).addClass('err');
+    //             errors++;
+    //         }
+    //     }
+    // });
+    // $(this).parents('.step').find('.radio').each(function() {
+    //     if ($(this).find("input:radio:checked").length==0) {
+    //         $(this).append('<div class="error"><span>Выберите один из вариантов</span></div>');
+    //         errors++;
+    //     }
+    // });
+    // $.each(selects, function( key, value ) {
+    //     if($(value).parents().hasClass("case")){
+    //     } else{
+    //         if($(value).val() == ''){
+    //             $(value).parents('.group').append('<div class="error"><span>Укажите значение параметра</span></div>');
+    //             $(value).siblings('.jq-selectbox__select').addClass('err');
+    //             errors++;
+    //         }
+    //     }
+    // });
+    // console.log( 'Ошибки: ' +errors );
+    // if(errors == 0){
         var myClass = $(this).data('step');
-        $('.new-obj .tabs .wrapper').hide();
+        $('.new-obj .wrapper').hide();
         $(this).parents('.step').removeClass('active');
         $(this).parents('.step').siblings('.'+myClass+'').addClass('active');
-        $('body, html').animate({
-            scrollTop: 0
-        }, 800);
-        setTimeout(function() {
-            $('select').trigger('refresh');
-        }, 1);
-    }
+        $('body, html').animate({scrollTop: 0}, 800);
+    // }
 });
 
 // --------- PREV BUTTON -----------
@@ -431,26 +419,17 @@ $('.new-obj').on("click",".prev", function(e){
     var myClass = $(this).data('step');
     $(this).parents('.step').removeClass('active');
     $(this).parents('.step').siblings('.'+myClass+'').addClass('active');
-    $('body, html').animate({
-        scrollTop: 0
-    }, 800);
-    setTimeout(function() {
-        $('select').trigger('refresh');
-    }, 1);
+    $('body, html').animate({scrollTop: 0}, 800);
 });
 
 // --------- OUT BUTTON -----------
 $('.new-obj').on("click",".out", function(e){
     e.preventDefault();
-    $('.new-obj .tabs .wrapper').show();
-    $(this).parents('.step').removeClass('active');
-    $('.new-obj .step1').addClass('active');
-    $('body, html').animate({
-        scrollTop: 0
-    }, 800);
-    setTimeout(function() {
-        $('select').trigger('refresh');
-    }, 1);
+    window.location.reload();
+    // $('.new-obj .wrapper').show();
+    // $(this).parents('.step').removeClass('active');
+    // $('.new-obj .step1').addClass('active');
+    // $('body, html').animate({scrollTop: 0}, 800);
 });
 
 $('.new-obj .additionals label').on("click",'input[type="checkbox"]', function(){
@@ -458,7 +437,7 @@ $('.new-obj .additionals label').on("click",'input[type="checkbox"]', function()
 });
 
 // --------- SUBMIT BUTTON (ВРЕМЕННОЕ РЕШЕНИЕ, ПЕРЕПИСАТЬ НА СОБЫТИЕ УСПЕШНОЙ ОТПРАВКИ ФОРМЫ)-----------
-$('.new-obj .steps').on("click","button", function(e){
+$('.new-obj').on("submit","form", function(e){
     e.preventDefault();
     $('.new-obj').html('<div class="success"><p>Ваше объявление успешно добавлено</p><img src="images/icon/house-g.svg"></div>');
     $('body, html').animate({
