@@ -25,10 +25,22 @@
             </div>
             <div class="search">
                 <a href="#" class="mob"><img src="/uploads/assets/images/icon/search.svg" alt="search"></a>
-                <form action="">
-                    <input type="text" placeholder="поиск по номеру или названию объекта " pattern="[А-Яа-я]{1,}">
-                    <button type="submit"></button>
-                </form>
+                {{ form.create('Advertisement', {'url': {'plugin' : 'agency','controller' : 'realty', 'action' : 'index'}, 'id': 'AdvertisementIndexSearch'}) }}
+                {{ form.input('search', {
+                    'div': false,
+                    'id': 'AdvertisementSearch',
+                    'class': false,
+                    'type': 'text',
+                    'label': false,
+                    'empty': true,
+                    'placeholder': 'поиск по номеру или названию объекта',
+                    'data-allow-clear': true,
+                    'searchField': false,
+                    'hiddenField': false,
+                    'multiple': false,
+                }) }}
+
+                {{ form.end() }}
             </div>
             <div class="city">
                 <a class="selected" href="#">Сочи</a>
@@ -37,11 +49,11 @@
                     <div class="content">
                         <div class="close"><span></span><span></span></div>
                         <p class="title">Выберите город</p>
-                        <a href="#">Краснодар</a>
-                        <a href="#">Москва</a>
-                        <a href="#">Екатеринбург</a>
-                        <a href="#">Сочи</a>
-                        <a href="#">Санкт-Петербург</a>
+                        <a href="/?locality_id=25944">Краснодар</a>
+                        <a href="/?locality_id=1">Москва</a>
+                        <a href="/?locality_id=115906">Екатеринбург</a>
+                        <a href="/?locality_id=25946">Сочи</a>
+                        <a href="/?locality_id=87622">Санкт-Петербург</a>
                     </div>
                 </div>
             </div>

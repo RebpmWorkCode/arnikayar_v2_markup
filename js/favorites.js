@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 $(()=>{
     if (window.location.pathname === '/favorites') {
-        $('.favorites_share-button').on('click', function (e) {
+        $('.heading .interface .share').on('click', function (e) {
             e.preventDefault();
             let title = 'Подборка избранных объектов';
             let url = window.location.origin + '/?sort=price%26direction=desc';
-            let idsObject = document.querySelectorAll('.filter-objects > a');
+            let idsObject = document.querySelectorAll('.card > a');
             let query = '';
 
             idsObject.forEach(function (e){
@@ -69,29 +69,15 @@ $(()=>{
             });
             url += query;
 
-            Swal.fire({
-                title: '<strong>Поделиться избранным</strong>',
-                html:
-                    '<div id="share-block">' +
-                    '    <div class="share-link__list">' +
-                    // '        <a class="share-link" target="_blank" title="Отправить в WhatsApp" href="https://api.whatsapp.com/send?text='+ title + ' ' + url + '"><img src="/uploads/whatsapp.png" alt="whatsapp"></a>' +
-                    '        <a class="share-link" target="_blank" title="Отправить в WhatsApp" href="https://web.whatsapp.com"><img src="/uploads/whatsapp.png" alt="whatsapp"></a>' +
-                    '        <a class="share-link" target="_blank" title="Отправить в Telegram" href="https://telegram.me/share/url?url=' + url + '"><img src="/uploads/telegram.png" alt="telegram"></a>' +
-                    '        <a class="share-link" target="_blank" title="Отправить на почту" href="mailto:Введите адрес электронной почты?subject=Агентство недвижимости ПО ДОМАМ&body=' + ' ' + url + '"><img src="/uploads/mail.png" alt="mail"></a>' +
-                    '        <a class="share-link" target="_blank" title="Отправить в Viber" href="viber://forward?text='+ title + ' ' + url + '"><img src="/uploads/viber.png" alt="viber"></a>' +
-                    '        <a class="share-link" target="_blank" title="Отправить в VK" href="https://vk.com/share.php?url=' + url + '&title=' + title + '"><img src="/uploads/vk.png" alt="vk"></a>' +
-                    '        <a class="share-link" target="_blank" title="Перейти в Instagram Direct" href="https://www.instagram.com/direct"><img src="/uploads/instagram.png" alt="instagram"></a>' +
-                    '        <a class="share-link" target="_blank" title="Отправить в Facebook" href="https://www.facebook.com/sharer/sharer.php?u=' + url +'"><img src="/uploads/1facebook.png" alt="facebook"></a>' +
-                    '        <a class="share-link copyLinkBtn" title="Копировать в буфер обмена" href="#"><img src="/uploads/copy.png" alt="copy"></a>' +
-                    '    </div>' +
-                    '</div>',
-                showCloseButton: true,
-                showCancelButton: false,
-                showConfirmButton: false,
-            });
-            $('body').on('click', '.copyLinkBtn', function () {
-                navigator.clipboard.writeText(url);
-            });
+            $('.share-modal').addClass('open');
+            $('.share-modal .content .links').html(
+                '<a class="share-link" target="_blank" title="Отправить в WhatsApp" href="https://api.whatsapp.com/send?text=' + title + ' ' + url + '"><img src="/uploads/assets/images/icon/social/wa.svg" alt="whatsapp"></a>' +
+                '<a class="share-link" target="_blank" title="Отправить в Telegram" href="https://telegram.me/share/url?url=' + url + '"><img src="/uploads/assets/images/icon/social/Telegram.svg" alt="telegram"></a>' +
+                '<a class="share-link" target="_blank" title="Отправить на почту" href="mailto:Введите адрес электронной почты?subject=Агентство недвижимости ПО ДОМАМ&amp;body=' + ' ' + url + '"><img src="/uploads/assets/images/icon/social/mail.svg" alt="mail"></a>' +
+                '<a class="share-link" target="_blank" title="Отправить в Viber" href="viber://forward?text=' + title + ' ' + url + '"><img src="/uploads/assets/images/icon/social/Viber.svg" alt="viber"></a>' +
+                '<a class="share-link" target="_blank" title="Отправить в VK" href="https://vk.com/share.php?url=' + url + '&title=' + title + '"><img src="/uploads/assets/images/icon/social/Vkontakte.svg" alt="vk"></a>' +
+                '<a class="share-link copyLinkBtn" data-attr-url="' + url + '" title="Копировать в буфер обмена" href="#"><img src="/uploads/assets/images/icon/social/copy.svg" alt="copy"></a>'
+            );
         });
     }
 });

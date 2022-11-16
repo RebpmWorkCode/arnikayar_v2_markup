@@ -106,7 +106,7 @@ input[type="email"]{
     background-color: var(--my-light-gray);
     padding: 10px 15px;
     outline: none;
-	-webkit-appearance: none;
+    -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
 }
@@ -760,6 +760,10 @@ footer.lk p{
     overflow: hidden;
     margin-bottom: 10px;
     transition: .3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f0f0f0;
 }
 .cards .card:not(:nth-of-type(4n+4)){
     margin-right: 10px;
