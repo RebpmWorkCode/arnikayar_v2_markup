@@ -76,3 +76,7 @@
 .new-obj #flashMessage.success + form {
     display: none;
 }
+
+.pb-10 {
+    padding-bottom: 10px;
+}
