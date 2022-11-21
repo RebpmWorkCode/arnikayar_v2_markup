@@ -374,7 +374,7 @@
                                     {% endif %}
                                 </div>
                                 <div class="price">
-                                    <p>{{ item.Advertisement.price }} ₽</p>
+                                    <p>{{ Price.format(item.Advertisement.price) }} ₽</p>
                                     {% set part = complexCategory.getViewAliasesOptions('part', paramsValues) %}
                                     {% if session.read('Auth.User.id') and part %}
                                         <p class="commission">комиссия {{ part }} %</p>
@@ -502,7 +502,7 @@
                                         {% endif %}
                                     </div>
                                     <div class="price">
-                                        <p>{{ item.Advertisement.price }} ₽</p>
+                                        <p>{{ Price.format(item.Advertisement.price) }} ₽</p>
                                         {% set part = complexCategory.getViewAliasesOptions('part', paramsValues) %}
                                         {% if session.read('Auth.User.id') and part %}
                                             <p class="commission">комиссия {{ part }} %</p>
