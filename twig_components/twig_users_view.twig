@@ -1,0 +1,59 @@
+<div class="login wrap">
+    {{ form.create('User', {'url': false}) }}
+        <h1>Профиль</h1>
+        {{ form.input('last_name', {
+            'div': false,
+            'type': 'text',
+            'required': true,
+            'label': false,
+            'placeholder': 'Фамилия',
+            'value': user.User.last_name,
+            'readonly': true,
+        }) }}
+        {{ form.input('name', {
+            'div': false,
+            'type': 'text',
+            'required': true,
+            'label': false,
+            'placeholder': 'Имя',
+            'value': user.User.name,
+            'readonly': true,
+        }) }}
+        {{ form.input('description', {
+            'div': false,
+            'type': 'text',
+            'required': false,
+            'label': false,
+            'placeholder': 'Название агентства',
+            'value': user.User.description,
+            'readonly': true,
+        }) }}
+        {{ form.input('username', {
+            'div': false,
+            'type': 'tel',
+            'required': true,
+            'label': false,
+            'placeholder': 'Номер телефона',
+            'value': user.User.username,
+            'readonly': true,
+        }) }}
+        {{ form.input('email', {
+            'div': false,
+            'type': 'email',
+            'required': true,
+            'label': false,
+            'placeholder': 'E-mail',
+            'value': user.User.email,
+            'readonly': true,
+        }) }}
+        {{ form.input('city', {
+            'div': false,
+            'type': 'text',
+            'required': true,
+            'label': false,
+            'placeholder': 'Сочи',
+            'value': '',
+            'readonly': true,
+        }) }}
+    {{ form.end() }}
+</div>
