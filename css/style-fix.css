@@ -90,7 +90,6 @@
 .button-up button {
     position: fixed;
     bottom: 100px;
-    display: none;
     border-radius: 50%;
     background-color: var(--my-blue);
     display: flex;
@@ -99,5 +98,28 @@
     border: 0;
     width: 46px;
     height: 46px;
+    cursor: pointer;
+}
+
+.ymaps-2-1-79-default-cluster {
+    font-size: 11px !important;
+}
+
+.ymaps-2-1-79-balloon__content > ymaps {
+    max-width: 300px !important;
+}
+
+.login form input {
+    padding-right: 45px;
+}
+
+.login form .btn-toggle-password {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
     cursor: pointer;
 }
