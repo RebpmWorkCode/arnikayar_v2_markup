@@ -176,8 +176,8 @@ $(collectionBlock).on('submit', '.compilition form', function (e){
             // window.location.reload()
             $(".compilition button[type=submit]").css('background-color', 'green');
             setTimeout(function () {
-                $(".compilition button[type=submit]").css('background-color', 'var(--my-blue)');
-            }, 3000)
+                closeModal();
+            }, 2000)
         } else {
             console.log(res);
         }
