@@ -144,6 +144,3 @@
     margin: 40px auto 10px;
 }
 
-.grid .cards .card:not(:nth-of-type(3n+3)) {
-    margin-right: 9px;
-}
