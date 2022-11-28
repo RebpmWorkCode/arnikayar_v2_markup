@@ -242,8 +242,8 @@
             </div>
             <div class="location">
                 <p class="title">Расположение</p>
-                {% if location.title(advertisement, 'district, locality') %}
-                    <p>{{ location.title(advertisement, 'district, locality') }}</p>
+                {% if location.title(advertisement, 'location_region, district, locality') %}
+                    <p>{{ location.title(advertisement, 'location_region, district, locality') }}</p>
                 {% endif %}
                 <input type="hidden" id="latitude" value="{{ adView.getCoordinateSite(advertisement).latitude }}"/>
                 <input type="hidden" id="longitude" value="{{ adView.getCoordinateSite(advertisement).longitude }}"/>

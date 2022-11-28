@@ -245,29 +245,29 @@ const RealtyAdd = {
     }
 }
 
-
-const PasswordToggle = {
-    run: () => {
-        document.querySelector('.btn-toggle-password').addEventListener('click', (e) => {
-            let passwordElement = e.target.closest('div').querySelector('input'),
-                iconShowPassword = e.target.closest('div').querySelector('[data-password-show]'),
-                iconHidePassword = e.target.closest('div').querySelector('[data-password-hide]')
-            if(passwordElement.type == 'password') {
-                passwordElement.type = 'text';
-                iconShowPassword.classList.add('hidden')
-                iconHidePassword.classList.remove('hidden')
-            } else {
-                passwordElement.type = 'password';
-                iconHidePassword.classList.add('hidden')
-                iconShowPassword.classList.remove('hidden')
-            }
-        })
-    }
-}
+//
+// const PasswordToggle = {
+//     run: () => {
+//         document.querySelector('.btn-toggle-password').addEventListener('click', (e) => {
+//             let passwordElement = e.target.closest('div').querySelector('input'),
+//                 iconShowPassword = e.target.closest('div').querySelector('[data-password-show]'),
+//                 iconHidePassword = e.target.closest('div').querySelector('[data-password-hide]')
+//             if(passwordElement.type == 'password') {
+//                 passwordElement.type = 'text';
+//                 iconShowPassword.classList.add('hidden')
+//                 iconHidePassword.classList.remove('hidden')
+//             } else {
+//                 passwordElement.type = 'password';
+//                 iconHidePassword.classList.add('hidden')
+//                 iconShowPassword.classList.remove('hidden')
+//             }
+//         })
+//     }
+// }
 
 $(() => {
     GalleryIndex.run();
-    PasswordToggle.run();
+    // PasswordToggle.run();
 
     if(RealtyAdd.existElemement('.new-obj')){
         RealtyAdd.run();
