@@ -27,6 +27,18 @@
     </div>
 </div>
 
+<div class="edit-folder modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Редактирование подборки</p>
+        {{ form.create(false, {'id': 'edit-collection-form', 'url': '/agency/agency_compilations/edit'}) }}
+        {{ form.input('title', {'placeholder': 'Название подборки', 'required': true, 'div': false, 'label': false}) }}
+        <button type="submit" disabled>Готово</button>
+        {{ form.end() }}
+    </div>
+</div>
+
 <div class="new-folder modal">
     <div class="bg"></div>
     <div class="content">

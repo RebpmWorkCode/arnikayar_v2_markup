@@ -1036,7 +1036,7 @@ footer.lk p{
     width: calc((100% - 20px) / 3);
 }
 .grid .cards .card:not(:nth-of-type(3n+3)){
-    margin-right: 10px;
+    margin-right: 9px;
 }
 .grid .cards .card:nth-of-type(3n+3){
     margin-right: 0;

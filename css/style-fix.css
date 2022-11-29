@@ -112,6 +112,7 @@
 
 .edit-folder .content {
     min-width: 470px;
+<<<<<<< HEAD
 }
 
 .edit-folder form {
@@ -146,16 +147,40 @@
 
 .login form input {
     padding-right: 45px;
+=======
+>>>>>>> 71512c978b5c24fbf5f79d79c19f1353be2a33ac
 }
 
-.login form .btn-toggle-password {
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    position: absolute;
-    bottom: 5px;
-    right: 15px;
+.edit-folder form {
+    width: 100%;
+}
+
+<<<<<<< HEAD
+=======
+.edit-folder form input, .edit-folder form {
+    width: 100%;
+}
+
+.edit-folder form button:disabled {
+    color: var(--gen-white);
+    background-color: var(--my-gray);
+    cursor: auto;
+}
+
+.edit-folder form button {
+    border-radius: 44px;
+    border: 0;
+    width: 204px;
+    padding: 12px 0;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 10px;
+    background-color: var(--my-blue);
+    color: var(--gen-white);
     cursor: pointer;
+    display: block;
+    margin: 40px auto 10px;
 }
 
+>>>>>>> 71512c978b5c24fbf5f79d79c19f1353be2a33ac

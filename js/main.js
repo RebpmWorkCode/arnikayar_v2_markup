@@ -245,7 +245,6 @@ const RealtyAdd = {
     }
 }
 
-
 const PasswordToggle = {
     run: () => {
         document.querySelector('.btn-toggle-password')?.addEventListener('click', (e) => {

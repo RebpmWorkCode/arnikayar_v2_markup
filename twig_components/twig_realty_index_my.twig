@@ -1,0 +1,124 @@
+<div class="ads wrap">
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="#">Мои объявления</a></li>
+        </ul>
+    </div>
+    <div class="tabs">
+        <ul class="tabs__caption">
+            <li class="active">Активные <span>{{ countObj }}</span></li>
+{#            <li>Черновики <span>{{ list|length }}</span></li>#}
+        </ul>
+        <div class="tabs__content active">
+            {% for item in list %}
+                {% set offerItem = adView.getInfo(item) %}
+                {% set gallery = adView.getGallery(item) %}
+                <div class="object">
+                    <div class="img">
+                        <div class="swiper-container-item">
+                            <div class="swiper-wrapper">
+                                {% set galleryList = gallery.items ?: [gallery.first] %}
+                                {% set galleryList = galleryList|slice(0, 6) %}
+                                {% set galleryResizeList = imageResized.resizePicture(galleryList, {'width': '379', 'height': '266', 'mode': 'crop', 'paddings': false, 'folder': 'twig_crop_realty_list', 'cache_path_size': true}) %}
+                                {% for i, galleryItem in galleryResizeList %}
+                                    <div href="#" class="swiper-slide"
+                                         style="background-image: url({{ galleryItem.src }});"></div>
+                                {% endfor %}
+                            </div>
+                            <!-- Add Pagination -->
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                    <div class="inf">
+                        <a href="{{ offerItem.url }}">
+                            {% set zagolovok = complexCategory.getViewAliasesOptions('zagolovok', paramsValues) %}
+                            {% if zagolovok %}
+                                <p class="title">{{ zagolovok }}</p>
+                            {% else %}
+                                <p class="title">{{ item.Advertisement.title }}</p>
+                            {% endif %}
+                            <p class="price">{{ Price.format(item.Advertisement.price) }} ₽</p>
+                            <div class="location"><img src="/uploads/assets/images/icon/marker-map.svg" alt=""> Каштаны</div>
+                        </a>
+                        <div class="statistic">
+                            <div class="fav">
+                                <img src="/uploads/assets/images/icon/my_object/fav.svg" alt="favorite">
+                                <p>13</p>
+                                <p class="hide">Добавлено в избранное</p>
+                            </div>
+                            <div class="share">
+                                <img src="/uploads/assets/images/icon/my_object/share.svg" alt="share">
+                                <p>2</p>
+                                <p class="hide">Поделились объектом</p>
+                            </div>
+                            <div class="down">
+                                <img src="/uploads/assets/images/icon/my_object/pdf.svg" alt="pdf">
+                                <p>11</p>
+                                <p class="hide">Скачано pdf файлов</p>
+                            </div>
+                            <div class="look">
+                                <img src="/uploads/assets/images/icon/my_object/look.svg" alt="look">
+                                <p>11 365 <span>(+155)</span></p>
+                                <p class="hide">Просмотров объекта (+ за сегодня)</p>
+                            </div>
+                        </div>
+                        <div class="interface">
+                            <a href="#" class="edit"></a>
+                            <a href="#" class="share" data-attr-title="{{ item.Advertisement.title ? item.Advertisement.title : item.Location.SubLocality.title }}"
+                               data-attr-url="/agency/realty/view/{{ item.Advertisement.id }}"></a>
+                            <a href="#" class="del"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="tabs__content">
+            <div class="object">
+                <div class="img">
+                    <div class="swiper-container-item">
+                        <div class="swiper-wrapper">
+                            <div href="#" class="swiper-slide"
+                                 style="background-image: url(/uploads/assets/images/card/noimg.jpg);"></div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+                <div class="inf">
+                    <a href="#">
+                        <p class="title">Название не указано</p>
+                        <p class="price">Цена не указана</p>
+                        <div class="location"><img src="/uploads/assets/images/icon/marker-map.svg" alt=""> местоположение не указано</div>
+                    </a>
+                    <div class="statistic">
+                        <div class="fav">
+                            <img src="/uploads/assets/images/icon/my_object/fav.svg" alt="favorite">
+                            <p>0</p>
+                            <p class="hide">Добавлено в избранное</p>
+                        </div>
+                        <div class="share">
+                            <img src="/uploads/assets/images/icon/my_object/share.svg" alt="share">
+                            <p>0</p>
+                            <p class="hide">Поделились объектом</p>
+                        </div>
+                        <div class="down">
+                            <img src="/uploads/assets/images/icon/my_object/pdf.svg" alt="pdf">
+                            <p>0</p>
+                            <p class="hide">Скачано pdf файлов</p>
+                        </div>
+                        <div class="look">
+                            <img src="/uploads/assets/images/icon/my_object/look.svg" alt="look">
+                            <p>0</p>
+                            <p class="hide">Просмотров объекта (+ за сегодня)</p>
+                        </div>
+                    </div>
+                    <div class="interface">
+                        <a href="#" class="edit"></a>
+                        <a href="#" class="share" data-attr-title="Тестовый заголовок 3" data-attr-url="test3.ru"></a>
+                        <a href="#" class="del"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -164,6 +164,25 @@ $(collectionBlock).on('click', '.compilition .content .list .group label input',
         $('.compilition .content button').html('Готово');
     }
 });
+$(collectionBlock).on('submit', '.compilition form', function (e){
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    fetch(e.currentTarget.getAttribute('action')+'.json', {
+        method: 'POST',
+        body: data,
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    }).then((res) => {
+        if (res.status === 200) {
+            // window.location.reload()
+            $(".compilition button[type=submit]").css('background-color', 'green');
+            setTimeout(function () {
+                closeModal();
+            }, 2000)
+        } else {
+            console.log(res);
+        }
+    })
+});
 
 // --------- NEW FOLDER -----------
 $('body').on('click', '.newfolder', function (e){
@@ -206,6 +225,48 @@ function closeNewFolder() {
 }
 $(collectionBlock).on("click", ".new-folder .bg", closeNewFolder );
 $(collectionBlock).on("click", ".new-folder .close", closeNewFolder );
+
+// --------- EDIT FOLDER -----------
+$('body').on('click', '.interface .edit', function (e){
+    e.preventDefault();
+    $('.edit-folder form').attr('action', $('.edit-folder form').attr('action') + '/' + $(this).data('idFolder'));
+    $('.edit-folder').addClass('open');
+});
+$("body").on('keyup', '.edit-folder form input', function (e){
+    var str = '';
+    $('.edit-folder form input[type="text"]').each(function(){
+        if ($(this).val() != "") {
+            str = 1;
+        }
+    });
+    if(str == ''){
+        $('.edit-folder form button').attr('disabled','disabled');
+    } else {
+        $('.edit-folder form button').removeAttr('disabled');
+    }
+});
+$("body").on('submit', '.edit-folder form', function (e){
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    fetch(`${e.currentTarget.getAttribute('action')}/`, {
+        method: 'POST',
+        body: data,
+        headers: {'X-Requested-With': 'XMLHttpRequest'}
+    }).then((res) => {
+        if (res.status === 200) {
+            window.location.reload()
+        } else {
+            console.log(res);
+        }
+    })
+});
+function closeEditFolder() {
+    $('.edit-folder').removeClass('open');
+    $('.edit-folder form')[0].reset();
+    $('.edit-folder form button').attr('disabled','disabled');
+}
+$("body").on("click", ".edit-folder .bg", closeEditFolder );
+$("body").on("click", ".edit-folder .close", closeEditFolder );
 
 // --------- DEL FOLDER -----------
 $('.folders .block .interface').on('click', '.del', function (e){
