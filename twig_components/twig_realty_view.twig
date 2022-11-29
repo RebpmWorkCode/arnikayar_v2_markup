@@ -80,7 +80,7 @@
         <ul>
             <li><a href="/?locality_id={{ advertisement.Location.Locality.id }}">{{ advertisement.Location.Locality.title }}</a></li>
             <li><a href="/?category_id={{ advertisement.Advertisement.category_id }}">{{ advertisement.Category.title }}</a></li>
-            <li><a href="/?county_id={{ advertisement.Location.County.id }}">{{ advertisement.Location.County.title }}</a></li>
+            <li><a href="/?county_id={{ advertisement.Location.County.id }}">{{ advertisement.Location.County.title }} район</a></li>
         </ul>
     </div>
 
@@ -142,8 +142,22 @@
                 <div class="swiper-container-product gallery-top">
                     <div class="swiper-wrapper">
                         {% set countAll = galleryList|length %}
-                        {% for galleryItem in galleryList %}
-                            <a href="{{ galleryItem.src }}" data-fancybox="gallery" class="swiper-slide" style="background-image:url({{ galleryItem.src }})"></a>
+                        {% set preview = "" %}
+                        <a href="{{ gallery.first.src }}" data-fancybox="gallery" class="swiper-slide" style="background-image:url({{ galleryItem.src }})"></a>
+                        {% if advertisement.Youtube.0.url %}
+                            {% set idVideo = advertisement.Youtube.0.url|replace({"https://www.youtube.com/embed/": ""}) %}
+                            {% set preview = "//img.youtube.com/vi/" ~ idVideo ~ "/maxresdefault.jpg" %}
+                            <a href="{{ preview }}" data-fancybox="gallery" class="swiper-slide">
+                                <iframe class="video__video" width="100%" height="100%"
+                                        src="{{ advertisement.Youtube.0.url }}" title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                            </a>
+                        {% endif %}
+                        {% for galleryIndex, galleryItem in galleryList %}
+                            {% if galleryIndex != 0 %}
+                                <a href="{{ galleryItem.src }}" data-fancybox="gallery" class="swiper-slide" style="background-image:url({{ galleryItem.src }})"></a>
+                            {% endif %}
                         {% endfor %}
                     </div>
                     <!-- Add Pagination -->
@@ -151,8 +165,14 @@
                 </div>
                 <div class="swiper-container-product gallery-thumbs">
                     <div class="swiper-wrapper">
-                        {% for galleryItem in galleryList %}
-                            <div class="swiper-slide" style="background-image:url({{ galleryItem.src }})"></div>
+                        <div href="{{ gallery.first.src }}" class="swiper-slide" style="background-image:url({{ gallery.first.src }})"></div>
+                        {% if preview %}
+                            <div href="{{ preview }}" class="swiper-slide" style="background-image:url({{ preview }})"></div>
+                        {% endif %}
+                        {% for galleryIndex, galleryItem in galleryList %}
+                            {% if galleryIndex != 0 %}
+                                <div class="swiper-slide" style="background-image:url({{ galleryItem.src }})"></div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
@@ -330,7 +350,7 @@
         </div>
         <div class="recomends">
             <div class="cards">
-                {% for item in recentOffers %}
+                {% for item in rekomList %}
                     {% set offerItem = adView.getInfo(item) %}
                     {% set gallery = adView.getGallery(item) %}
                     {% set paramsValues = item.CategoryParamValues ?? [] %}
