@@ -110,6 +110,40 @@
     max-width: 300px !important;
 }
 
+.edit-folder .content {
+    min-width: 470px;
+}
+
+.edit-folder form {
+    width: 100%;
+}
+
+.edit-folder form input, .edit-folder form {
+    width: 100%;
+}
+
+.edit-folder form button:disabled {
+    color: var(--gen-white);
+    background-color: var(--my-gray);
+    cursor: auto;
+}
+
+.edit-folder form button {
+    border-radius: 44px;
+    border: 0;
+    width: 204px;
+    padding: 12px 0;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 10px;
+    background-color: var(--my-blue);
+    color: var(--gen-white);
+    cursor: pointer;
+    display: block;
+    margin: 40px auto 10px;
+}
+
 .login form input {
     padding-right: 45px;
 }
@@ -124,3 +158,4 @@
     right: 15px;
     cursor: pointer;
 }
+

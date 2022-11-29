@@ -248,7 +248,7 @@ const RealtyAdd = {
 
 const PasswordToggle = {
     run: () => {
-        document.querySelector('.btn-toggle-password').addEventListener('click', (e) => {
+        document.querySelector('.btn-toggle-password')?.addEventListener('click', (e) => {
             let passwordElement = e.target.closest('div').querySelector('input'),
                 iconShowPassword = e.target.closest('div').querySelector('[data-password-show]'),
                 iconHidePassword = e.target.closest('div').querySelector('[data-password-hide]')
