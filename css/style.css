@@ -1033,10 +1033,10 @@ footer.lk p{
     position: absolute;
 }
 .grid .cards .card{
-    width: calc((100% - 20px) / 3);
+    width: calc((100% - 18px) / 3);
 }
 .grid .cards .card:not(:nth-of-type(3n+3)){
-    margin-right: 10px;
+    margin-right: 9px;
 }
 .grid .cards .card:nth-of-type(3n+3){
     margin-right: 0;
@@ -1419,6 +1419,7 @@ footer.lk p{
 .detail .all-inf{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 .detail .all-inf .content{
     width: 780px;
@@ -1451,6 +1452,9 @@ footer.lk p{
 .detail .all-inf .recomends .cards .card{
     width: 100%;
     margin: 0 0 10px;
+}
+.detail .all-inf .recomends .cards .card .group .title{
+    min-height: auto;
 }
 .detail .all-inf .content .tags{
     display: flex;

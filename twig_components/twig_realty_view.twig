@@ -167,7 +167,7 @@
                     <div class="swiper-wrapper">
                         <div href="{{ gallery.first.src }}" class="swiper-slide" style="background-image:url({{ gallery.first.src }})"></div>
                         {% if preview %}
-                            <div href="{{ preview }}" class="swiper-slide" style="background-image:url({{ preview }})"></div>
+                            <div href="{{ preview }}" class="swiper-slide video" style="background-image:url({{ preview }})"></div>
                         {% endif %}
                         {% for galleryIndex, galleryItem in galleryList %}
                             {% if galleryIndex != 0 %}
