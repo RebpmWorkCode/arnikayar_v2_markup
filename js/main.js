@@ -97,6 +97,10 @@ const GalleryIndex = {
                     el: ".swiper-pagination",
                     type: "fraction",
                 },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
             });
 
             $('.gallery-thumbs .swiper-slide').on('mouseover', function () {

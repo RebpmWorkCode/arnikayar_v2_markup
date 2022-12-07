@@ -68,6 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         var url = $(this).data('attr-url');
         navigator.clipboard.writeText(url);
+        $(this).addClass('copyed');
+        setTimeout(function() {
+            $('.share-modal').removeClass('open');
+        }, 1000);
     });
 
     /**----------------- SORTING -----------------**/

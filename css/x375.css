@@ -528,12 +528,13 @@
     .grid .content .category{
         overflow-x: scroll;
         margin-bottom: 10px;
+        margin-top: -10px;
     }
     .grid .content .category .wrapper{
         width: max-content;
     }
     /** --------------------- MAIN GRID end ---------------------**/
-    
+
     /** --------------------- DETAIL start ---------------------**/
     .gallery-top{
         height: 285px;
@@ -646,9 +647,15 @@
     .detail .all-inf .content .location{
         order: -2;
     }
+    .detail .all-inf .content .location .title{
+        margin: 20px 0 -10px;
+    }
     .detail .all-inf .content .description{
         order: -1;
         margin-bottom: 0;
+    }
+    .detail .all-inf .content .description .title{
+        margin: 20px 0 -10px;
     }
     .detail .all-inf .content .tags{
         order: -2;
@@ -656,6 +663,9 @@
     }
     .detail .all-inf .content .about-object ul{
         column-count: 1;
+    }
+    .detail .all-inf .content .about-object .title{
+        margin: 20px 0 10px;
     }
     .detail .all-inf .content .add-tags{
         justify-content: center;
@@ -686,7 +696,7 @@
     }
     .detail .heading{
         margin-top: 10px;
-        
+
     }
     .detail .heading h1{
         max-width: 100%;
@@ -733,10 +743,13 @@
         position: relative;
         z-index: 1;
     }
+    .detail .all-inf .about-object .full{
+        margin: 5px auto 0;
+    }
     .detail .all-inf .content .about-object ul{
         position: relative;
-        max-height: 180px;
-		overflow: hidden;
+        max-height: 155px;
+        overflow: hidden;
     }
     .detail .all-inf .about-object.additional{
         display: none;

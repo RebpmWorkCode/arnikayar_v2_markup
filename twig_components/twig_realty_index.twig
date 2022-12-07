@@ -20,10 +20,8 @@
 {{ _view.assign('title', adSeo.titleList()) }}
 {{ _view.Html.script('/uploads/assets/js/favorites.js?v=4', {'block': 'scriptCustom'}) }}
 {{ _view.Html.script('/uploads/assets/js/ajaxLoad.js?v=567436', {'block': 'scriptCustom'}) }}
-{% if not attribute(_view.request, 'query') is empty %}
-    {% set countObj = '(' ~ paginator.params.count ~ ')' %}
-    {% set orangeColor = 'orangeColor' %}
-{% endif %}
+{% set countObj = '(' ~ paginator.params.count ~ ')' %}
+{% set orangeColor = 'orangeColor' %}
 
 {% if _view.request.query('my') == 1 %}
     {{ croogo_region alias = "twig_realty_index_my" }}
