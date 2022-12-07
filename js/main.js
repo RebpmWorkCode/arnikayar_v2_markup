@@ -261,6 +261,11 @@ const PasswordToggle = {
                 iconShowPassword.classList.remove('hidden')
             }
         })
+
+        document.querySelector('#UserNotMyCompucter')?.addEventListener('change', e => {
+            document.querySelector('#UserRemember').value = e.target.checked ? '' : '1';
+        });
+
     }
 }
 

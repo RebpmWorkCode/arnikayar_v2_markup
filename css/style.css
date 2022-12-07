@@ -1,67 +1,67 @@
 @font-face {
-	font-family: 'Segoe UI';
-	src: url('../font/SegoeUI-Light.eot');
-	src: local('Segoe UI Light'), local('../font/SegoeUI-Light'),
-		url('../font/SegoeUI-Light.eot?#iefix') format('embedded-opentype'),
-		url('../font/SegoeUI-Light.woff') format('woff'),
-		url('../font/SegoeUI-Light.ttf') format('truetype');
-	font-weight: 300;
-	font-style: normal;
+    font-family: 'Segoe UI';
+    src: url('../font/SegoeUI-Light.eot');
+    src: local('Segoe UI Light'), local('../font/SegoeUI-Light'),
+    url('../font/SegoeUI-Light.eot?#iefix') format('embedded-opentype'),
+    url('../font/SegoeUI-Light.woff') format('woff'),
+    url('../font/SegoeUI-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Segoe UI';
-	src: url('../font/SegoeUI-BoldItalic.eot');
-	src: local('Segoe UI Bold Italic'), local('../font/SegoeUI-BoldItalic'),
-		url('../font/SegoeUI-BoldItalic.eot?#iefix') format('embedded-opentype'),
-		url('../font/SegoeUI-BoldItalic.woff') format('woff'),
-		url('../font/SegoeUI-BoldItalic.ttf') format('truetype');
-	font-weight: bold;
-	font-style: italic;
+    font-family: 'Segoe UI';
+    src: url('../font/SegoeUI-BoldItalic.eot');
+    src: local('Segoe UI Bold Italic'), local('../font/SegoeUI-BoldItalic'),
+    url('../font/SegoeUI-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('../font/SegoeUI-BoldItalic.woff') format('woff'),
+    url('../font/SegoeUI-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
 }
 
 @font-face {
-	font-family: 'Segoe UI';
-	src: url('../font/SegoeUI-SemiBold.eot');
-	src: local('Segoe UI Semibold'), local('../font/SegoeUI-SemiBold'),
-		url('../font/SegoeUI-SemiBold.eot?#iefix') format('embedded-opentype'),
-		url('../font/SegoeUI-SemiBold.woff') format('woff'),
-		url('../font/SegoeUI-SemiBold.ttf') format('truetype');
-	font-weight: 600;
-	font-style: normal;
+    font-family: 'Segoe UI';
+    src: url('../font/SegoeUI-SemiBold.eot');
+    src: local('Segoe UI Semibold'), local('../font/SegoeUI-SemiBold'),
+    url('../font/SegoeUI-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('../font/SegoeUI-SemiBold.woff') format('woff'),
+    url('../font/SegoeUI-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Segoe UI';
-	src: url('../font/SegoeUI.eot');
-	src: local('Segoe UI'), local('../font/SegoeUI'),
-		url('../font/SegoeUI.eot?#iefix') format('embedded-opentype'),
-		url('../font/SegoeUI.woff') format('woff'),
-		url('../font/SegoeUI.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'Segoe UI';
+    src: url('../font/SegoeUI.eot');
+    src: local('Segoe UI'), local('../font/SegoeUI'),
+    url('../font/SegoeUI.eot?#iefix') format('embedded-opentype'),
+    url('../font/SegoeUI.woff') format('woff'),
+    url('../font/SegoeUI.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Segoe UI';
-	src: url('../font/SegoeUI-Bold.eot');
-	src: local('Segoe UI Bold'), local('../font/SegoeUI-Bold'),
-		url('../font/SegoeUI-Bold.eot?#iefix') format('embedded-opentype'),
-		url('../font/SegoeUI-Bold.woff') format('woff'),
-		url('../font/SegoeUI-Bold.ttf') format('truetype');
-	font-weight: bold;
-	font-style: normal;
+    font-family: 'Segoe UI';
+    src: url('../font/SegoeUI-Bold.eot');
+    src: local('Segoe UI Bold'), local('../font/SegoeUI-Bold'),
+    url('../font/SegoeUI-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../font/SegoeUI-Bold.woff') format('woff'),
+    url('../font/SegoeUI-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'Segoe UI';
-	src: url('../font/SegoeUI-Italic.eot');
-	src: local('Segoe UI Italic'), local('../font/SegoeUI-Italic'),
-		url('../font/SegoeUI-Italic.eot?#iefix') format('embedded-opentype'),
-		url('../font/SegoeUI-Italic.woff') format('woff'),
-		url('../font/SegoeUI-Italic.ttf') format('truetype');
-	font-weight: normal;
-	font-style: italic;
+    font-family: 'Segoe UI';
+    src: url('../font/SegoeUI-Italic.eot');
+    src: local('Segoe UI Italic'), local('../font/SegoeUI-Italic'),
+    url('../font/SegoeUI-Italic.eot?#iefix') format('embedded-opentype'),
+    url('../font/SegoeUI-Italic.woff') format('woff'),
+    url('../font/SegoeUI-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
 }
 :root{
     --gen-white: #fff;
@@ -232,8 +232,30 @@ input[type="email"]{
     display: flex;
     align-items: center;
 }
+.share-modal .content .links a{
+    display: flex;
+}
 .share-modal .content .links a:not(:last-of-type){
     margin-right: 22px;
+}
+.share-modal .content .links .copyed{
+    position: relative;
+}
+.share-modal .content .links .copyed:after{
+    content: '✔';
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #0dc143;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    font-size: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /** --------------------- SHARE MODAL end ---------------------**/
 
@@ -687,7 +709,7 @@ header .left .search form input{
     outline: none;
 }
 header .left .search form.open{
-	display: flex;
+    display: flex;
 }
 header .left .search form input:not(:valid){
     background-color: rgba(82, 117, 142, 0.3);
@@ -864,7 +886,7 @@ footer.lk p{
     text-transform: uppercase;
     border-radius: 82px;
     padding: 3px;
-    margin: 0 2px 4px;
+    margin: 0 2px 2px;
     cursor: pointer;
     transition: .3s;
 }
@@ -1033,7 +1055,7 @@ footer.lk p{
     position: absolute;
 }
 .grid .cards .card{
-    width: calc((100% - 20px) / 3);
+    width: calc((100% - 18px) / 3);
 }
 .grid .cards .card:not(:nth-of-type(3n+3)){
     margin-right: 9px;
@@ -1238,7 +1260,7 @@ footer.lk p{
     transition: .3s;
 }
 .grid .filters .buttons .mob{
-	display: none;
+    display: none;
 }
 .grid .filters .buttons a span{
     display: none;
@@ -1419,6 +1441,7 @@ footer.lk p{
 .detail .all-inf{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
 }
 .detail .all-inf .content{
     width: 780px;
@@ -1451,6 +1474,9 @@ footer.lk p{
 .detail .all-inf .recomends .cards .card{
     width: 100%;
     margin: 0 0 10px;
+}
+.detail .all-inf .recomends .cards .card .group .title{
+    min-height: auto;
 }
 .detail .all-inf .content .tags{
     display: flex;
@@ -1565,16 +1591,22 @@ footer.lk p{
 .new-obj .w4-4{
     width: 480px;
 }
-.new-obj .wrapper{
+.new-obj .tabs .tabs__content{
+    display: none;
+}
+.new-obj .tabs .tabs__content.active{
+    display: block ;
+}
+.new-obj .tabs .wrapper{
     display: flex;
     align-items: center;
 }
-.new-obj .wrapper p{
+.new-obj .tabs .wrapper p{
     color: var(--my-gray);
     width: 215px;
     margin: 0 20px 0 0;
 }
-.new-obj .wrapper .tabs__categories{
+.new-obj .tabs .wrapper ul{
     margin: 0;
     padding: 0;
     display: flex;
@@ -1601,7 +1633,7 @@ footer.lk p{
     color: var(--my-gray);
     margin-right: 10px;
 }
-.new-obj .wrapper .tabs__categories label, .new-obj form .group.radio label span{
+.new-obj .tabs .wrapper ul li, .new-obj form .group.radio label span{
     color: var(--my-gray);
     background-color: var(--my-light-gray);
     padding: 10px 20px;
@@ -1609,17 +1641,17 @@ footer.lk p{
     list-style: none;
     cursor: pointer;
 }
-.new-obj .wrapper .tabs__categories label.active, .new-obj form .group.radio label input:checked + span{
+.new-obj .tabs .wrapper ul li.active, .new-obj form .group.radio label input:checked + span{
     background-color: rgba(82, 117, 142, 0.3);
     color: var(--my-black);
 }
-.new-obj .wrapper .tabs__categories label:not(:last-of-type), .new-obj form .group.radio label:not(:last-of-type) span{
+.new-obj .tabs .wrapper ul li:not(:last-of-type), .new-obj form .group.radio label:not(:last-of-type) span{
     margin-right: 2px;
 }
-.new-obj .wrapper .tabs__categories label:first-of-type, .new-obj form .group.radio label:first-of-type span{
+.new-obj .tabs .wrapper ul li:first-of-type, .new-obj form .group.radio label:first-of-type span{
     border-radius: 56px 2px 2px 56px;
 }
-.new-obj .wrapper .tabs__categories label:last-of-type, .new-obj form .group.radio label:last-of-type span{
+.new-obj .tabs .wrapper ul li:last-of-type, .new-obj form .group.radio label:last-of-type span{
     border-radius: 2px 30px 30px 2px;
 }
 .new-obj form .group.radio label span{
@@ -2513,49 +2545,49 @@ footer.lk p{
 
 /** --------------------- INPUT SELECT start ---------------------**/
 .jq-selectbox{
-	position: relative;
-	display: inline-block;
+    position: relative;
+    display: inline-block;
     z-index: 10;
     vertical-align: middle;
-	cursor: pointer;
+    cursor: pointer;
 }
 .jq-selectbox select {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
 }
 .jq-selectbox li {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
     margin: 0;
-	padding: 0;
+    padding: 0;
     min-height: 18px;
-	padding: 2px 15px 3px;
-	color: var(--my-gray);
+    padding: 2px 15px 3px;
+    color: var(--my-gray);
 }
 .jq-selectbox li.selected {
-	color: var(--gen-black);
+    color: var(--gen-black);
 }
 .jq-selectbox li:hover {
-	background-color: var(--hover-blue);
-	color: var(--gen-black);
+    background-color: var(--hover-blue);
+    color: var(--gen-black);
 }
 .jq-selectbox li.disabled {
-	color: #AAA;
+    color: #AAA;
 }
 
 
 .jq-selectbox__dropdown {
     position: absolute;
-	box-sizing: border-box;
+    box-sizing: border-box;
     width: 100%;
     margin: -20px 0 0;
     z-index: -1;
@@ -2565,16 +2597,16 @@ footer.lk p{
     overflow: hidden;
 }
 .dropup .jq-selectbox__dropdown{
-	border-radius: 20px 20px 0 0;
-	padding: 10px 0 20px;
-	margin: 0 0 -20px;
+    border-radius: 20px 20px 0 0;
+    padding: 10px 0 20px;
+    margin: 0 0 -20px;
 }
 .jq-selectbox__dropdown ul {
-	position: relative;
-	overflow: auto;
-	overflow-x: hidden;
-	list-style: none;
-	-webkit-overflow-scrolling: touch;
+    position: relative;
+    overflow: auto;
+    overflow-x: hidden;
+    list-style: none;
+    -webkit-overflow-scrolling: touch;
     margin: 0;
     padding: 0;
 }
@@ -2582,8 +2614,8 @@ footer.lk p{
 .jq-selectbox__select {
     position: relative;
     min-width: 140px;
-	padding: 9px 30px 10px 15px;
-	border-radius: 40px;
+    padding: 9px 30px 10px 15px;
+    border-radius: 40px;
     background-color: var(--my-light-gray)
 }
 .jq-selectbox__select.err{
@@ -2598,33 +2630,33 @@ footer.lk p{
 }
 .jq-selectbox__select-text {
     overflow: hidden;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	display: block;
-	width: 100% !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100% !important;
     color: var(--my-gray);
 }
 
 .jq-selectbox .placeholder {
-	color: #888;
+    color: #888;
 }
 .jq-selectbox__trigger {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 34px;
-	height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 34px;
+    height: 100%;
 }
 .jq-selectbox__trigger-arrow {
-	position: absolute;
-	top: 18px;
-	right: 15px;
-	width: 14px;
-	height: 8px;
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    width: 14px;
+    height: 8px;
     background: url(../images/icon/arrow-select.svg) center center / cover no-repeat;
 }
 .jq-selectbox.opened .jq-selectbox__trigger-arrow{
@@ -2636,8 +2668,8 @@ footer.lk p{
     width: 200px;
     padding: 0 10px;
     margin-bottom: 12px;
-  }
-  .upload__img-close {
+}
+.upload__img-close {
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -2649,9 +2681,9 @@ footer.lk p{
     line-height: 24px;
     z-index: 1;
     cursor: pointer;
-  }
-  .upload__img-close:after {
+}
+.upload__img-close:after {
     content: "✖";
     font-size: 14px;
     color: white;
-  }
+}
