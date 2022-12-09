@@ -360,6 +360,7 @@
     .cards .card .group .title p{
         font-size: 12px;
         line-height: 16px;
+        min-height: 32px;
     }
     .cards .card .group .title, .cards .card .group .price, .cards .card .group .location {
         padding: 0 8px;
@@ -534,7 +535,7 @@
         width: max-content;
     }
     /** --------------------- MAIN GRID end ---------------------**/
-
+    
     /** --------------------- DETAIL start ---------------------**/
     .gallery-top{
         height: 285px;
@@ -696,7 +697,7 @@
     }
     .detail .heading{
         margin-top: 10px;
-
+        
     }
     .detail .heading h1{
         max-width: 100%;
@@ -749,7 +750,7 @@
     .detail .all-inf .content .about-object ul{
         position: relative;
         max-height: 155px;
-        overflow: hidden;
+		overflow: hidden;
     }
     .detail .all-inf .about-object.additional{
         display: none;
@@ -1002,10 +1003,10 @@
         color: var(--my-black);
     }
     .new-obj .tabs .wrapper,
-    .new-obj .tabs .wrapper ul{
+    .new-obj .tabs .wrapper .tabs__categories{
         flex-wrap: wrap;
     }
-    .new-obj .tabs .wrapper ul li{
+    .new-obj .tabs .wrapper .tabs__categories label{
         padding: 0 0 0 30px;
         margin: 0 0 10px 20px;
         align-items: center;
@@ -1017,10 +1018,10 @@
         background-color: initial;
         position: relative;
     }
-    .new-obj .tabs .wrapper ul li:first-of-type{
+    .new-obj .tabs .wrapper .tabs__categories label:first-of-type{
         border-radius: 0;
     }
-    .new-obj .tabs .wrapper ul li:before {
+    .new-obj .tabs .wrapper .tabs__categories label:before {
         content: '';
         position: absolute;
         left: 0;
@@ -1030,10 +1031,10 @@
         width: 21px;
         height: 21px;
     }
-    .new-obj .tabs .wrapper ul li.active{
+    .new-obj .tabs .wrapper .tabs__categories label.active{
         background-color: initial;
     }
-    .new-obj .tabs .wrapper ul li.active:after{
+    .new-obj .tabs .wrapper .tabs__categories label.active:after{
         content: '';
         position: absolute;
         left: 4px;
