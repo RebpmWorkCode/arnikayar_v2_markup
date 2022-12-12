@@ -96,9 +96,11 @@
                     <h1>{{ zagolovok }}</h1>
                 {% endif %}
                 {% set price = Price.format(advertisement.Advertisement.price) %}
-                {% set priceArea = (advertisement.Advertisement.price / house_area)|round %}
+                {% if house_area %}
+                    {% set priceArea = (advertisement.Advertisement.price / house_area)|round %}
+                {% endif %}
                 {% set priceArea = Price.format(priceArea) %}
-                <p>{{ price }} ₽ <span>{{ priceArea }} ₽ за м² {% if session.read('Auth.User.id') and part %}<i class="commission">комиссия {{ part }} %</i>{% endif %}</span></p>
+                <p>{{ price }} ₽ <span>{% if priceArea %}{{ priceArea }} ₽ за м²{% endif %} {% if session.read('Auth.User.id') and part %}<i class="commission">комиссия {{ part }} %</i>{% endif %}</span></p>
                 <div class="interface">
                     <div class="group">
                         <a href="#" class="mob out"><img src="/uploads/assets/images/icon/out.svg" alt=""></a>
@@ -132,9 +134,9 @@
                         </a>
                         <form action="#">
                             <input type="text">
-                            <button type="submit"></button>
+                            <button type="submit" class="favorite" data-favorite="{{ isFavorite ? 'remove' : 'add'}}"
+                                    data-favorite-invert="{{ isFavorite ? 'add' : 'remove'}}" data-favorite-id="{{ advertisement.Advertisement.id }}"></button>
                         </form>
-
                     </div>
                 </div>
             </div>

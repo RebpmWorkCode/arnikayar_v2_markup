@@ -591,3 +591,11 @@ $('.detail .all-inf .description').on('click', ' .full', function (e) {
     $(this).hide();
     $('.detail .all-inf .description').addClass('open');
 });
+
+// $('.group.tags label input').each(function() {
+//     $(this).on('change', function () {
+//         if ($(this).attr('checked') == 'checked') {
+//             $(this).attr('checked', false);
+//         }
+//     })
+// });

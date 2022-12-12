@@ -170,7 +170,7 @@
             </div>
         </div>
         <div class="filters">
-            {{ form.create('Advertisement', {'url': filterUrl}) }}
+            {{ form.create('Advertisement', {'url': {'plugin':'agency','controller':'realty','action':'index'}, 'id': 'FilterForm'}) }}
             {{ form.hidden('sort', {'value': _view.request.query('sort')}) }}
             {{ form.hidden('direction', {'value': _view.request.query('direction')}) }}
             <div class="group base">
@@ -278,11 +278,11 @@
                     <p>с видео</p>
                 </label>
                 <label>
-                    {{ form.input('bath_house', {'type': 'checkbox','hiddenField': false,'value': '1','label': false,'div': false}) }}
+                    {{ form.input('swimming_pool', {'type': 'checkbox','hiddenField': false,'value': '1','label': false,'div': false}) }}
                     <p>с бассейном</p>
                 </label>
                 <label>
-                    {{ form.input('place_car', {'type': 'checkbox','hiddenField': false, 'value': '1', 'label': false,'div': false}) }}
+                    {{ form.input('bath_house', {'type': 'checkbox','hiddenField': false, 'value': '1', 'label': false,'div': false}) }}
                     <p>с баней</p>
                 </label>
                 <label>
@@ -290,11 +290,11 @@
                     <p>с ремонтом</p>
                 </label>
                 <label>
-                    {{ form.input('guest_house', {'type': 'checkbox', 'hiddenField': false, 'value': _view.request.query('guest_house') ?: 5, 'label': false,'div': false}) }}
+                    {{ form.input('place_car', {'type': 'checkbox','hiddenField': false, 'value': '1', 'label': false,'div': false}) }}
                     <p>с гаражом</p>
                 </label>
                 <label>
-                    {{ form.input('with_video', {'type': 'checkbox','hiddenField': false, 'value': '1', 'label': false,'div': false}) }}
+                    {{ form.input('guest_house', {'type': 'checkbox','hiddenField': false, 'value': '1', 'label': false,'div': false}) }}
                     <p>с гостевым домом</p>
                 </label>
             </div>
