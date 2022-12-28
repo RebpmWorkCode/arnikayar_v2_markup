@@ -129,62 +129,25 @@ const RealtyAdd = {
                 event.preventDefault();
             });
         }
-
-        if(RealtyAdd.existElemement('.params-filter')) {
-            RealtyAdd.paramsFilter = $('.params-filter');
-            RealtyAdd.runParamsFilter();
-        }
-        if(RealtyAdd.existElemement('[name="data[Advertisement][category_id]"]')) {
-            RealtyAdd.currentCategoryId = RealtyAdd._getCategoryValue();
-            RealtyAdd.runLoadedParams(RealtyAdd.currentCategoryId);
-            RealtyAdd._getCategoryField().on("change", (e) => {
-                RealtyAdd.currentCategoryId = RealtyAdd._getCategoryValue();
+        if (RealtyAdd.existElement('.tabs__categories label')) {
+            $('.tabs__categories label').on('click', (e) => {
                 $(e.target).closest('label').addClass('active').siblings().removeClass('active');
-                RealtyAdd.runLoadedParams(RealtyAdd.currentCategoryId);
-            });
+                $('.tabs__content[data-category]').removeClass('active');
+                $(`.tabs__content[data-category="${e.currentTarget.dataset.categoryId}"]`).addClass('active');
+            })
         }
-        if(RealtyAdd.existElemement('.JS-street')) {
+        if(RealtyAdd.existElement('.JS-street')) {
             RealtyAdd.runAddress();
         }
-        // RealtyAdd.runToogleRequired();
-    },
-    runLoadedParams: (categoryId) => {
-        $.ajax({
-            url : `/agency/realty/category_params/${categoryId}`,
-            statusCode: {
-                404: function () {
-                    alert("page /agency/realty/category_params/ not found");
-                },
-                403: function () {
-                    alert("Запрещен доступ к странице /agency/realty/category_params/");
-                }
-            },
-            success : function(data){
-                $('#categoryParams').replaceWith(data);
-                $('#categoryParams').find('select').select2({language: 'ru',placeholder: 'Выберите вариант',allowClear: true,});
-            }
-        });
-    },
-    runToogleRequired: () => {
-        RealtyAdd.toogleRequired(document.querySelectorAll('#AdvertisementAddForm input[type="text"]'));
-    },
-    toogleRequired: (elements) => {
-        elements.forEach(input => {
-            if (RealtyAdd.isHidden(input)) {
-                if(input.required){
-                    input.dataset.prevRequired =  input.required;
-                    input.required = false;
-                }
-            } else {
-                if(input.dataset.prevRequired){
-                    input.required = input.dataset.prevRequired;
-                    delete input.dataset.prevRequired;
-                }
-            }
+
+        $('[data-swap]').on('change', e => {
+            let isSwap = e.target.checked;
+            $(`.${e.target.dataset.swap}`).find('[data-swap-id]').each((i, swapEl) => {
+                let swapIds = JSON.parse(swapEl.dataset.swapId);
+                swapEl.value = isSwap ? swapIds[1] : swapIds[0];
+            })
         })
-    },
-    isHidden: (el) => {
-        return (el.offsetParent === null)
+
     },
     runAddress: () => {
         $('.JS-street').on('change.select2', (e) => {
@@ -193,58 +156,7 @@ const RealtyAdd = {
             }, 2000);
         })
     },
-    runParamsFilter: () => {
-        if (RealtyAdd.paramsFilter.length > 0) {
-            RealtyAdd.hideParamsFilter();
-            let categoryValue = RealtyAdd._getCategoryValue();
-            // let rentValue = RealtyAdd._getRentValue();
-            if (categoryValue) {
-                RealtyAdd.showParamsFilter(categoryValue/* , rentValue */);
-            }
-            RealtyAdd._getCategoryField().on('change', RealtyAdd.toggleParamsFilter)
-            // RealtyAdd._getRentField().on('change', RealtyAdd.toggleParamsFilter)
-
-            RealtyAdd.toggleParamsFilter();
-        }
-    },
-    hideParamsFilter: () => {
-        RealtyAdd.paramsFilter.addClass('hidden');
-
-    },
-    showParamsFilter: (categoryId, rentValue) => {
-        let classRent = '';
-        switch (rentValue) {
-            case 'rent':
-                classRent = `._r1-${categoryId}`;
-                break;
-            case 'sale':
-                classRent = `._r0-${categoryId}`;
-                break;
-            default:
-                break;
-        }
-        $(`.params-filter.category-${categoryId}${classRent}`).removeClass('hidden');
-    },
-    toggleParamsFilter: (e) => {
-        RealtyAdd.hideParamsFilter();
-        RealtyAdd.showParamsFilter(RealtyAdd._getCategoryValue()/* , RealtyAdd._getRentValue() */)
-    },
-    _getCategoryField: () => {
-        return $('[name="data[Advertisement][category_id]"]');
-    },
-    _getCategoryValue: () => {
-        return Number($('[name="data[Advertisement][category_id]"]:checked').val());
-    },
-    // _getRentField: () => {
-    //     return $('[name="data[Advertisement][rent]"]');
-    // },
-    // _getRentValue: () => {
-    //     if (RealtyIndexForm.isCheckedField) {
-    //         return $('[name="data[Advertisement][rent]"]:checked').val();
-    //     }
-    //     return $('[name="data[Advertisement][rent]"]').val();
-    // },
-    existElemement: (selector) => {
+    existElement: (selector) => {
         return $(selector).length > 0;
     }
 }
@@ -277,7 +189,7 @@ $(() => {
     GalleryIndex.run();
     PasswordToggle.run();
 
-    if(RealtyAdd.existElemement('.new-obj')){
+    if(RealtyAdd.existElement('.new-obj')){
         RealtyAdd.run();
     }
 

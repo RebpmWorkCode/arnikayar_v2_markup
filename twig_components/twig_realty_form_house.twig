@@ -1,0 +1,649 @@
+{{ form.create('Advertisement', {'enctype': 'multipart/form-data', 'url': {'plugin': 'agency', 'controller': 'realty', 'action': 'add'}, 'id': 'AdvertisementHouse'}) }}
+    {{ form.hidden('from_site', {'value': true}) }}
+    {{ form.hidden('Contractor.0.id') }}
+    {{ form.hidden('Advertisement.category_id', {'value': 4}) }}
+    <div class="step step1 active">
+        <div class="group radio type">
+            <p></p>
+            <label>
+                <input type="radio" name="data[Advertisement][rent]" value="0" checked>
+                <span>Продажа</span>
+            </label>
+            <label>
+                <input type="radio" name="data[Advertisement][rent]" value="1">
+                <span>Аренда</span>
+            </label>
+        </div>
+        <span class="title">Расположение</span>
+        <div class="map" style="float: initial;">
+            <input type="text" name="data[Advertisement][location_full]" placeholder="Адрес" minlength="3" class="search-location-field" data-source="/admin/locations/location_info/info" data-source-autocomplete="/locations/locations/search_info/Locations.RltbaseLocationInfoLib.json">
+            {{ _view.element('YandexMaps.map', {
+                'mapOptions': {'style': 'width: 100%; height:100%'},
+                'mapWrapperOptions': {'class':'map-wrapper map-area', 'style': ''},
+            }) }}
+            {{ location.setConfigFormEdit('Location.realty_location_site_form') }}
+            <div class="hidden">{{ _view.element('Locations.Location/form', {'notUseLocationJS': true, 'showSearchLocation': false}) }}</div>
+        </div>
+        <span class="title">Контакты</span>
+        <div class="group">
+            <p>Телефон</p>
+            {{ form.input('Contractor.0.phone', {
+                'type': 'tel',
+                'placeholder': '+7 999 999 99 99',
+                'pattern': '\\+7(\\s+)?[0-9]{3}(\\s+)?[0-9]{3}(\\s+)?[0-9]{2}(\\s+)?[0-9]{2}',
+                'required': true,
+                'label': false,
+                'div': false,
+            }) }}
+        </div>
+        <div class="group radio">
+            <p>Право собственности</p>
+            {{ form.input('CategoryParamValue.from_whom', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': fromWhoms|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': ['</label><label>'],
+                'after': '</label>',
+            }) }}
+        </div>
+        <div class="group radio">
+            <p>Земельный участок оформлен на праве</p>
+            {{ form.input('CategoryParamValue.registered', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': landPravos|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': ['</label><label>'],
+                'after': '</label>',
+            }) }}
+        </div>
+        <div class="group">
+            <p>Ваше имя</p>
+            {{ form.input('Contractor.0.fio', {
+                'type': 'text',
+                'class': 'w4-4',
+                'placeholder': '-',
+                'required': true,
+                'label': false,
+                'div': false,
+            }) }}
+        </div>
+        <div class="group">
+            <p>Кадастровый номер дома</p>
+            {{ form.input('CategoryParamValue.cadastral_number', {
+                'type': 'text',
+                'class': 'cadastre w3-4',
+                'placeholder': '00:00:0000000:0000',
+                'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
+                'minlength': 18,
+                'label': false,
+                'div': false,
+            }) }}
+        </div>
+        <div class="group">
+            <p>Кадастровый номер участка</p>
+            {{ form.input('CategoryParamValue.lot_cadastral_number', {
+                'type': 'text',
+                'class': 'cadastre w3-4',
+                'placeholder': '00:00:0000000:0000',
+                'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
+                'minlength': 18,
+                'label': false,
+                'div': false,
+            }) }}
+        </div>
+        <div class="seporation"></div>
+        <div class="steps">
+            <a href="#" class="out btn">Выйти</a>
+            <a href="#" class="next btn" data-step="step2">Продолжить</a>
+        </div>
+    </div>
+    <div class="step step2">
+        <span class="title">О доме</span>
+        <div class="additionals">
+            <div class="case">
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][bath_house]" value="1">
+                    <span>Баня или Сауна</span>
+                </label>
+            </div>
+            <div class="case">
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][swimming_pool]" value="1">
+                    <span>Бассейн</span>
+                </label>
+                <div class="group">
+                    <p>Размер бассейна,<br> длина/ширина/глубина</p>
+                    <input type="text" class="pool mask2" minlength="1">
+                    <input type="text" class="pool mask2" minlength="1">
+                    <input type="text" class="pool mask2" minlength="1">
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="heading">
+                <p>Категория земель</p>
+                <div class="footnote">
+                    <div class="hide">
+                        <p>Индивидуальное жилищное строительство (ИЖС)</p>
+                        <p>Садовое некоммерческое товарищество (СНТ)</p>
+                        <p>Дачное некоммерческое партнерство (ДНП)</p>
+                        <p>Личное подсобное хозяйство (ЛПХ)</p>
+                        <p>Фермерское хозяйство </p>
+                        <p>Промназначения</p>
+                    </div>
+                </div>
+            </div>
+            {{ form.input('CategoryParamValue.lot_type', {
+                'type': 'select',
+                'class': 'w4-4 styler',
+                'label': false,
+                'options': landCategories,
+                'empty': true,
+            }) }}
+        </div>
+        <div class="group">
+            <p>Год постройки</p>
+            <label>
+                <input type="text" class="w1-4" placeholder="-" name="data[CategoryParamValue][built_year]">
+            </label>
+        </div>
+        <div class="group">
+            <p>Материал стен</p>
+            {{ form.input('CategoryParamValue.material', {
+                'type': 'select',
+                'class': 'w4-4 styler',
+                'label': false,
+                'options': materials,
+                'empty': true,
+            }) }}
+        </div>
+        <div class="group">
+            <p>Этажей в доме</p>
+            {{ form.input('CategoryParamValue.number_of_floors', {
+                'type': 'select',
+                'class': 'w3-4 styler',
+                'label': false,
+                'options': numberFloors,
+                'empty': true,
+            }) }}
+        </div>
+        <div class="group">
+            <p>Высота потолков</p>
+            <label>
+                <input type="text" class="w1-4" name="data[CategoryParamValue][ceiling_height]" placeholder="0,0 м">
+            </label>
+        </div>
+        <div class="group">
+            <p>Количество комнат</p>
+            {{ form.input('CategoryParamValue.rooms_num', {
+                'type': 'select',
+                'class': 'w3-4 styler',
+                'label': false,
+                'options': roomsInFlats,
+                'empty': true,
+            }) }}
+        </div>
+        <div class="additionals">
+            <div class="case">
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][veranda_or_terrace]" value="1">
+                    <span>Терраса или веранда</span>
+                </label>
+            </div>
+        </div>
+        <div class="group">
+            <p>Площадь дома</p>
+            <label>
+                <input type="text" class="w1-4" name="data[CategoryParamValue][area_house]" placeholder="0,0 м²">
+            </label>
+        </div>
+        <div class="group">
+            <p>Площадь всех строений</p>
+            <label>
+                <input type="text" class="w1-4" name="data[CategoryParamValue][area_buildings]" placeholder="0 м²">
+            </label>
+        </div>
+        <div class="group">
+            <p>Площадь участка по документам</p>
+            <label>
+                <input type="text" class="w1-4" name="data[CategoryParamValue][house_area]" placeholder="0 сот.">
+            </label>
+        </div>
+        <div class="additionals">
+            <div class="case">
+                <label>
+                    <input type="checkbox">
+                    <span>Фактическая площадь участка отличается</span>
+                </label>
+                <div class="group">
+                    <p>Фактическая площадь участка</p>
+                    <input type="text" class="w1-4" name="data[CategoryParamValue][plot_area]" placeholder="0 сот.">
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <p>Количество санузлов</p>
+            <select name="data[CategoryParamValue][number_bathrooms]" class="w3-4 styler">
+                <option checked></option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10 и более</option>
+            </select>
+        </div>
+        <div class="group checkbox">
+            <p>Ремонт</p>
+            <div class="case">
+                {% set labels = [] %}
+                {% for i in range(1, repairs|length - 1) %}
+                    {% set labels = labels|merge(['</label><label>']) %}
+                {% endfor %}
+                {{ form.input('CategoryParamValue.renovation', {
+                    'type': 'radio',
+                    'label': false,
+                    'legend': false,
+                    'hiddenField': false,
+                    'div': false,
+                    'options': repairs|map(title => '<span>' ~ title ~ '</span>'),
+                    'before': '<label>',
+                    'between': labels,
+                    'after': '</label>',
+                }) }}
+            </div>
+        </div>
+        {#//TODO#}
+        <div class="additionals">
+            <p>Коммуникации</p>
+            <div class="case">
+                <label>
+                    <input type="checkbox" value="Электричество">
+                    <span>Электричество</span>
+                </label>
+            </div>
+        </div>
+        {#//TODO#}
+        <div class="group checkbox">
+            <p></p>
+            <div class="case narrow">
+                <label>
+                    <input type="checkbox" value="Газ центральный">
+                    <span>Газ центральный</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Газгольдер">
+                    <span>Газгольдер</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Отсутствует">
+                    <span>Отсутствует</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Вода центральная">
+                    <span>Вода центральная</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Собственная скважина">
+                    <span>Собственная скважина</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Канализация центральная">
+                    <span>Канализация центральная</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="ЛОС или септик">
+                    <span>
+											<div class="footnote">
+												<div class="hide">
+													<p>ЛОС - это локальные очистные сооружения, предназначенные для очистки бытовых стоков всюду, где отсутствует центральная канализация. </p>
+												</div>
+											</div>ЛОС или септик
+										</span>
+                </label>
+            </div>
+        </div>
+        <div class="group radio">
+            <p>Фундамент</p>
+            {% set labels = [] %}
+            {% for i in range(1, foundations|length - 1) %}
+                {% set labels = labels|merge(['</label><label>']) %}
+            {% endfor %}
+            {{ form.input('CategoryParamValue.foundation', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': foundations|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': labels,
+                'after': '</label>',
+            }) }}
+        </div>
+        <div class="group checkbox">
+            <p>Фасад и внешняя отделка</p>
+            <div class="case">
+                {% for id,name in facadeDecorations %}
+                    <label>
+                        <input type="checkbox" name="data[CategoryParamValue][facade_decoration]" value="{{ id }}">
+                        <span>{{ name }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        {#//TODO#}
+        <div class="group checkbox">
+            <p>Парковка</p>
+            <div class="case">
+                <label>
+                    <input type="checkbox">
+                    <span>Гараж</span>
+                </label>
+                <label>
+                    <input type="checkbox">
+                    <span>Навес</span>
+                </label>
+                <label>
+                    <input type="checkbox">
+                    <span>Во дворе</span>
+                </label>
+                <label>
+                    <input type="checkbox">
+                    <span>За территорией</span>
+                </label>
+            </div>
+        </div>
+        <div class="seporation"></div>
+        <div class="steps">
+            <a href="#" class="prev btn" data-step="step1">Назад</a>
+            <a href="#" class="out btn">Сохранить и выйти</a>
+            <a href="#" class="next btn" data-step="step3">Продолжить</a>
+        </div>
+    </div>
+    <div class="step step3">
+        <span class="title">Фотографии</span>
+        <div class="infobox">
+            <p>
+                <span>С хорошими фото просмотров у дома в 5 раз больше.</span>
+                Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
+            </p>
+            <img src="/uploads/assets/images/icon/house.svg" alt="">
+        </div>
+        <div class="mediabox photo">
+            <div class="left">
+                <p>Фотографии <span>Не больше 60</span></p>
+            </div>
+            <div class="right">
+                <div class="previews">
+                    <div class="previews" id="AdvertisementPicture_list"></div>
+                    <label class="JS-add-photo">
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="mediabox video">
+            <div class="left">
+                <p>Видео</p>
+            </div>
+            <div class="right">
+                <input name="data[Youtube][0][id]"  type="hidden" value="">
+                <input name="data[Youtube][0][model]" type="hidden" value="Advertisement">
+                <input name="data[Youtube][0][foreign_id]" type="hidden" value="">
+                <input type="url" name="data[Youtube][0][url]" style="margin-top: 0;" placeholder="Ссылка на видео">
+            </div>
+        </div>
+        <div class="textarea">
+            <span class="title">Описание</span>
+            {{ form.input('Advertisement.text', {
+                'type': 'textarea',
+                'placeholder': 'Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше.',
+                'label': false,
+                'div': false,
+            }) }}
+        </div>
+        <span class="title">Дополнительная информация</span>
+        <div class="group radio">
+            <p>Архитектура</p>
+            {% set labels = [] %}
+            {% for i in range(1, arhiPravs|length - 1) %}
+                {% set labels = labels|merge(['</label><label>']) %}
+            {% endfor %}
+            {{ form.input('CategoryParamValue.arhitectyr', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': arhiPravs|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': labels,
+                'after': '</label>',
+            }) }}
+        </div>
+        <div class="group checkbox">
+            <p></p>
+            <div class="case">
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][plinth]" value="1">
+                    <span>Цоколь</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][attic]" value="1">
+                    <span>Мансарда</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][operated_roof]" value="1">
+                    <span>Эксплуатируемая кровля</span>
+                </label>
+            </div>
+        </div>
+        <div class="additionals">
+            <p>Зоны отдыха</p>
+            <div class="case">
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][mangal]" value="1">
+                    <span>Мангальная зона или барбекю</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][besedka]" value="1">
+                    <span>Беседка</span>
+                </label>
+                <label>
+                    <input type="checkbox" name="data[CategoryParamValue][kitchen]" value="1">
+                    <span>Летняя кухня</span>
+                </label>
+            </div>
+        </div>
+        <div class="group radio">
+            <p>Ландшафт</p>
+            {% set labels = [] %}
+            {% for i in range(1, landscapes|length - 1) %}
+                {% set labels = labels|merge(['</label><label>']) %}
+            {% endfor %}
+            {{ form.input('CategoryParamValue.landscape', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': landscapes|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': labels,
+                'after': '</label>',
+            }) }}
+        </div>
+        <div class="group radio line">
+            <p>Автополив</p>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][automatic_watering]" value="1">
+                <span>Есть</span>
+            </label>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][automatic_watering]" value="2">
+                <span>Нет</span>
+            </label>
+        </div>
+        {# //TODO #}
+        <div class="additionals">
+            <p>Инфраструктура</p>
+            <div class="case">
+                <label>
+                    <input type="checkbox" value="Магазин">
+                    <span>Магазин</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Аптека">
+                    <span>Аптека</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Детский сад">
+                    <span>Детский сад</span>
+                </label>
+                <label>
+                    <input type="checkbox" value="Школа">
+                    <span>Школа</span>
+                </label>
+            </div>
+        </div>
+        <div class="additionals">
+            <p>Охрана объекта</p>
+            <div class="case">
+                {% for id,name in objectSecurities %}
+                    <label>
+                        <input type="checkbox" name="data[CategoryParamValue][security][]" value="{{ id }}">
+                        <span>{{ name }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="group radio line">
+            <p>Забор</p>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][fence]" value="1">
+                <span>Есть</span>
+            </label>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][fence]" value="2">
+                <span>Нет</span>
+            </label>
+        </div>
+        <div class="additionals">
+            <p>Вид из дома</p>
+            <div class="case">
+                {% for id,name in viewHouses %}
+                    <label>
+                        <input type="checkbox" name="data[CategoryParamValue][view_house][]" value="{{ id }}">
+                        <span>{{ name }}</span>
+                    </label>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="group radio line">
+            <p>Панорамные окна (французские окна<br>или окна в пол)</p>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][panoramic_windows]" value="1">
+                <span>Да</span>
+            </label>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][panoramic_windows]" value="2">
+                <span>Нет</span>
+            </label>
+        </div>
+        <div class="group radio">
+            <p>Участок</p>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][region]" value="1">
+                <span>Ровный</span>
+            </label>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][region]" value="2">
+                <span>Террасированный</span>
+            </label>
+        </div>
+        <div class="group radio line">
+            <p>Камин</p>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][fireplace]" value="1">
+                <span>Есть</span>
+            </label>
+            <label>
+                <input type="radio" name="data[CategoryParamValue][fireplace]" value="1">
+                <span>Нет</span>
+            </label>
+        </div>
+        <div class="seporation"></div>
+        <div class="group">
+            <p>Как хотели бы назвать ваш объект на сайте</p>
+            {{ form.input('Advertisement.title', {
+                'type': 'textarea',
+                'placeholder': 'не более 80 символов',
+                'maxlength': 80,
+                'label': false,
+                'div': false,
+                'class': 'w4-4 name',
+                'rows': 2,
+                'required': true,
+            }) }}
+        </div>
+        <div class="group">
+            <p>Цена</p>
+            <label class="price">
+                {{ form.input('Advertisement.price', {
+                    'type': 'text',
+                    'label': false,
+                    'div': false,
+                    'class': 'price-mask',
+                    'required': true,
+                }) }}
+            </label>
+        </div>
+        {#//TODO#}
+        <div class="group">
+            <p>Комиссия риэлтора, которая включена в стоимость</p>
+            <label class="commission">
+                <input type="text" data-mask="00" minlength="1" required>
+            </label>
+        </div>
+        {#//TODO#}
+        <div class="additionals rent">
+            <span class="text">Если вы готовы рассмотреть кроме продажи возможность сдавать в аренду ваш объект длительно более 1 месяца, пожалуйста заполните информацию ниже:</span>
+            <div class="case">
+                <label>
+                    <input type="checkbox" value="Возможна сдача в аренду">
+                    <span>Возможна сдача в аренду</span>
+                </label>
+            </div>
+        </div>
+        {#//TODO#}
+        <div class="group rent">
+            <p>Стоимость аренды в месяц</p>
+            <label class="price">
+                <input type="text" data-mask="000 000 000 000 000" minlength="1" required disabled>
+            </label>
+        </div>
+        <div class="seporation"></div>
+        <div class="steps">
+            {{ form.hidden('confirmation', {'value': 1}) }}
+            {% if recaptcha.hasKey() %}
+                {{ recaptcha.display_form({'id': 'realty_form_lot', 'div': 'recaptcha-block'}) }}
+            {% endif %}
+            <a href="#" class="prev btn" data-step="step2">Назад</a>
+            <a href="#" class="out btn">Сохранить и выйти</a>
+            <button type="submit" class="next btn">опубликовать</button>
+        </div>
+    </div>
+{{ form.end() }}

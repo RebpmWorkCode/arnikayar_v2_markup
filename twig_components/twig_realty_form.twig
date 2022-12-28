@@ -6,229 +6,30 @@
 <div class="new-obj wrap">
     <div class="breadcrumbs"><ul><li><a href="/agency/realty/add">Новое объявление</a></li></ul></div>
     {{ flash.render() }}
-    {{ form.create('Advertisement', {'enctype': 'multipart/form-data', 'url': {'plugin': 'agency', 'controller': 'realty', 'action': 'add'}, 'class': 'tabs'}) }}
-    {{ form.hidden('from_site', {'value': true}) }}
-    {{ form.hidden('Contractor.0.id') }}
-    <div class="wrapper">
-        <p>Вид объекта</p>
-        <div class="tabs__categories">
-            {% set tabCategories = [
-                {"id": 4, "title": "Дом или Таунхаус", "active": true},
-                {"id": 37, "title": "Земельный участок", "active": false},
-                {"id": 7, "title": "Квартира или Апартамент", "active": false},
-                {"id": 2, "title": "Коммерческая недвижимость", "active": false},
-            ] %}
-            {% for tabCategory in tabCategories %}
-                <label{{tabCategory.active ? ' class="active"' : ''}}>
-                    <input type="radio" name="data[Advertisement][category_id]" class="hidden" value="{{ tabCategory.id }}" {{tabCategory.active ? 'checked' : ''}}>
-                    {{ tabCategory.title }}
+    <div class="tabs">
+        <div class="wrapper">
+            <p>Вид объекта</p>
+            <div class="tabs__categories">
+                <label class="active"  data-category-id="4">
+                    <span>Дом или Таунхаус</span>
                 </label>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="step step1 active">
-        <div class="group {{ complexCategorySearch.getClassesFilter(null, {'data-rent': [37], 'data-sell': [37], 'categories': [37]})|join(' ')|replace({'input ': ''}) }}">
-            <p>Статус участка</p>
-            {{ form.input('CategoryParamValue.lot_type', {
-                'type': 'select',
-                'class': 'w4-4 select2',
-                'label': false,
-                'options': landCategories,
-                'empty': true,
-            }) }}
-        </div>
-        <div class="group {{ complexCategorySearch.getClassesFilter(null, {'data-rent': [2], 'data-sell': [2], 'categories': [2]})|join(' ')|replace({'input ': ''}) }}">
-            <p>Тип помещения</p>
-            {{ form.input('CategoryParamValue.commercial_type', {
-                'type': 'select',
-                'class': 'w4-4 select2',
-                'label': false,
-                'options': commercialTypes,
-                'empty': true,
-            }) }}
-        </div>
-        <span class="title">Расположение</span>
-        <div class="map" style="float: initial;">
-            <input type="text" name="data[Advertisement][location_full]" placeholder="Адрес" minlength="3" class="search-location-field" data-source="/admin/locations/location_info/info" data-source-autocomplete="/locations/locations/search_info/Locations.RltbaseLocationInfoLib.json">
-            {{ _view.element('YandexMaps.map', {
-                'mapOptions': {'style': 'width: 100%; height:100%'},
-                'mapWrapperOptions': {'class':'map-wrapper map-area', 'style': ''},
-            }) }}
-            {{ location.setConfigFormEdit('Location.realty_location_site_form') }}
-            <div class="hidden">{{ _view.element('Locations.Location/form', {'notUseLocationJS': true, 'showSearchLocation': false}) }}</div>
-        </div>
-        <div class="group {{ complexCategorySearch.getClassesFilter(null, {'data-rent': [7], 'data-sell': [7], 'categories': [7]})|join(' ')|replace({'input ': ''}) }}">
-            <p>Номер квартиры</p>
-            <label>
-                {{ form.input('Advertisement.apartment', {
-                    'type': 'text',
-                    'class': 'w1-4',
-                    'placeholder': '-',
-                    'minlength': '1',
-                    'required': true,
-                    'label': false,
-                    'div': false,
-                }) }}
-            </label>
-        </div>
-        <span class="title">Контакты</span>
-        <div class="group">
-            <p>Телефон</p>
-            {{ form.input('Contractor.0.phone', {
-                'type': 'tel',
-                'placeholder': '+7 999 999 99 99',
-                'pattern': '\\+7(\\s+)?[0-9]{3}(\\s+)?[0-9]{3}(\\s+)?[0-9]{2}(\\s+)?[0-9]{2}',
-                'required': true,
-                'label': false,
-                'div': false,
-            }) }}
-        </div>
-        <div class="group radio">
-            <p>Право собственности</p>
-            {{ form.input('CategoryParamValue.avito_property_right', {
-                'type': 'radio',
-                'label': false,
-                'legend': false,
-                'hiddenField': false,
-                'div': false,
-                'options': avitoPropertyRights|map(title => '<span>' ~ title ~ '</span>'),
-                'before': '<label>',
-                'between': ['</label><label>','</label><label>'],
-                'after': '</label>',
-            }) }}
-        </div>
-        <div class="group">
-            <p>Ваше имя</p>
-            {{ form.input('Contractor.0.fio', {
-                'type': 'text',
-                'class': 'w4-4',
-                'placeholder': '-',
-                'required': true,
-                'label': false,
-                'div': false,
-            }) }}
-        </div>
-        <div class="group">
-            <p>Кадастровый номер</p>
-            {{ form.input('CategoryParamValue.cadastral_number', {
-                'type': 'text',
-                'class': 'cadastre w3-4',
-                'placeholder': '00:00:0000000:0000',
-                'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
-                'minlength': 18,
-                'label': false,
-                'div': false,
-            }) }}
-        </div>
-        <div class="group {{ complexCategorySearch.getClassesFilter(null, {'data-rent': [4], 'data-sell': [4], 'categories': [4]})|join(' ')|replace({'input ': ''}) }}">
-            <p>Кадастровый номер участка</p>
-            {{ form.input('CategoryParamValue.lot_cadastral_number', {
-                'type': 'text',
-                'class': 'cadastre w3-4',
-                'placeholder': '00:00:0000000:0000',
-                'pattern': '\\d{2}:\\d{2}:\\d{7}:\\d{4}',
-                'minlength': 18,
-                'label': false,
-                'div': false,
-            }) }}
-        </div>
-        <div class="seporation"></div>
-        <div class="steps">
-            <a href="#" class="out btn">Выйти</a>
-            <a href="#" class="next btn" data-step="step2">Продолжить</a>
-        </div>
-    </div>
-    <div class="step step2">
-        <div id="categoryParams"></div>
-        <div class="seporation"></div>
-        <div class="steps">
-            <a href="#" class="prev btn" data-step="step1">Назад</a>
-            <a href="#" class="out btn">Сохранить и выйти</a>
-            <a href="#" class="next btn" data-step="step3">Продолжить</a>
-        </div>
-    </div>
-    <div class="step step3">
-        <span class="title">Фотографии</span>
-        <div class="infobox">
-            <p>
-                <span>С хорошими фото просмотров у дома в 5 раз больше.</span>
-                Покажите все помещения в доме, участок и отдельные постройки. Если добавите схему дома, покупателям будет проще сориентироваться.
-            </p>
-            <img src="/uploads/assets/images/icon/house.svg" alt="">
-        </div>
-        <div class="mediabox photo">
-            <div class="left">
-                <p>Фотографии <span>Не больше 60</span></p>
-            </div>
-            <div class="right">
-                <div class="previews">
-                    <div class="previews" id="AdvertisementPicture_list"></div>
-                    <label class="JS-add-photo">
-                        <span></span>
-                    </label>
-                </div>
+                <label data-category-id="37">
+                    <span>Земельный участок</span>
+                </label>
+                <label data-category-id="7">
+                    <span>Квартира или Апартамент</span>
+                </label>
+                <label data-category-id="2">
+                    <span>Коммерческая недвижимость</span>
+                </label>
             </div>
         </div>
-        <div class="mediabox video">
-            <div class="left">
-                <p>Видео</p>
-            </div>
-            <div class="right">
-                <input name="data[Youtube][0][id]"  type="hidden" value="">
-                <input name="data[Youtube][0][model]" type="hidden" value="Advertisement">
-                <input name="data[Youtube][0][foreign_id]" type="hidden" value="">
-                <input type="url" name="data[Youtube][0][url]" style="margin-top: 0;" placeholder="Ссылка на видео">
-            </div>
-        </div>
-        <div class="textarea">
-            <span class="title">Описание</span>
-            {{ form.input('Advertisement.text', {
-                'type': 'textarea',
-                'placeholder': 'Расскажите, что есть в доме, на участке, поблизости. Опишите состояние построек, коммуникаций.&#10;С качественным описанием просмотров у дома в 2 раза больше.',
-                'label': false,
-                'div': false,
-            }) }}
-        </div>
-        <div class="seporation"></div>
-        <div class="group">
-            <p>Как хотели бы назвать ваш объект на сайте</p>
-            {{ form.input('Advertisement.title', {
-                'type': 'textarea',
-                'placeholder': 'не более 80 символов',
-                'maxlength': 80,
-                'label': false,
-                'div': false,
-                'class': 'w4-4 name',
-                'rows': 2,
-                'required': true,
-            }) }}
-        </div>
-        <div class="group">
-            <p>Цена</p>
-            <label class="price">
-                {{ form.input('Advertisement.price', {
-                    'type': 'text',
-                    'label': false,
-                    'div': false,
-                    'class': 'price-mask',
-                    'required': true,
-                }) }}
-            </label>
-        </div>
-        <div class="seporation"></div>
-        <div class="steps">
-            {{ form.hidden('confirmation', {'value': 1}) }}
-            {% if recaptcha.hasKey() %}
-                {{ recaptcha.display_form({'id': 'realty_form', 'div': 'recaptcha-block'}) }}
-            {% endif %}
-            <a href="#" class="prev btn" data-step="step2">Назад</a>
-            <a href="#" class="out btn">Сохранить и выйти</a>
-            <button type="submit" class="next btn">опубликовать объект на сайте</button>
-        </div>
+        <div class="tabs__content active" data-category="4">{{ croogo_region alias = "twig_realty_form_house" }}</div>
+        <div class="tabs__content" data-category="37">{{ croogo_region alias = "twig_realty_form_lot" }}</div>
+        <div class="tabs__content" data-category="7">{{ croogo_region alias = "twig_realty_form_flat" }}</div>
+        <div class="tabs__content" data-category="2">{{ croogo_region alias = "twig_realty_form_commercial" }}</div>
     </div>
-    {{ form.end() }}
 </div>
-
 {{ _view.start('templateDownload') }}<script id="template-download" type="text/x-tmpl">{% verbatim %}
 {% for (var i=0, file; file=o.files[i]; i++) { var fileIndex = o.options.getNumberOfFiles();%}
 <div class="item template-download">
