@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/fancybox.css" rel="stylesheet">
+		<link href="css/swiper.css" rel="stylesheet">		
+		<link href="css/x375.css" rel="stylesheet">
+		<link href="css/x768.css" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="#" type="image/png">
+		<title>Calculator</title>
+	</head>
+
+	<body>
+		<!----------------- HEADER START ------------------>
+		<header>
+			<div class="wrap">
+				<div class="left">
+					<div class="menu">
+						<div class="group">
+							<a href="#" class="burger"><span></span><span></span><span></span></a>
+							<div class="list">
+								<ul>
+									<li><a href="#">Дома и таунхаусы</a></li>
+									<li><a href="#">Квартиры и апартаменты</a></li>
+									<li><a href="#">Земельные участки</a></li>
+									<li><a href="#">Коммерческая недвижимость</a></li>
+								</ul>
+								<ul class="second">
+									<li><a href="#">Каталог</a></li>
+									<li><a href="#">Ипотечный калькулятор</a></li>
+									<li><a href="#">Кадастровая карта</a></li>
+									<li class="mob"><a href="#">Город</a></li>
+								</ul>
+							</div>
+						</div>
+						<a href="#" class="logo">real2u.ru</a>
+					</div>
+					<div class="search">
+						<a href="#" class="mob"><img src="images/icon/search.svg" alt="search"></a>
+						<form action="">
+							<input type="text" placeholder="поиск по номеру или названию объекта " pattern="[А-Яа-я]{1,}">
+							<button type="submit"></button>
+						</form>
+					</div>
+					<div class="city">
+						<a class="selected" href="#">Сочи</a>
+						<div class="modal">
+							<div class="bg"></div>
+							<div class="content">
+								<div class="close"><span></span><span></span></div>
+								<p class="title">Выберите город</p>
+								<a href="#">Краснодар</a>
+								<a href="#">Москва</a>
+								<a href="#">Екатеринбург</a>
+								<a href="#">Сочи</a>
+								<a href="#">Санкт-Петербург</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right">
+					<a href="#" class="objects"></a>
+					<a href="#" class="folder"></a>
+					<a href="#" class="favorite"></a>
+					<div class="wrapper">
+						<a href="#" class="bell open active"></a>
+						<div class="list">
+							<ul>
+								<li class="new"><a href="#">Новое уведомление с очень длинным текстом Новое уведомление с очень длинным текстом 
+								</a></li>
+								<li><a href="#">Уведомление 2</a></li>
+								<li><a href="#">Уведомление 3</a></li>
+								<li><a href="#">Уведомление 4</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="wrapper">
+						<a href="#" class="lk open">
+							<span>Арсений Белоруков</span>
+						</a>
+						<div class="list">
+							<ul>
+								<li><a class="client" href="#">Я с клиентом <span></span></a></li>
+								<li><a href="#">Профиль</a></li>
+								<li><a href="#">Мои объявления</a></li>
+								<li class="mob"><a href="#">Уведомления</a></li>
+								<li><a href="#">Выйти</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!----------------- HEADER END ------------------>
+
+		<div class="calculator wrap">
+			<section class="section-calc" id="calc">
+				<div class="container">
+					<div class="calc-block">
+						<h2>Ипотечный калькулятор</h2>
+						<form action="/agency/services/mortgage_calculator" method="post" class="calc-values ani-input-wrap" id="MortgageMortgageCalculatorForm" accept-charset="utf-8">
+							<div style="display:none;">
+								<input type="hidden" name="_method" value="POST"/>
+								<input type="hidden" name="data[_Token][key]" value="" id="Token1336488303" autocomplete="off"/>
+							</div>
+							<input name="data[Mortgage][amount]" class="calc-value calc-value-summ" placeholder="Сумма рублей" type="text" value="5000000" id="MortgageAmount"/>
+							<input name="data[Mortgage][percentage]" class="calc-value calc-value-percent" placeholder="Процентная ставка" type="text" value="0.1" id="MortgagePercentage"/>
+							<input name="data[Mortgage][term]" class="calc-value calc-value-time" placeholder="Срок кредита, лет" type="text" value="1" id="MortgageTerm"/>
+							<button class="btn btn-calc">Рассчитать</button>
+							<div style="display:none;">
+								<input type="hidden" name="data[_Token][fields]" value="" id="TokenFields1478486476" autocomplete="off"/>
+								<input type="hidden" name="data[_Token][unlocked]" value="" id="TokenUnlocked1155324627" autocomplete="off"/>
+							</div>
+						</form>
+						<div class="calc-result">
+							Сумма ежемесячного платежа: <b class="calc-mount-result">416 892 ₽</b>
+						</div>
+						<div class="calc-result">
+							Переплата по процентам за ипотеку: <b class="calc-percent-result">2 709 ₽</b>
+						</div>
+						<table class="calc-table">
+							<tr>
+								<th>Срок</th>
+								<th>Основной долг (руб.)</th>
+								<th>Начисленные проценты (руб.)</th>
+								<th>Сумма платежа (руб.)</th>
+							</tr>
+							<tr>
+								<td>1 месяц</td>
+								<td>4 583 524</td>
+								<td>417</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>2 месяц</td>
+								<td>4 167 014</td>
+								<td>382</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>3 месяц</td>
+								<td>3 750 469</td>
+								<td>347</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>4 месяц</td>
+								<td>3 333 889</td>
+								<td>313</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>5 месяц</td>
+								<td>2 917 274</td>
+								<td>278</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>6 месяц</td>
+								<td>2 500 625</td>
+								<td>243</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>7 месяц</td>
+								<td>2 083 941</td>
+								<td>208</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>8 месяц</td>
+								<td>1 667 222</td>
+								<td>174</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>9 месяц</td>
+								<td>1 250 469</td>
+								<td>139</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>10 месяц</td>
+								<td>833 681</td>
+								<td>104</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>11 месяц</td>
+								<td>416 858</td>
+								<td>69</td>
+								<td>0</td>
+							</tr>
+							<tr>
+								<td>12 месяц</td>
+								<td>0</td>
+								<td>35</td>
+								<td>0</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!----------------- FOOTER START ------------------>
+		<footer>
+			<div class="wrap">
+				<a href="#">Каталог</a>
+				<a href="#">Ипотечный калькулятор</a>
+				<a href="#">Политика конфиденциальности</a>
+				<p>©  2022 real2u.ru</p>
+				<a href="#">Кадастровая карта</a>
+				<a href="#">Условия использования</a>
+			</div>
+		</footer>
+		<!----------------- FOOTER END ------------------>
+
+		<!----------------- SHARE MODAL START ------------------>
+		<div class="share-modal modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Поделиться</p>
+				<div class="links"></div>
+			</div>
+		</div>
+		<!----------------- SHARE MODAL END ------------------>
+
+		<!----------------- COMPILITION MODAL START ------------------>
+		<div class="compilition modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Добавить в подборку</p>
+				<div class="preview">
+				</div>
+				<a href="#" class="newfolder">Создать новую подборку</a> 
+				<div class="list">
+					<form action="#">
+						<div class="group">
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>0 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>100 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>ЖК для Ивана <span>10 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>25 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>1 ЖК</span></p>
+							</label>
+							<label>
+								<input type="checkbox">
+								<p>Название подборки <span>0 ЖК</span></p>
+							</label>
+						</div>
+						<button type="submit" disabled>Выберите подборку</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!----------------- COMPILITION MODAL END ------------------>
+
+		<!----------------- NEW FOLDER MODAL START ------------------>
+		<div class="new-folder modal">
+			<div class="bg"></div>
+			<div class="content">
+				<div class="close"><span></span><span></span></div>
+				<p class="title">Создать новую подборку</p>
+				<form action="">
+					<input type="text" placeholder="Название подборки">
+					<button type="submit" disabled>Готово</button>
+				</form>
+			</div>
+		</div>
+		<!----------------- NEW FOLDER MODAL END ------------------>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/fancybox.umd.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/mask.js"></script>
+		<script src="js/select2.min.js"></script>
+		<script src="https://api-maps.yandex.ru/2.1/?apikey=d25a6e93-0a2c-4e34-9c74-01258ae35f0b&lang=ru_RU" type="text/javascript"></script>
+		<script src="js/initialization.js"></script>
+		<script>
+			var myMap;
+			ymaps.ready(init);
+			function init() {
+				myMap = new ymaps.Map('map', {
+					center: [43.578131, 39.730819],
+					zoom: 14,
+					controls: []
+				}, {
+					searchControlProvider: 'yandex#search'
+				});
+				myMap.controls.remove('geolocationControl');
+				myMap.controls.remove('searchControl');
+				myMap.controls.remove('trafficControl');
+				myMap.controls.remove('typeSelector');
+				myMap.controls.remove('fullscreenControl');
+				myMap.controls.remove('rulerControl');
+				myMap.behaviors.disable('scrollZoom');
+				var circle = new ymaps.Circle([[43.578131, 39.730819], 750], {}, {
+					geodesic: true,
+					fillColor: "#52758E",
+					fillOpacity: 0.3,
+					strokeWidth: 0
+				});
+				myMap.geoObjects.add(circle);
+			}
+		</script>
+	</body>
+</html>

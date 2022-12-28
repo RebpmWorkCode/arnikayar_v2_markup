@@ -1,0 +1,158 @@
+{% set price = _view.loadHelper('Agency.Price') %}
+<div class="calculator wrap">
+    <section class="section-calc" id="calc">
+        <div class="container">
+            <div class="calc-block">
+                <h2>Ипотечный калькулятор</h2>
+                {{ _view.loadHelper('Flash').render() }}
+                {{ form.create('Mortgage', {
+                    'method': 'get',
+                    'class': 'calc-values ani-input-wrap',
+                    'inputDefaults': {'div': false, 'label': false}
+                }) }}
+                {{ form.input('amount', {'class': 'calc-value calc-value-summ placeholder-dark', 'placeholder': 'Сумма рублей'}) }}
+                {{ form.input('percentage', {'class': 'calc-value calc-value-percent placeholder-dark', 'placeholder': 'Процентная ставка'}) }}
+                {{ form.input('term', {'class': 'calc-value calc-value-time placeholder-dark', 'placeholder': 'Срок кредита, лет'}) }}
+                <button class="btn btn-calc">Рассчитать</button>
+                {{ form.end() }}
+                {% if mortgage %}
+                    {% if monthPayment %}<div class="calc-result">Сумма ежемесячного платежа: <b class="calc-mount-result">{{ price.format(monthPayment) }} ₽</b></div>{% endif %}
+                    {% if overpayment %}<div class="calc-result">Переплата по процентам за ипотеку: <b class="calc-percent-result">{{ price.format(overpayment) }} ₽</b></div>{% endif %}
+                    <table class="calc-table">
+                        <tr>
+                            <th>Срок</th>
+                            <th>Основной долг (руб.)</th>
+                            <th>Начисленные проценты (руб.)</th>
+                            <th>Сумма платежа (руб.)</th>
+                        </tr>
+                        {% for monthItem in mortgage %}
+                            <tr>
+                                <td>{{ monthItem.number }} месяц</td>
+                                <td>{{ price.format(monthItem.remaining_amount) }}</td>
+                                <td>{{ price.format(monthItem.accrued_percentage) }}</td>
+                                <td>{{ price.format(monthItem.month_debt) }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</div>
+
+<!----------------- SHARE MODAL START ------------------>
+<div class="share-modal modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Поделиться</p>
+        <div class="links"></div>
+    </div>
+</div>
+<!----------------- SHARE MODAL END ------------------>
+
+<!----------------- COMPILITION MODAL START ------------------>
+<div class="compilition modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Добавить в подборку</p>
+        <div class="preview">
+        </div>
+        <a href="#" class="newfolder">Создать новую подборку</a>
+        <div class="list">
+            <form action="#">
+                <div class="group">
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>0 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>100 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>ЖК для Ивана <span>10 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>25 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>1 ЖК</span></p>
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        <p>Название подборки <span>0 ЖК</span></p>
+                    </label>
+                </div>
+                <button type="submit" disabled>Выберите подборку</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!----------------- COMPILITION MODAL END ------------------>
+
+<!----------------- NEW FOLDER MODAL START ------------------>
+<div class="new-folder modal">
+    <div class="bg"></div>
+    <div class="content">
+        <div class="close"><span></span><span></span></div>
+        <p class="title">Создать новую подборку</p>
+        <form action="">
+            <input type="text" placeholder="Название подборки">
+            <button type="submit" disabled>Готово</button>
+        </form>
+    </div>
+</div>
+<!----------------- NEW FOLDER MODAL END ------------------>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/script.js"></script>
+<script src="js/fancybox.umd.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/mask.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=d25a6e93-0a2c-4e34-9c74-01258ae35f0b&lang=ru_RU" type="text/javascript"></script>
+<script src="js/initialization.js"></script>
+<script>
+    var myMap;
+    ymaps.ready(init);
+    function init() {
+        myMap = new ymaps.Map('map', {
+            center: [43.578131, 39.730819],
+            zoom: 14,
+            controls: []
+        }, {
+            searchControlProvider: 'yandex#search'
+        });
+        myMap.controls.remove('geolocationControl');
+        myMap.controls.remove('searchControl');
+        myMap.controls.remove('trafficControl');
+        myMap.controls.remove('typeSelector');
+        myMap.controls.remove('fullscreenControl');
+        myMap.controls.remove('rulerControl');
+        myMap.behaviors.disable('scrollZoom');
+        var circle = new ymaps.Circle([[43.578131, 39.730819], 750], {}, {
+            geodesic: true,
+            fillColor: "#52758E",
+            fillOpacity: 0.3,
+            strokeWidth: 0
+        });
+        myMap.geoObjects.add(circle);
+    }
+</script>
