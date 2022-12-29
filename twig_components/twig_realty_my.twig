@@ -1,3 +1,5 @@
+{% set complexCategory = _view.loadHelper('ComplexCategories.ComplexCategory') %}
+{% set paramsValues = item.CategoryParamValues ?? [] %}
 <div class="ads wrap">
     <div class="breadcrumbs">
         <ul>
@@ -5,10 +7,31 @@
         </ul>
     </div>
     <div class="tabs">
-        <ul class="tabs__caption">
-            <li class="active">Активные <span>{{ countObj }}</span></li>
-{#            <li>Черновики <span>{{ list|length }}</span></li>#}
-        </ul>
+        {% set my_active = '' %}
+        {% set my_disactive = '' %}
+        {% if _view.request.query('my_active') == 1 %}
+            {% set my_active = 'active' %}
+        {% endif %}
+        {% if _view.request.query('my_disactive') == 1 %}
+            {% set my_disactive = 'active' %}
+        {% endif %}
+        <style>
+            .tabs__caption .link-tab:first-child {
+                margin-right: 40px;
+            }
+            .link-tab {
+                font-weight: 600;
+                font-size: 26px;
+                color: var(--my-gray);
+            }
+            .link-tab.active {
+                color: var(--gen-black);
+            }
+        </style>
+        <div class="tabs__caption">
+            <a href="/agency/realty/my?my_active=1" class="link-tab {{ my_active }}">Активные {{ list|length }}</a>
+            <a href="/agency/realty/my?my_disactive=1" class="link-tab {{ my_disactive }}">Черновики {{ list|length }}</a>
+        </div>
         <div class="tabs__content active">
             {% for item in list %}
                 {% set offerItem = adView.getInfo(item) %}

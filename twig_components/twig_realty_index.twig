@@ -23,8 +23,4 @@
 {% set countObj = '(' ~ paginator.params.count ~ ')' %}
 {% set orangeColor = 'orangeColor' %}
 
-{% if _view.request.query('my') == 1 %}
-    {{ croogo_region alias = "twig_realty_index_my" }}
-{% else %}
-    {{ croogo_region alias = "twig_realty_index_main" }}
-{% endif %}
+{{ croogo_region alias = "twig_realty_index_main" }}
