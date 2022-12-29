@@ -18,8 +18,8 @@
         <div class="map" style="float: initial;">
             <input type="text" name="data[Advertisement][location_full]" placeholder="Адрес" minlength="3" class="search-location-field" data-source="/admin/locations/location_info/info" data-source-autocomplete="/locations/locations/search_info/Locations.RltbaseLocationInfoLib.json">
             {{ _view.element('YandexMaps.map', {
-                'mapOptions': {'style': 'width: 100%; height:100%'},
-                'mapWrapperOptions': {'class':'map-wrapper map-area', 'style': ''},
+                'mapOptions': {'style': 'width: 100%; height:100%', 'id': "mapHouse"},
+                'mapWrapperOptions': {'class':'map-area', 'style': '', 'id': "mapWrapperHouse"},
             }) }}
             {{ location.setConfigFormEdit('Location.realty_location_site_form') }}
             <div class="hidden">{{ _view.element('Locations.Location/form', {'notUseLocationJS': true, 'showSearchLocation': false}) }}</div>

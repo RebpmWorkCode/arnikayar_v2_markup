@@ -18,8 +18,8 @@
         <div class="map" style="float: initial;">
             <input type="text" name="data[Advertisement][location_full]" placeholder="Адрес" minlength="3" class="search-location-field" data-source="/admin/locations/location_info/info" data-source-autocomplete="/locations/locations/search_info/Locations.RltbaseLocationInfoLib.json">
             {{ _view.element('YandexMaps.map', {
-                'mapOptions': {'style': 'width: 100%; height:100%'},
-                'mapWrapperOptions': {'class':'map-wrapper map-area', 'style': ''},
+                'mapOptions': {'style': 'width: 100%; height:100%', 'id': "mapFlat"},
+                'mapWrapperOptions': {'class':'map-area', 'style': '', 'id': "mapWrapperFlat"},
             }) }}
             {{ location.setConfigFormEdit('Location.realty_location_site_form') }}
             <div class="hidden">{{ _view.element('Locations.Location/form', {'notUseLocationJS': true, 'showSearchLocation': false}) }}</div>
@@ -160,19 +160,26 @@
         </div>
         <div class="group radio">
             <p>Тип комнат</p>
-            <label>
-                <input type="radio" name="elevator" value="Изолированные">
-                <span>Изолированные</span>
-            </label>
-            <label>
-                <input type="radio" name="elevator" value="Смежные">
-                <span>Смежные</span>
-            </label>
+            {% set labels = [] %}
+            {% for i in range(1, dispositionRooms|length - 1) %}
+                {% set labels = labels|merge(['</label><label>']) %}
+            {% endfor %}
+            {{ form.input('CategoryParamValue.rooms_type', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': dispositionRooms|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': labels,
+                'after': '</label>',
+            }) }}
         </div>
         <div class="group">
             <p>Площадь</p>
             <label>
-                <input type="text" class="w1-4 mask2" minlength="1" placeholder="0,0 м²" required>
+                <input type="text" class="w1-4" name="data[CategoryParamValue][area]" minlength="1" placeholder="0,0 м²">
             </label>
             <div class="right">
                 <span>Общая</span>
@@ -186,7 +193,7 @@
         <div class="group">
             <p></p>
             <label>
-                <input type="text" class="w1-4 mask2" minlength="1" placeholder="0,0 м²" required>
+                <input type="text" class="w1-4"  name="data[CategoryParamValue][live_area]" minlength="1" placeholder="0,0 м²">
             </label>
             <div class="right">
                 <span>Жилая</span>
@@ -200,12 +207,12 @@
         <div class="group">
             <p>Высота потолков</p>
             <label>
-                <input type="text" class="w1-4 mask1" minlength="1" placeholder="0,0 м" required>
+                <input type="text" class="w1-4 mask1" name="data[CategoryParamValue][ceiling_height]" placeholder="0,0 м">
             </label>
         </div>
         <div class="group">
             <p>Количество санузлов</p>
-            <select name="bathroom" class="w3-4">
+            <select name="data[CategoryParamValue][number_bathrooms]" class="w3-4 styler">
                 <option checked></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -216,67 +223,44 @@
                 <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
-                <option value="10 и более">10 и более</option>
+                <option value="10">10 и более</option>
             </select>
         </div>
         <div class="additionals">
             <p>Окна</p>
             <div class="case">
-                <label>
-                    <input type="checkbox" value="Во двор">
-                    <span>Во двор</span>
-                </label>
-                <label>
-                    <input type="checkbox" value="На улицу">
-                    <span>На улицу</span>
-                </label>
-                <label>
-                    <input type="checkbox" value="На солнечную сторону">
-                    <span>На солнечную сторону</span>
-                </label>
-                <label>
-                    <input type="checkbox" value="На море">
-                    <span>На море</span>
-                </label>
+                {% for id,name in windowLocation2s %}
+                    <label>
+                        <input type="checkbox" name="data[CategoryParamValue][window_location]" value="{{ id }}">
+                        <span>{{ name }}</span>
+                    </label>
+                {% endfor %}
             </div>
         </div>
         <div class="group checkbox">
             <p>Ремонт</p>
             <div class="case">
-                <label>
-                    <input type="radio" name="construction" value="Без отделки">
-                    <span>Без отделки</span>
-                </label>
-                <label>
-                    <input type="radio" name="construction" value="Косметический">
-                    <span>Косметический</span>
-                </label>
-                <label>
-                    <input type="radio" name="construction" value="Предчистовой">
-                    <span>Предчистовой</span>
-                </label>
-                <label>
-                    <input type="radio" name="construction" value="Евро">
-                    <span>Евро</span>
-                </label>
-                <label>
-                    <input type="radio" name="construction" value="Чистовой">
-                    <span>Чистовой</span>
-                </label>
-                <label>
-                    <input type="radio" name="construction" value="Дизайнерский">
-                    <span>Дизайнерский</span>
-                </label>
-                <label>
-                    <input type="radio" name="construction" value="Требуется">
-                    <span>Требуется</span>
-                </label>
+                {% set labels = [] %}
+                {% for i in range(1, repairs|length - 1) %}
+                    {% set labels = labels|merge(['</label><label>']) %}
+                {% endfor %}
+                {{ form.input('CategoryParamValue.renovation', {
+                    'type': 'radio',
+                    'label': false,
+                    'legend': false,
+                    'hiddenField': false,
+                    'div': false,
+                    'options': repairs|map(title => '<span>' ~ title ~ '</span>'),
+                    'before': '<label>',
+                    'between': labels,
+                    'after': '</label>',
+                }) }}
             </div>
         </div>
         <div class="additionals">
             <div class="case">
                 <label>
-                    <input type="checkbox" value="Теплый пол">
+                    <input type="checkbox" name="data[CategoryParamValue][warm_floor]" value="1">
                     <span>Теплый пол</span>
                 </label>
             </div>
@@ -285,19 +269,20 @@
             <p>Мебель</p>
             <div class="case">
                 <label>
-                    <input type="checkbox" value="Кухня">
+                    <input type="checkbox" name="data[CategoryParamValue][kitchen]" value="1">
                     <span>Кухня</span>
                 </label>
                 <label>
-                    <input type="checkbox" value="Хранение одежды">
+                    <input type="checkbox" name="data[CategoryParamValue][clothing_storage]" value="1">
                     <span>Хранение одежды</span>
                 </label>
                 <label>
-                    <input type="checkbox" value="Спальные места">
+                    <input type="checkbox" name="data[CategoryParamValue][sleeping_places]" value="1">
                     <span>Спальные места</span>
                 </label>
             </div>
         </div>
+        {#//TODO#}
         <div class="additionals">
             <p>Техника</p>
             <div class="case column">
@@ -323,11 +308,11 @@
                 </label>
             </div>
         </div>
-
         <span class="title">О доме</span>
+        {#//TODO#}
         <div class="group">
             <p>Тип дома</p>
-            <select name="typehouse" class="w3-4">
+            <select name="typehouse" class="w3-4 styler">
                 <option checked></option>
                 <option value="Кирпичный">Кирпичный</option>
                 <option value="Панельный">Панельный</option>
@@ -340,13 +325,14 @@
         <div class="additionals">
             <div class="case">
                 <label>
-                    <input type="checkbox" value="Консьерж">
+                    <input type="checkbox" name="data[CategoryParamValue][concierge]" value="2">
                     <span>Консьерж</span>
                 </label>
                 <label>
-                    <input type="checkbox" value="Мусоропровод">
+                    <input type="checkbox" name="data[CategoryParamValue][rubbish_chute]" value="2">
                     <span>Мусоропровод</span>
                 </label>
+                {#//TODO#}
                 <label>
                     <input type="checkbox" value="Газ">
                     <span>Газ</span>
@@ -356,78 +342,69 @@
         <div class="group">
             <p>Год постройки</p>
             <label>
-                <input type="text" class="w1-4" placeholder="-" data-mask="0000" pattern="\d{4}" required>
+                <input type="text" class="w1-4" placeholder="-" name="data[CategoryParamValue][built_year]">
             </label>
         </div>
         <div class="group">
             <p>Этажей в доме</p>
             <label>
-                <input type="text" class="w1-4" placeholder="-" minlength="1" required>
+                <input type="text" class="w1-4" placeholder="-" minlength="1" name="data[CategoryParamValue][floors]">
             </label>
         </div>
         <div class="group radio line">
             <p>Лифт пассажирский</p>
-            <label>
-                <input type="radio" name="elevator" value="Нет">
-                <span>Нет</span>
-            </label>
-            <label>
-                <input type="radio" name="elevator" value="1">
-                <span>1</span>
-            </label>
-            <label>
-                <input type="radio" name="elevator" value="2">
-                <span>2</span>
-            </label>
-            <label>
-                <input type="radio" name="elevator" value="3">
-                <span>3</span>
-            </label>
-            <label>
-                <input type="radio" name="elevator" value="4">
-                <span>4</span>
-            </label>
+            {% set labels = [] %}
+            {% for i in range(1, liftQuantities|length - 1) %}
+                {% set labels = labels|merge(['</label><label>']) %}
+            {% endfor %}
+            {{ form.input('CategoryParamValue.lift', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': liftQuantities|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': labels,
+                'after': '</label>',
+            }) }}
         </div>
         <div class="group radio line">
             <p>Лифт грузовой</p>
-            <label>
-                <input type="radio" name="cargo-elevator" value="Нет">
-                <span>Нет</span>
-            </label>
-            <label>
-                <input type="radio" name="cargo-elevator" value="1">
-                <span>1</span>
-            </label>
-            <label>
-                <input type="radio" name="cargo-elevator" value="2">
-                <span>2</span>
-            </label>
-            <label>
-                <input type="radio" name="cargo-elevator" value="3">
-                <span>3</span>
-            </label>
-            <label>
-                <input type="radio" name="cargo-elevator" value="4">
-                <span>4</span>
-            </label>
+            {% set labels = [] %}
+            {% for i in range(1, liftQuantities|length - 1) %}
+                {% set labels = labels|merge(['</label><label>']) %}
+            {% endfor %}
+            {{ form.input('CategoryParamValue.freight_elevator', {
+                'type': 'radio',
+                'label': false,
+                'legend': false,
+                'hiddenField': false,
+                'div': false,
+                'options': liftQuantities|map(title => '<span>' ~ title ~ '</span>'),
+                'before': '<label>',
+                'between': labels,
+                'after': '</label>',
+            }) }}
         </div>
         <div class="additionals">
             <p>Двор</p>
             <div class="case">
                 <label>
-                    <input type="checkbox" value="Закрытая территория">
+                    <input type="checkbox" name="data[CategoryParamValue][closed_area]" value="1">
                     <span>Закрытая территория</span>
                 </label>
                 <label>
-                    <input type="checkbox" value="Детская площадка">
+                    <input type="checkbox" name="data[CategoryParamValue][playground]" value="2">
                     <span>Детская площадка</span>
                 </label>
                 <label>
-                    <input type="checkbox" value="Спортивная площадка">
+                    <input type="checkbox" name="data[CategoryParamValue][sports_ground]" value="2">
                     <span>Спортивная площадка</span>
                 </label>
             </div>
         </div>
+        {#//TODO#}
         <div class="additionals">
             <p>Парковка</p>
             <div class="case">
@@ -449,7 +426,6 @@
                 </label>
             </div>
         </div>
-
         <div class="seporation"></div>
         <div class="steps">
             <a href="#" class="prev btn" data-step="step1">Назад</a>

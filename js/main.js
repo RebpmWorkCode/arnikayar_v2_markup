@@ -113,6 +113,7 @@ const GalleryIndex = {
 const RealtyAdd = {
     currentCategoryId: undefined,
     paramsFilter: undefined,
+    mapContainers: {},
     run: () => {
         $('.new-obj form input[type="tel"]').mask('+7 000 000 00 00');
         if ($('div').is('.new-obj')) {
@@ -148,11 +149,19 @@ const RealtyAdd = {
             })
         })
 
+        ymaps.ready(() => {
+            document.querySelectorAll('.map .map-area').forEach((mapArea) => {
+                let mapId = mapArea.querySelector('div').id;
+                RealtyAdd.mapContainers[mapId] = Object.assign({}, Is2bMapObject);
+                RealtyAdd.mapContainers[mapId].init(mapId, '.map-area');
+            })
+        })
     },
     runAddress: () => {
         $('.JS-street').on('change.select2', (e) => {
+            let mapId = e.target.closest('form').querySelector('.map-area div').id;
             setTimeout(() => {
-                Is2bMapObject._map_up();
+                RealtyAdd.mapContainers[mapId]._map_up();
             }, 2000);
         })
     },
