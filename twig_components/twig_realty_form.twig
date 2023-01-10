@@ -60,7 +60,34 @@
         'modelName': 'Advertisement',
         'pictureModelName': 'AdvertisementPicture',
         'foreignKey': 'advertisement_id',
-        'container': '#AdvertisementPicture_list',
+        'container': '#AdvertisementHousePicture_list',
+        'addBtn': false,
+        'tmplDownload': 'Twig.twig_block',
+    }) }}
+    {{ uploadForm.load({
+        'url': '/file_upload/handler',
+        'modelName': 'Advertisement',
+        'pictureModelName': 'AdvertisementPicture',
+        'foreignKey': 'advertisement_id',
+        'container': '#AdvertisementLotPicture_list',
+        'addBtn': false,
+        'tmplDownload': 'Twig.twig_block',
+    }) }}
+    {{ uploadForm.load({
+        'url': '/file_upload/handler',
+        'modelName': 'Advertisement',
+        'pictureModelName': 'AdvertisementPicture',
+        'foreignKey': 'advertisement_id',
+        'container': '#AdvertisementFlatPicture_list',
+        'addBtn': false,
+        'tmplDownload': 'Twig.twig_block',
+    }) }}
+    {{ uploadForm.load({
+        'url': '/file_upload/handler',
+        'modelName': 'Advertisement',
+        'pictureModelName': 'AdvertisementPicture',
+        'foreignKey': 'advertisement_id',
+        'container': '#AdvertisementCommercialPicture_list',
         'addBtn': false,
         'tmplDownload': 'Twig.twig_block',
     }) }}

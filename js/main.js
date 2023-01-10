@@ -125,9 +125,10 @@ const RealtyAdd = {
                 allowClear: true,
             });
 
-            $('.JS-add-photo').on('click', function (event) {
-                $('.fileinput-button input').click();
-                event.preventDefault();
+            $('.JS-add-photo').on('click', function (e) {
+                e.preventDefault();
+                let selector = `[data-container="#${e.target.closest('form').getAttribute('id')}Picture_list"] .fileinput-button input`;
+                $(selector).click();
             });
         }
         if (RealtyAdd.existElement('.tabs__categories label')) {
@@ -135,6 +136,9 @@ const RealtyAdd = {
                 $(e.target).closest('label').addClass('active').siblings().removeClass('active');
                 $('.tabs__content[data-category]').removeClass('active');
                 $(`.tabs__content[data-category="${e.currentTarget.dataset.categoryId}"]`).addClass('active');
+
+                $('select.styler').styler('destroy');
+                $('select.styler').styler({selectPlaceholder: 'Выберите вариант'});
             })
         }
         if(RealtyAdd.existElement('.JS-street')) {
