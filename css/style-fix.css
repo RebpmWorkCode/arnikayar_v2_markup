@@ -195,3 +195,23 @@
 .login form .input.checkbox input:checked + label::after {
     background-color: var(--my-blue);
 }
+
+.ads.wrap {
+    position: relative;
+}
+
+.bottom-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    bottom: 30px;
+}
+
+.my-page {
+    width: calc((100% / 4) * 2 - 5px);
+    padding: 9px;
+    box-sizing: border-box;
+    text-align: center;
+}
